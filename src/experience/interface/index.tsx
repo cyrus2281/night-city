@@ -22,7 +22,7 @@ function Interface({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <Leva hidden={!useGlobal.getState().showLeva} collapsed={true} />
+      <Leva hidden={!useGlobal.getState().showLeva} />
       <KeyboardControls
         map={[
           { name: "forward", keys: ["ArrowUp", "KeyW"] },

@@ -7,6 +7,7 @@ import Model from "./Model";
 import { CHARACTER_INITIAL_POSITION } from "../utils/constants";
 import useGlobal from "../stores/useGlobal";
 import useLocation from "../stores/useLocation";
+import { MODEL_ANIMATIONS } from "../utils/enums";
 
 /* 
  Credits to 
@@ -23,6 +24,7 @@ export function Character() {
   const viewLock = useGlobal((state) => state.viewLock);
 
   const bodyRef = useRef<RapierRigidBody>();
+  const animationRef = useRef<string>(MODEL_ANIMATIONS.IDLE);
 
   const currentPosition = new THREE.Vector3();
   const currentLookAt = new THREE.Vector3();
@@ -39,6 +41,7 @@ export function Character() {
     const hit = rapierWorld.castRay(ray, 1, true);
 
     if (hit && hit.toi < 0.15) {
+      animationRef.current = MODEL_ANIMATIONS.JUMP;
       bodyRef.current.applyImpulse({ x: 0, y: 5, z: 0 }, true);
     }
   };
@@ -104,6 +107,14 @@ export function Character() {
     const _R = controlObject.quaternion.clone();
 
     const { forward, backward, left, right, sprint } = getKeys();
+
+    if (forward || backward || left || right) {
+      animationRef.current = sprint
+        ? MODEL_ANIMATIONS.RUN
+        : MODEL_ANIMATIONS.WALK;
+    } else {
+      animationRef.current = MODEL_ANIMATIONS.IDLE;
+    }
 
     const acc = acceleration.clone();
     if (sprint) {
@@ -185,15 +196,15 @@ export function Character() {
     <>
       <RigidBody
         ref={bodyRef as React.Ref<RapierRigidBody>}
-        colliders="hull"
+        colliders={false}
         position={CHARACTER_INITIAL_POSITION}
         linearDamping={0.5}
         angularDamping={0.5}
-        friction={0.8}
-        restitution={0.2}
+        friction={0.3}
+        restitution={0}
         mass={1}
       >
-        <Model />
+        <Model animationName={animationRef} />
       </RigidBody>
     </>
   );

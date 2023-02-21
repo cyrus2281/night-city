@@ -10,3 +10,10 @@ export enum TERRITORIES_NAMES {
   TECH_CENTER = "Tech Center",
   POST_OFFICE = "Post Office",
 }
+
+export enum MODEL_ANIMATIONS {
+    IDLE = "Survey",
+    WALK = "Walk",
+    RUN = "Run",
+    JUMP = "Jump",
+}

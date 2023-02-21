@@ -9,3 +9,7 @@ export const POSITION_DISPLACEMENT_THRESHOLD = {
 }
 
 export const ALTITUDE_DISPLACEMENT_THRESHOLD = 2
+
+export const MODELS = {
+    FOX: '/dev/Fox/Fox.gltf',
+}
