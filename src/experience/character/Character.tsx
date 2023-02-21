@@ -4,6 +4,9 @@ import { useFrame } from "@react-three/fiber";
 import { RapierRigidBody, RigidBody, useRapier } from "@react-three/rapier";
 import * as THREE from "three";
 import Model from "./Model";
+import { CHARACTER_INITIAL_POSITION } from "../utils/constants";
+import useGlobal from "../stores/useGlobal";
+import useLocation from "../stores/useLocation";
 
 /* 
  Credits to 
@@ -15,6 +18,9 @@ export function Character() {
   const [subscribeKeys, getKeys] = useKeyboardControls();
   const { rapier, world } = useRapier();
   const rapierWorld = world.raw();
+
+  const setLocation = useLocation((state) => state.setLocation);
+  const viewLock = useGlobal((state) => state.viewLock);
 
   const bodyRef = useRef<RapierRigidBody>();
 
@@ -33,7 +39,7 @@ export function Character() {
     const hit = rapierWorld.castRay(ray, 1, true);
 
     if (hit && hit.toi < 0.15) {
-      bodyRef.current.applyImpulse({ x: 0, y: 50, z: 0 }, true);
+      bodyRef.current.applyImpulse({ x: 0, y: 5, z: 0 }, true);
     }
   };
 
@@ -139,6 +145,7 @@ export function Character() {
     controlObject.position.add(frontways);
     controlObject.position.add(sideways);
 
+    setLocation(controlObject.position);
     model.setTranslation(controlObject.position, true);
     model.setRotation(_R, true);
 
@@ -147,6 +154,7 @@ export function Character() {
 
   useFrame((state, delta) => {
     if (!bodyRef.current) return;
+    if (!viewLock) return;
     const camera = state.camera;
 
     modelState(camera, bodyRef.current, delta);
@@ -158,7 +166,6 @@ export function Character() {
     idealLookat.add(bodyPosition);
 
     state.camera.lookAt(idealLookat);
-
     state.camera.updateProjectionMatrix();
   });
 
@@ -179,7 +186,7 @@ export function Character() {
       <RigidBody
         ref={bodyRef as React.Ref<RapierRigidBody>}
         colliders="hull"
-        position={[0, 0.01, 0]}
+        position={CHARACTER_INITIAL_POSITION}
         linearDamping={0.5}
         angularDamping={0.5}
         friction={0.8}
