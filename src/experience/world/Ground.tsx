@@ -6,7 +6,7 @@ function Ground() {
       <RigidBody
         type="fixed"
         friction={0}
-        restitution={0}
+        restitution={0.2}
         position={[0, -1, 0]}
         scale={[50, 1, 50]}
       >
