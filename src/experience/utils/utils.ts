@@ -1,5 +1,5 @@
 import { ALTITUDE_DISPLACEMENT_THRESHOLD } from "./constants";
-import { TerritoryType } from "./enums";
+import { TERRITORIES_NAMES, TerritoryType } from "./enums";
 import { Point, Circle2D, Rectangle2D, Territory, Point3D } from "./interfaces";
 
 export const getLocalTime = (): string => {
@@ -85,15 +85,18 @@ export const isInsideTerritory = (
 export const checkTerritories = (
   position: Point3D,
   territories: Territory[]
-): string => {
+): TERRITORIES_NAMES[] => {
   for (const territory of territories) {
+    let insideTerritories: TERRITORIES_NAMES[] = []
     if (isInsideTerritory(position, territory)) {
-      let childTerritory = "";
       if (territory.children) {
-        childTerritory = checkTerritories(position, territory.children);
+        insideTerritories.push(...checkTerritories(position, territory.children));
       }
-      return childTerritory || territory.name;
+      if (!territory.children?.length || territory.mustInclude) {
+        insideTerritories.push(territory.name);
+      }
+      return insideTerritories;
     }
   }
-  return "";
+  return [];
 };

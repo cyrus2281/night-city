@@ -16,7 +16,7 @@ interface GlobalState {
 export default create(
   subscribeWithSelector<GlobalState>((set) => {
     return {
-        isDev: true,
+        isDev: false,
         setDevMode: (isDev: boolean) => set({ isDev }),
 
         showLeva: true,

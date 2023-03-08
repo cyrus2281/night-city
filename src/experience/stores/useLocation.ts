@@ -7,13 +7,14 @@ import { subscribeWithSelector } from "zustand/middleware";
 import { Vector3 } from "three";
 import { checkTerritories } from "../utils/utils";
 import TERRITORIES from "../utils/territories";
+import { TERRITORIES_NAMES } from "../utils/enums";
 
 interface LocationState {
   location: Vector3;
   setLocation: (location: Vector3) => void;
 
-  territoryName: string;
-  setTerritoryName: (territoryName: string) => void;
+  territoriesName: TERRITORIES_NAMES[];
+  setTerritoriesName: (territoriesName: TERRITORIES_NAMES[]) => void;
 }
 
 export default create(
@@ -31,14 +32,25 @@ export default create(
             Math.abs(state.location.y - location.y) >
               POSITION_DISPLACEMENT_THRESHOLD.y
           ) {
-            const territoryName = checkTerritories(location, TERRITORIES);
-            return { location, territoryName };
+            let returnValue: {
+              location: Vector3;
+              territoriesName?: string[];
+            } = { location };
+            const territoriesName = checkTerritories(location, TERRITORIES);         
+            if (
+              JSON.stringify(territoriesName) !==
+              JSON.stringify(state.territoriesName)
+            ) {
+              returnValue.territoriesName = territoriesName;
+            }
+            return returnValue;
           }
           return {};
         }),
 
-      territoryName: "",
-      setTerritoryName: (territoryName: string) => set({ territoryName }),
+      territoriesName: [],
+      setTerritoriesName: (territoriesName: TERRITORIES_NAMES[]) =>
+        set({ territoriesName }),
     };
   })
 );

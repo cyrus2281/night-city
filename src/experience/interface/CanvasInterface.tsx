@@ -13,9 +13,9 @@ function CanvasInterface() {
         <>
           <Perf position="top-left" />
           <Debug />
-          <TerritoryInterface />
         </>
       )}
+      <TerritoryInterface />
       <OrbitControls />
     </>
   );

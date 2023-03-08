@@ -1,7 +1,12 @@
 import { useRef, useEffect } from "react";
 import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { RapierRigidBody, RigidBody, useRapier } from "@react-three/rapier";
+import {
+  CuboidCollider,
+  RapierRigidBody,
+  RigidBody,
+  useRapier,
+} from "@react-three/rapier";
 import * as THREE from "three";
 import Model from "./Model";
 import { CHARACTER_INITIAL_POSITION } from "../utils/constants";
@@ -35,14 +40,13 @@ export function Character() {
   const jump = () => {
     if (!bodyRef.current) return;
     const origin = bodyRef.current.translation();
-    origin.y -= 0.31;
+    origin.y -= 0.1;
     const direction = { x: 0, y: -1, z: 0 };
     const ray = new rapier.Ray(origin, direction);
-    const hit = rapierWorld.castRay(ray, 1, true);
-
+    const hit = rapierWorld.castRay(ray, 1, true);   
     if (hit && hit.toi < 0.15) {
       animationRef.current = MODEL_ANIMATIONS.JUMP;
-      bodyRef.current.applyImpulse({ x: 0, y: 5, z: 0 }, true);
+      bodyRef.current.applyImpulse({ x: 0, y: 20, z: 0 }, true);
     }
   };
 
@@ -131,13 +135,13 @@ export function Character() {
       _A.set(0, 1, 0);
       _Q.setFromAxisAngle(_A, 4.0 * Math.PI * delta * acceleration.y);
       _R.multiply(_Q);
-      if (!backward && !forward) newVelocity.z += acc.z * delta;
+      if (!backward && !forward) newVelocity.z += acc.z * delta * 0.5;
     }
     if (right) {
       _A.set(0, 1, 0);
       _Q.setFromAxisAngle(_A, 4.0 * -Math.PI * delta * acceleration.y);
       _R.multiply(_Q);
-      if (!backward && !forward) newVelocity.z += acc.z * delta;
+      if (!backward && !forward) newVelocity.z += acc.z * delta * 0.5;
     }
 
     controlObject.quaternion.copy(_R);
@@ -196,14 +200,20 @@ export function Character() {
     <>
       <RigidBody
         ref={bodyRef as React.Ref<RapierRigidBody>}
-        colliders={false}
+        colliders={"cuboid"}
         position={CHARACTER_INITIAL_POSITION}
         linearDamping={0.5}
         angularDamping={0.5}
-        friction={0.3}
+        friction={0.5}
         restitution={0}
         mass={1}
       >
+        <CuboidCollider
+          // Adding a flat box to prevent falling from sides
+          position={[0, 0.1, 0]}
+          args={[0.3, 0.1, 0.4]}
+          mass={2}
+        />
         <Model animationName={animationRef} />
       </RigidBody>
     </>

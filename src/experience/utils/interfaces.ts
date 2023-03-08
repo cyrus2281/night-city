@@ -1,4 +1,4 @@
-import { TerritoryType } from './enums';
+import { TERRITORIES_NAMES, TerritoryType } from './enums';
 export interface Point {
     x: number;
     y: number;
@@ -22,9 +22,13 @@ export interface Rectangle2D {
 }
 
 export interface Territory {
-    name: string;
+    name: TERRITORIES_NAMES;
     center: Point;
     type: TerritoryType;
+    /**
+     * Territory will be in the result even if there is a child match
+     */
+    mustInclude?: boolean;
     radius?: number;
     width?: number;
     height?: number;

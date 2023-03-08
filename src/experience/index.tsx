@@ -10,7 +10,7 @@ function Index() {
           shadows
           camera={{
             fov: 45,
-            near: 0.1,
+            near: 2,
             far: 200,
             position: [-4, 3, 6],
           }}

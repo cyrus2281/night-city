@@ -52,12 +52,12 @@ const Model = ({ animationName }: { animationName: { current: string } }) => {
           position={[0, 0.35, 0]}
           args={[0.05, 0.15, 0.35, 0.25]}
         /> */}
-      <MeshCollider type="hull">
+      {/* <MeshCollider type="hull">
         <mesh position={[-0.08, 0.25, -0.3]} scale={[0.05, 0.1, 0.1]}>
           <extrudeGeometry args={[shape, extrudeSettings]} />
           <meshBasicMaterial transparent opacity={0} />
         </mesh>
-      </MeshCollider>
+      </MeshCollider> */}
       <primitive object={fox.scene} scale={0.01} />
     </>
   );
