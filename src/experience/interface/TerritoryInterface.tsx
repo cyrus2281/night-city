@@ -102,7 +102,7 @@ function TerritoryInterface() {
           (audio.playInterval &&
             visitedTerritory.lastVisited + audio.playInterval < Date.now())
         ) {
-          playSound(audio.path, audio.defaultVolume);
+          playSound(audio);
         }
       }
       // Update last visited

@@ -35,3 +35,17 @@ export interface Territory {
     altitude?: number;
     children?: Territory[];
 }
+
+export interface AudioConfig {
+    path: string;
+    defaultVolume?: number;
+    subtitle?: string;
+    duration?: number;
+}
+
+export interface Subtitle {
+    message: string;
+    duration: number;
+    id: string;
+    remove: () => void;
+}

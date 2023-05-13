@@ -3,6 +3,7 @@ import { Leva } from "leva";
 import { useControls } from "leva";
 import { KeyboardControls } from "@react-three/drei";
 import useGlobal from "../stores/useGlobal";
+import Subtitles from "./Subtitles";
 
 function Interface({ children }: { children: React.ReactNode }) {
   useControls("Global Settings", {
@@ -35,6 +36,7 @@ function Interface({ children }: { children: React.ReactNode }) {
       >
         {children}
       </KeyboardControls>
+      <Subtitles />
     </>
   );
 }
