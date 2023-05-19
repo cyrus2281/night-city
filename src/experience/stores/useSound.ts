@@ -13,7 +13,7 @@ export default create(
   subscribeWithSelector<SoundState>((set, get) => {
     return {
       playSound: (audioConfig: AudioConfig) => {
-        if (!(window as any).isMute) {
+        if (!window.isMute) {
           const audio = new Audio(audioConfig.path);
           audio.volume = audioConfig.defaultVolume || 0.7;
           audio.play();
