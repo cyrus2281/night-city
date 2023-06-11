@@ -28,7 +28,6 @@ export const NIGHT_CITY_FONT = `
 * Check ${window.location.origin}/credits to learn more about the creators
 * Check https://github.com/cyrus2281/night-city for the source code
 `
-console.log(NIGHT_CITY_FONT);
 
 window.onload = () => {
     console.clear();

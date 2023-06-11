@@ -1,37 +1,18 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Leva } from "leva";
 import { useControls } from "leva";
 import { KeyboardControls } from "@react-three/drei";
-import JoystickController from "joystick-controller";
+import JoystickController, { MOUSE_CLICK_BUTTONS } from "joystick-controller";
 import useGlobal from "../stores/useGlobal";
 import Subtitles from "./Subtitles";
 import { JoystickOutput } from "../utils/interfaces";
+import styled from "styled-components";
 
-window.joystick = new JoystickController(
-  {
-    maxRange: 90,
-    level: 6,
-    radius: 60,
-    joystickRadius: 40,
-    opacity: 0.5,
-    dynamicPosition: true,
-  },
-  (output: JoystickOutput) => {
-    const { leveledX, leveledY } = output;
-    if (leveledX === 0 && leveledY === 0) {
-      window.joystickPositioning = null;
-      return;
-    }
-    const sprint = Math.abs(leveledX) > 4 || Math.abs(leveledY) > 4;
-    window.joystickPositioning = {
-      sprint,
-      right: leveledX > 2,
-      left: leveledX < -2,
-      forward: leveledY > 0,
-      backward: leveledY < 0,
-    };
-  }
-);
+const CanvasWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+`;
 
 function Interface({ children }: { children: React.ReactNode }) {
   useControls("Global Settings", {
@@ -49,6 +30,44 @@ function Interface({ children }: { children: React.ReactNode }) {
     },
   });
 
+  const wrapperRef = useRef();
+
+  useEffect(() => {
+    if (window.joystick) return;
+    window.joystick = new JoystickController(
+      {
+        maxRange: 90,
+        level: 6,
+        radius: 60,
+        joystickRadius: 40,
+        opacity: 0.5,
+        dynamicPosition: true,
+        dynamicPositionTarget: wrapperRef.current,
+        hideContextMenu: true,
+        mouseClickButton: MOUSE_CLICK_BUTTONS.LEFT,
+      },
+      (output: JoystickOutput) => {
+        const { leveledX, leveledY } = output;
+        if (leveledX === 0 && leveledY === 0) {
+          window.joystickPositioning = null;
+          return;
+        }
+        const sprint = Math.abs(leveledX) > 4 || Math.abs(leveledY) > 4;
+        window.joystickPositioning = {
+          sprint,
+          right: leveledX > 2,
+          left: leveledX < -2,
+          forward: leveledY > 0,
+          backward: leveledY < 0,
+        };
+      }
+    );
+    return () => {
+      window.joystick.destroy();
+      window.joystick = null;
+    };
+  }, [wrapperRef.current]);
+
   return (
     <>
       <Leva hidden={!useGlobal.getState().showLeva} />
@@ -62,7 +81,7 @@ function Interface({ children }: { children: React.ReactNode }) {
           { name: "jump", keys: ["Space"] },
         ]}
       >
-        {children}
+        <CanvasWrapper ref={wrapperRef as any}>{children}</CanvasWrapper>
       </KeyboardControls>
       <Subtitles />
     </>
