@@ -7,6 +7,7 @@ import useGlobal from "../stores/useGlobal";
 import Subtitles from "./Subtitles";
 import { JoystickOutput } from "../utils/interfaces";
 import styled from "styled-components";
+import InterfaceButtons from "./InterfaceButtons";
 
 const CanvasWrapper = styled.div`
   width: 100%;
@@ -36,7 +37,7 @@ function Interface({ children }: { children: React.ReactNode }) {
     if (window.joystick) return;
     window.joystick = new JoystickController(
       {
-        maxRange: 90,
+        maxRange: 100,
         level: 6,
         radius: 60,
         joystickRadius: 40,
@@ -57,20 +58,29 @@ function Interface({ children }: { children: React.ReactNode }) {
           sprint,
           right: leveledX > 2,
           left: leveledX < -2,
-          forward: leveledY > 0,
-          backward: leveledY < 0,
+          forward: leveledY > 2,
+          backward: leveledY < -2,
         };
       }
     );
+    const jump = () => window.jump()
+    window.addEventListener("contextmenu", jump)
     return () => {
       window.joystick.destroy();
       window.joystick = null;
+      window.removeEventListener("contextmenu", jump)
     };
   }, [wrapperRef.current]);
 
   return (
     <>
-      <Leva hidden={!useGlobal.getState().showLeva} />
+      <Leva hidden={!useGlobal.getState().showLeva}  titleBar={{
+      position: {
+        x: -10,
+        y: 50
+      }
+      }}/>
+      <InterfaceButtons />
       <KeyboardControls
         map={[
           { name: "forward", keys: ["ArrowUp", "KeyW"] },

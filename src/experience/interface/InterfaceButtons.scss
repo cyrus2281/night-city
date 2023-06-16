@@ -1,0 +1,19 @@
+.interface-buttons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  &-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+
+    &-left {
+    }
+
+    &-right {
+    }
+  }
+}
