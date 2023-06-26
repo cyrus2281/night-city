@@ -1,0 +1,100 @@
+@import "../variables.scss";
+
+@keyframes rotate {
+    100% {
+      transform: rotate(1turn);
+    }
+  }
+  
+  .btn {
+    position: relative;
+    padding: $space-l;
+    margin: $space-xs;
+    font-size: $font-size-m;
+    border-radius: $radius-round;
+    border: none;
+    overflow: hidden;
+    z-index: 5;
+    cursor: pointer;
+  
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -2;
+      right: 50%;
+      bottom: 50%;
+      width: 200px;
+      height: 200px;
+      transform: translate(50%, 50%) rotate(75deg);
+      transition: $transition-normal;
+      background-repeat: no-repeat;
+      background-size: 50%, 50%;
+      background-position: 0% 0%, 100% 100%;
+    }
+  
+    &::after {
+      content: "";
+      transition: $transition-quick;
+      position: absolute;
+      z-index: -1;
+      left: 2px;
+      top: 2px;
+      width: calc(100% - 6px);
+      height: calc(100% - 6px);
+      border-radius: 5px;
+      border: $space-xxs solid;
+    }
+    &:hover {
+      &::before {
+        transform: translate(50%, 50%) rotate(255deg);
+      }
+    }
+  
+    &-dark {
+      color: $color-gray-100;
+      &::before {
+        background-image: linear-gradient($color-red-900, $color-red-700),
+          linear-gradient($color-blue-900, $color-blue-700);
+      }
+      &::after {
+        background: $color-gray-900;
+        border-color: $color-gray-500;
+        color: $color-gray-200;
+      }
+      &:hover {
+        &::after {
+          background-color: $color-black;
+        }
+        border-color: $color-gray-900;
+        color: $color-white;
+      }
+    }
+  
+    &-light {
+      color: $color-gray-900;
+      &::before {
+        background-image: linear-gradient($color-red-700, $color-red-500),
+          linear-gradient($color-blue-700, $color-blue-500);
+      }
+      &::after {
+        background-color: $color-gray-100;
+        border-color: $color-gray-200;
+        color: $color-gray-900;
+      }
+      &:hover {
+        &::after {
+          background-color: $color-white;
+        }
+        border-color: $color-gray-400;
+        color: $color-black;
+      }
+    }
+  
+    &-circle {
+      border-radius: $radius-circle;
+      &::after {
+        border-radius: $radius-circle;
+      }
+    }
+  }
+  

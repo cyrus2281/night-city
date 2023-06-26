@@ -1,3 +1,4 @@
+import Button from "../../components/Button";
 import "./InterfaceButtons.scss";
 
 function InterfaceButtons() {
@@ -9,9 +10,21 @@ function InterfaceButtons() {
           <span className="status-label">7/10</span>
         </div>
         <div className="interface-buttons-top-right">
-          <button className="btn btn-light shadow-2">LinkedIn</button>
-          <button className="btn btn-light shadow-2">Github</button>
-          <button className="btn btn-light shadow-2">Mail</button>
+          <Button>LinkedIn</Button>
+          <Button>Github</Button>
+          <Button>Mail</Button>
+        </div>
+      </div>
+      <div className="interface-buttons-bottom">
+        <div className="interface-buttons-bottom-left">
+          <Button
+            circle
+            uppercase
+            theme="dark"
+            onClick={() => window.jump && window.jump()}
+          >
+            jump
+          </Button>
         </div>
       </div>
     </div>
