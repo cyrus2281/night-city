@@ -6,14 +6,7 @@ import JoystickController, { MOUSE_CLICK_BUTTONS } from "joystick-controller";
 import useGlobal from "../stores/useGlobal";
 import Subtitles from "./Subtitles";
 import { JoystickOutput } from "../utils/interfaces";
-import styled from "styled-components";
 import InterfaceButtons from "./InterfaceButtons";
-
-const CanvasWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  z-index: 99;
-`;
 
 function Interface({ children }: { children: React.ReactNode }) {
   useControls("Global Settings", {
@@ -63,23 +56,26 @@ function Interface({ children }: { children: React.ReactNode }) {
         };
       }
     );
-    const jump = () => window.jump()
-    window.addEventListener("contextmenu", jump)
+    const jump = () => window.jump();
+    window.addEventListener("contextmenu", jump);
     return () => {
       window.joystick.destroy();
       window.joystick = null;
-      window.removeEventListener("contextmenu", jump)
+      window.removeEventListener("contextmenu", jump);
     };
   }, [wrapperRef.current]);
 
   return (
     <>
-      <Leva hidden={!useGlobal.getState().showLeva}  titleBar={{
-      position: {
-        x: -10,
-        y: 50
-      }
-      }}/>
+      <Leva
+        hidden={!useGlobal.getState().showLeva}
+        titleBar={{
+          position: {
+            x: -10,
+            y: 50,
+          },
+        }}
+      />
       <InterfaceButtons />
       <KeyboardControls
         map={[
@@ -91,7 +87,9 @@ function Interface({ children }: { children: React.ReactNode }) {
           { name: "jump", keys: ["Space"] },
         ]}
       >
-        <CanvasWrapper ref={wrapperRef as any}>{children}</CanvasWrapper>
+        <div className="canvas-wrapper" ref={wrapperRef as any}>
+          {children}
+        </div>
       </KeyboardControls>
       <Subtitles />
     </>

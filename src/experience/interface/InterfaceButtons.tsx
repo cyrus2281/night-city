@@ -1,4 +1,5 @@
 import Button from "../../components/Button";
+import Dialog from "../../components/Dialog";
 import "./InterfaceButtons.scss";
 
 function InterfaceButtons() {
@@ -6,13 +7,15 @@ function InterfaceButtons() {
     <div className="interface-buttons">
       <div className="interface-buttons-top">
         <div className="interface-buttons-top-left">
-          <button className="btn btn-dark shadow-1">Resume</button>
+          <Button theme="dark" neon>
+            Resume
+          </Button>
           <span className="status-label">7/10</span>
         </div>
         <div className="interface-buttons-top-right">
-          <Button>LinkedIn</Button>
-          <Button>Github</Button>
-          <Button>Mail</Button>
+          <Button neon>LinkedIn</Button>
+          <Button neon>Github</Button>
+          <Button neon>Mail</Button>
         </div>
       </div>
       <div className="interface-buttons-bottom">
@@ -21,7 +24,10 @@ function InterfaceButtons() {
             circle
             uppercase
             theme="dark"
+            neon
+            resizable
             onClick={() => window.jump && window.jump()}
+            onTouchStart={() => window.jump && window.jump()}
           >
             jump
           </Button>
