@@ -7,6 +7,9 @@
 }
 
 .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   padding: $space-l;
   margin: $space-xs;
@@ -110,7 +113,7 @@
   &-resizable {
     padding: $space-l;
     font-size: $font-size-m;
-    
+
     @media (min-width: 768px) {
       padding: $space-xl;
       font-size: $font-size-l;

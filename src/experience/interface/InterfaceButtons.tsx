@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Dialog from "../../components/Dialog";
 import "./InterfaceButtons.scss";
+import Icon from "../../components/Icon";
 
 function InterfaceButtons() {
   const navigate = useNavigate();
@@ -16,16 +17,17 @@ function InterfaceButtons() {
           <span className="status-label">7/10</span>
         </div>
         <div className="interface-buttons-top-right">
-          <Button neon>LinkedIn</Button>
-          <Button neon>Github</Button>
-          <Button neon>Mail</Button>
+          <Button neon circle>LinkedIn</Button>
+          <Button neon circle>Github</Button>
+          <Button neon circle><Icon>email</Icon></Button>
           <Button
             neon
+            circle
             onClick={() => {
               navigate("credit", { replace: true });
             }}
           >
-            Credits
+            <Icon>info</Icon>
           </Button>
         </div>
       </div>

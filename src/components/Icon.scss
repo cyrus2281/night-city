@@ -1,0 +1,18 @@
+@import "../variables.scss";
+
+.icon {
+
+    &-small {
+        font-size: $font-size-m;
+    }
+    &-normal {
+        font-size: $font-size-l;
+    }
+    &-large {
+        font-size: $font-size-xl;
+    }
+}
+
+.btn:has(.icon) {
+    padding: $space-m;
+}
