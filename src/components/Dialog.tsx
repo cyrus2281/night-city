@@ -54,20 +54,17 @@ function Dialog({
     }
   }, [show]);
   if (addDefaultButton) {
+    const defaultButton = (
+      <Button onClick={() => setShow(false)} uppercase key="default-btn">
+        {defaultButtonText}
+      </Button>
+    );
     if (defaultButtonLocation === "right") {
       rightButtons = rightButtons || [];
-      rightButtons.unshift(
-        <Button onClick={() => setShow(false)} uppercase>
-          {defaultButtonText}
-        </Button>
-      );
+      rightButtons.unshift(defaultButton);
     } else {
       leftButtons = leftButtons || [];
-      leftButtons.unshift(
-        <Button onClick={() => setShow(false)} uppercase>
-          {defaultButtonText}
-        </Button>
-      );
+      leftButtons.unshift(defaultButton);
     }
   }
   return (

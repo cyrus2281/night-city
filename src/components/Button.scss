@@ -19,6 +19,11 @@
   outline: none;
   user-select: none;
 
+  @media (max-width: 768px) {
+    font-size: $font-size-xs;
+    padding: $space-m;
+  }
+
   &::after {
     content: "";
     transition: $transition-quick;
@@ -103,6 +108,9 @@
   }
 
   &-resizable {
+    padding: $space-l;
+    font-size: $font-size-m;
+    
     @media (min-width: 768px) {
       padding: $space-xl;
       font-size: $font-size-l;

@@ -1,0 +1,21 @@
+@import "../variables.scss";
+
+.credit {
+  &-header {
+    height: 100%;
+    width: 100%;
+    font-size: $font-size-l;
+    font-weight: bolder;
+    font-family: $font-family-curly;
+    padding-left: $space-l;
+
+    @media (max-width: 768px) {
+      font-size: $font-size-m;
+      padding-left: unset;
+    }
+  }
+
+  &-content {
+    background-color: unset !important;
+  }
+}

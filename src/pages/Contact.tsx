@@ -1,4 +1,4 @@
-function Contact() {
+function Contact({ worldPath }: { worldPath: string }) {
     return (
       <div>
         <h1>Contact</h1>

@@ -1,4 +1,4 @@
-function Resume() {
+function Resume({ worldPath }: { worldPath: string }) {
   return (
     <div>
       <h1>Resume</h1>

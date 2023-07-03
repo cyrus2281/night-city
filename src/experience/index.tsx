@@ -27,12 +27,12 @@ function World() {
   );
 }
 
-function getWorldRouter({ worldPath = "/world" }: { worldPath: string }) {
+function getWorldRouter({ worldPath = "/world" }: { worldPath?: string }) {
   return (
     <Route path={worldPath} Component={World}>
-      <Route path="credit" Component={Credit} />
-      <Route path="resume" Component={Resume} />
-      <Route path="contact" Component={Contact} />
+      <Route path="credit" element={<Credit worldPath={worldPath} />} />
+      <Route path="resume" element={<Resume worldPath={worldPath} />} />
+      <Route path="contact" element={<Contact worldPath={worldPath} />} />
       <Route path="*" element={<Navigate to={worldPath} replace={true} />} />
     </Route>
   );

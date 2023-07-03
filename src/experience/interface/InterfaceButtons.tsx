@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Dialog from "../../components/Dialog";
 import "./InterfaceButtons.scss";
 
 function InterfaceButtons() {
+  const navigate = useNavigate();
+
   return (
     <div className="interface-buttons">
       <div className="interface-buttons-top">
@@ -16,6 +19,14 @@ function InterfaceButtons() {
           <Button neon>LinkedIn</Button>
           <Button neon>Github</Button>
           <Button neon>Mail</Button>
+          <Button
+            neon
+            onClick={() => {
+              navigate("credit", { replace: true });
+            }}
+          >
+            Credits
+          </Button>
         </div>
       </div>
       <div className="interface-buttons-bottom">
