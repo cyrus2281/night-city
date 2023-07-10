@@ -13,6 +13,7 @@ export const ALTITUDE_DISPLACEMENT_THRESHOLD = 2
 export const MODELS = {
     FOX: '/dev/Fox/Fox.gltf',
     CITY: '/dev/night-city.glb',
+    ENV_MAP: '/dev/envMap/night_city.hdr',
 }
 
 export const NIGHT_CITY_FONT = `

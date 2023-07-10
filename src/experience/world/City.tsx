@@ -1,9 +1,13 @@
-import { useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
-import { MODELS } from "../utils/constants";
+import BrokenDownCity from "./BrokenDownCity";
 
 function City() {
-  const city = useGLTF(MODELS.CITY);
+  const onPointerHandlers = {
+    onSuzanne: (e: any) => {
+      console.log("Suzanne clicked", e);
+    }
+  }
+
   return (
     <RigidBody
       type="fixed"
@@ -13,7 +17,9 @@ function City() {
       position={[0, -0.5, 0]}
       scale={[50, 50, 50]}
     >
-      <primitive object={city.scene} scale={0.01} />
+      <group dispose={null} scale={0.01} >
+          <BrokenDownCity onPointerHandlers={onPointerHandlers}/>
+      </group>
     </RigidBody>
   );
 }
