@@ -2,7 +2,6 @@ import { TERRITORIES_NAMES, TerritoryType } from "./enums";
 
 declare global {
   interface Window {
-    isMute: boolean;
     jump: () => void;
     joystick: any;
     joystickPositioning: {

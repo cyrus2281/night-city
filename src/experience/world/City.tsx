@@ -4,9 +4,11 @@ import BrokenDownCity from "./BrokenDownCity";
 function City() {
   const onPointerHandlers = {
     onSuzanne: (e: any) => {
+      e.stopPropagation();
       console.log("Suzanne clicked", e);
-    }
-  }
+    },
+    blockEvents: (e: any) => e.stopPropagation(),
+  };
 
   return (
     <RigidBody
@@ -17,8 +19,8 @@ function City() {
       position={[0, -0.5, 0]}
       scale={[50, 50, 50]}
     >
-      <group dispose={null} scale={0.01} >
-          <BrokenDownCity onPointerHandlers={onPointerHandlers}/>
+      <group dispose={null} scale={0.01}>
+        <BrokenDownCity onPointerHandlers={onPointerHandlers} />
       </group>
     </RigidBody>
   );

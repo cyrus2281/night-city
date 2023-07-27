@@ -67,6 +67,7 @@ export function BrokenDownCity({
       <group
         name="grocery-store-outer"
         userData={{ name: "grocery-store-outer" }}
+        onPointerDown={onPointerHandlers.blockEvents}
       >
         <mesh
           name="Mesh_large_buildingF"
@@ -110,15 +111,15 @@ export function BrokenDownCity({
           geometry={nodes.Mesh_large_buildingF_5.geometry}
           material={materials["window-clear"]}
         />
+        <mesh
+          name="grocery-store-inner"
+          castShadow
+          receiveShadow
+          geometry={nodes["grocery-store-inner"].geometry}
+          material={nodes["grocery-store-inner"].material}
+          userData={{ name: "grocery-store-inner" }}
+        />
       </group>
-      <mesh
-        name="grocery-store-inner"
-        castShadow
-        receiveShadow
-        geometry={nodes["grocery-store-inner"].geometry}
-        material={nodes["grocery-store-inner"].material}
-        userData={{ name: "grocery-store-inner" }}
-      />
       <Float floatingRange={[-0.05, 0.05]} rotationIntensity={0.3}>
         <mesh
           onPointerDown={onPointerHandlers.onSuzanne}

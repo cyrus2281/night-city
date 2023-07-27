@@ -6,7 +6,7 @@ import JoystickController, { MOUSE_CLICK_BUTTONS } from "joystick-controller";
 import useGlobal from "../stores/useGlobal";
 import Subtitles from "./Subtitles";
 import { JoystickOutput } from "../utils/interfaces";
-import InterfaceButtons from "./InterfaceButtons";
+import InterfaceButtons from "./ui/InterfaceButtons";
 
 function Interface({ children }: { children: React.ReactNode }) {
   useControls("Global Settings", {
