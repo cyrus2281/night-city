@@ -53,9 +53,10 @@ export interface Territory {
 
 export interface AudioConfig {
   path: string;
-  defaultVolume?: number;
+  volume?: number;
   subtitle?: string;
   duration?: number;
+  onEnded?: () => void;
 }
 
 export interface Subtitle {

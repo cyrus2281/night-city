@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 import { AudioConfig, Subtitle } from "../utils/interfaces";
+import { DEFAULT_MUSIC_VOLUME } from "../utils/constants";
 
 interface SoundState {
   isMute: boolean;
@@ -37,12 +38,14 @@ export default create(
       playSound: (audioConfig: AudioConfig) => {
         const isMute = get().isMute;
         const audio = new Audio(audioConfig.path) as AudioElement;
-        audio.defaultVolume = audioConfig.defaultVolume || 0.7;
+        audio.loop = audioConfig.duration === 0;
+        audio.defaultVolume = audioConfig.volume || DEFAULT_MUSIC_VOLUME;
         audio.volume = isMute ? 0 : audio.defaultVolume;
         audio.play();
         activeSounds.push(audio);
         audio.onended = () => {
           activeSounds.splice(activeSounds.indexOf(audio), 1);
+          audioConfig.onEnded && audioConfig.onEnded();
         };
         if (audioConfig.subtitle) {
           get().showSubtitle(

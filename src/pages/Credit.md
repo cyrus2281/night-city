@@ -67,3 +67,13 @@ Content:
 ### Audio
 
 - Background guy audio's are AI generated using [Uberduck AI](https://uberduck.ai/)'s text to speech generator.
+
+- Background Lofi musics
+
+  - Wish you were here by Lofi_hour from [pixabay](https://pixabay.com/music/beats-wish-you-were-here-118975/) Music by CMT8
+  - The last train by Lofi_hour from [pixabay](https://pixabay.com/music/beats-the-last-train-122342/) Music by CMT8
+  - You and I by Lofi_hour from [pixabay](https://pixabay.com/music/beats-you-and-i-133401/) Music by CMT8
+  - Chosen by Lofi_hour from [pixabay](https://pixabay.com/music/beats-chosen-124434/) Music by CMT8
+
+- Rain Sound:
+  - rolling thunder by sound effects from [chosic](https://www.chosic.com/download-audio/54516/)

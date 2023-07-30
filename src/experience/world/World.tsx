@@ -1,3 +1,4 @@
+import BackgroundMusic from "./BackgroundMusic";
 import City from "./City";
 import Ground from "./Ground";
 
@@ -6,6 +7,7 @@ function World() {
     <>
       <City />
       <Ground />
+      <BackgroundMusic />
     </>
   );
 }

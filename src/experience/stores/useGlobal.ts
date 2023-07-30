@@ -35,7 +35,7 @@ export default create(
       isDev: false,
       setDevMode: (isDev: boolean) => set({ isDev }),
 
-      showLeva: true,
+      showLeva: location.hash === "#dev",
       setShowLeva: (showLeva: boolean) => set({ showLeva }),
 
       viewLock: true,

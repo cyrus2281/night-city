@@ -7,6 +7,7 @@ import Resume from "../pages/Resume";
 import Contact from "../pages/Contact";
 import useGlobal from "./stores/useGlobal";
 import Splash from "../pages/Splash";
+import { PAGES, printNightCityInfo } from "./utils/constants";
 
 function World() {
   const hasTouched = useGlobal((state) => state.hasTouched);
@@ -36,11 +37,12 @@ function World() {
 }
 
 function getWorldRouter({ worldPath = "/world" }: { worldPath?: string }) {
+  printNightCityInfo(worldPath);
   return (
     <Route path={worldPath} Component={World}>
-      <Route path="credit" element={<Credit worldPath={worldPath} />} />
-      <Route path="resume" element={<Resume worldPath={worldPath} />} />
-      <Route path="contact" element={<Contact worldPath={worldPath} />} />
+      <Route path={PAGES.CREDITS} element={<Credit worldPath={worldPath} />} />
+      <Route path={PAGES.RESUME} element={<Resume worldPath={worldPath} />} />
+      <Route path={PAGES.CONTACT} element={<Contact worldPath={worldPath} />} />
       <Route path="*" element={<Navigate to={worldPath} replace={true} />} />
     </Route>
   );

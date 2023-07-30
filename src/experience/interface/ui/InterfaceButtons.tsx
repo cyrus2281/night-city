@@ -3,6 +3,7 @@ import Button from "../../../components/Button";
 import "./InterfaceButtons.scss";
 import Icon from "../../../components/Icon";
 import MuteButton from "./MuteButton";
+import { PAGES } from "../../utils/constants";
 
 function InterfaceButtons() {
   const navigate = useNavigate();
@@ -11,7 +12,13 @@ function InterfaceButtons() {
     <div className="interface-buttons">
       <div className="interface-buttons-top">
         <div className="interface-buttons-top-left">
-          <Button theme="dark" neon>
+          <Button
+            theme="dark"
+            neon
+            onClick={() => {
+              navigate(PAGES.RESUME, { replace: true });
+            }}
+          >
             Resume
           </Button>
           <span className="status-label">7/10</span>
@@ -23,14 +30,20 @@ function InterfaceButtons() {
           <Button neon circle>
             Github
           </Button>
-          <Button neon circle>
+          <Button
+            neon
+            circle
+            onClick={() => {
+              navigate(PAGES.CONTACT, { replace: true });
+            }}
+          >
             <Icon>email</Icon>
           </Button>
           <Button
             neon
             circle
             onClick={() => {
-              navigate("credit", { replace: true });
+              navigate(PAGES.CREDITS, { replace: true });
             }}
           >
             <Icon>info</Icon>
