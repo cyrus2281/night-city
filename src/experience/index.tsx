@@ -5,8 +5,16 @@ import { Navigate, Outlet, Route } from "react-router-dom";
 import Credit from "../pages/Credit";
 import Resume from "../pages/Resume";
 import Contact from "../pages/Contact";
+import useGlobal from "./stores/useGlobal";
+import Splash from "../pages/Splash";
 
 function World() {
+  const hasTouched = useGlobal((state) => state.hasTouched);
+  const isLoaded = useGlobal((state) => state.isLoaded);
+
+  const isReady = hasTouched && isLoaded;
+  if (!isReady) return <Splash />;
+
   return (
     <>
       <Interface>
