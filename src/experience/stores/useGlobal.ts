@@ -6,8 +6,7 @@ interface GlobalState {
   setHasTouched: (hasTouched: boolean) => void;
 
   isLoaded: boolean;
-  loadStatus: number;
-  setLoadStatus: (loadStatus: number) => void;
+  setIsLoaded: (isLoaded: boolean) => void;
 
   isDev: boolean;
   setDevMode: (isDev: boolean) => void;
@@ -26,11 +25,8 @@ export default create(
       hasTouched: false,
       setHasTouched: (hasTouched: boolean) => set({ hasTouched }),
 
-      isLoaded: true,
-      loadStatus: 0,
-      setLoadStatus: (loadStatus: number) => {
-        set({ loadStatus, isLoaded: loadStatus === 100 });
-      },
+      isLoaded: false,
+      setIsLoaded: (isLoaded: boolean) => set({ isLoaded }),
 
       isDev: false,
       setDevMode: (isDev: boolean) => set({ isDev }),

@@ -1,17 +1,24 @@
 import { Environment } from "@react-three/drei";
-import { sRGBEncoding } from "three";
 import { MODELS } from "../utils/constants";
+import {
+  sRGBEncoding,
+  TextureLoader,
+  EquirectangularReflectionMapping,
+} from "three";
+
+export const loadMap = () => {
+  const textureLoader = new TextureLoader();
+  const environmentMap = textureLoader.load(MODELS.ENV_MAP);
+  environmentMap.mapping = EquirectangularReflectionMapping;
+  environmentMap.encoding = sRGBEncoding;
+  window.map = environmentMap;
+};
 
 function Lights() {
+
   return (
     <>
-      <Environment
-        files={MODELS.ENV_MAP}
-        background
-        resolution={256}
-        blur={0.05}
-        encoding={sRGBEncoding}
-      />
+      <Environment map={window.map} background resolution={256} blur={0.05} />
     </>
   );
 }

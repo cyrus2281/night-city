@@ -63,4 +63,6 @@ const Model = ({ animationName }: { animationName: { current: string } }) => {
   );
 };
 
+useGLTF.preload(MODELS.FOX);
+
 export default Model;

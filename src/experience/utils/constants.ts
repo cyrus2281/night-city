@@ -13,7 +13,7 @@ export const ALTITUDE_DISPLACEMENT_THRESHOLD = 2;
 export const MODELS = {
   FOX: "/dev/Fox/Fox.gltf",
   CITY: "/dev/night-city.glb",
-  ENV_MAP: "/dev/envMap/night_city.hdr",
+  ENV_MAP: "/dev/envMap/night_city.jpg",
 };
 
 export const BACKGROUND_MUSIC_PATH = {
@@ -48,7 +48,7 @@ export const NIGHT_CITY_FONT = `
 `;
 
 export const printNightCityInfo = (worldPath: string) => {
-  console.clear();
+  // console.clear();
   setTimeout(() =>
     console.log(NIGHT_CITY_FONT.replaceAll("{worldPath}", worldPath))
   );

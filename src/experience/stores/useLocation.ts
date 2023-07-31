@@ -25,18 +25,20 @@ export default create(
         set((state) => {
           // considering the position lerping
           if (
-            Math.abs(state.location.x - location.x) >
+            (Math.abs(state.location.x - location.x) >
               POSITION_DISPLACEMENT_THRESHOLD.x ||
-            Math.abs(state.location.z - location.z) >
-              POSITION_DISPLACEMENT_THRESHOLD.z ||
-            Math.abs(state.location.y - location.y) >
-              POSITION_DISPLACEMENT_THRESHOLD.y
+              Math.abs(state.location.z - location.z) >
+                POSITION_DISPLACEMENT_THRESHOLD.z ||
+              Math.abs(state.location.y - location.y) >
+                POSITION_DISPLACEMENT_THRESHOLD.y) &&
+            location.z !== 0
           ) {
             let returnValue: {
               location: Vector3;
               territoriesName?: string[];
             } = { location };
-            const territoriesName = checkTerritories(location, TERRITORIES);         
+
+            const territoriesName = checkTerritories(location, TERRITORIES);
             if (
               JSON.stringify(territoriesName) !==
               JSON.stringify(state.territoriesName)

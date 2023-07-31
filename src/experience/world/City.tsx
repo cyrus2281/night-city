@@ -80,4 +80,5 @@ function City() {
   );
 }
 
+useGLTF.preload(MODELS.CITY);
 export default City;
