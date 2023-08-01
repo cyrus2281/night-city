@@ -7,7 +7,7 @@
   align-items: center;
   flex-direction: column;
   gap: $space-xl;
-  --opacity: 0.9;
+  --opacity: 1;
 
   &-center {
     animation: rotateOuter 5s linear infinite reverse;
@@ -40,18 +40,25 @@
   }
 
   &-inner {
-    animation: rotate 2s linear infinite;
+    animation: rotate 3s linear infinite;
     width: 220px;
     height: 220px;
     background-color: rgba($color-navy-800, var(--opacity));
     position: absolute;
-    left: 50%;
+    left: 65%;
     transform: translate(-50%, -50%);
-    border-bottom-left-radius: 35%;
-    border-bottom-right-radius: 30%;
-    border-top-left-radius: 50%;
-    border-top-right-radius: 40%;
+    border-radius: 50% 40% 30% 35%;
     transition: $transition-normal;
+
+    &.two {
+      border-radius: 30% 50% 40% 55%;
+      left: 35%;
+    }
+    &.three {
+      animation: rotate 3s linear infinite reverse;
+      border-radius: 40% 60% 50% 45%;
+      left: 50%;
+    }
   }
 
   &-outer {

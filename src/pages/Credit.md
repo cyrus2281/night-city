@@ -4,8 +4,8 @@ Content:
 
 - Models
 - Textures
-- Code
 - Audio
+- Code
 
 ---
 
@@ -56,14 +56,6 @@ Content:
 
 ---
 
-### Code
-
-- GLTF converted to JSX by https://github.com/pmndrs/gltfjsx.
-  File is modified to apply the required enhancements.
-  Converter Made by @NikkitaFTW & contributors inspired by the gltfjsx cli.
-
----
-
 ### Audio
 
 - Background guy audio's are AI generated using [Uberduck AI](https://uberduck.ai/)'s text to speech generator.
@@ -77,3 +69,13 @@ Content:
 
 - Rain Sound:
   - rolling thunder by sound effects from [chosic](https://www.chosic.com/download-audio/54516/)
+
+---
+
+### Code
+
+- SimonDev (https://www.youtube.com/@simondev758) for character and camera movement mathematics
+- Louis3797/r3f-world-with-character (Github) for R3F adoption of SimonDev's character and camera movement mathematics
+
+#### Do you want to learn how to create something like this?
+> **Checkout the course [Three.js Journey](https://threejs-journey.com/) By [Bruno Simon](https://bruno-simon.com/)**

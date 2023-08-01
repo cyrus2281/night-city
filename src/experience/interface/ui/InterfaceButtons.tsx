@@ -3,7 +3,7 @@ import Button from "../../../components/Button";
 import "./InterfaceButtons.scss";
 import Icon from "../../../components/Icon";
 import MuteButton from "./MuteButton";
-import { PAGES } from "../../utils/constants";
+import { PAGES, openGithub, openLinkedIn } from "../../utils/constants";
 
 function InterfaceButtons() {
   const navigate = useNavigate();
@@ -24,11 +24,11 @@ function InterfaceButtons() {
           <span className="status-label">7/10</span>
         </div>
         <div className="interface-buttons-top-right">
-          <Button neon circle>
-            LinkedIn
+          <Button neon circle className="small-padding"  onClick={openLinkedIn}>
+            <Icon>linkedin</Icon>
           </Button>
-          <Button neon circle>
-            Github
+          <Button neon circle className="small-padding" onClick={openGithub}>
+            <Icon>github</Icon>
           </Button>
           <Button
             neon

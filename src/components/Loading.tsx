@@ -8,6 +8,7 @@ function Loading({
   onClick: (e: any) => void;
 }) {
   const ready = status === 100;
+  const top = 150 - status + "%";
   const innerProps = !ready
     ? {}
     : {
@@ -19,13 +20,12 @@ function Loading({
       <div className="loading-outer">
         <div
           className={"loading-center"}
-          data-percent={ready ? "Ready" : status + "%"}
+          data-percent={ready ? "Ready" : status.toFixed(0) + "%"}
           {...innerProps}
         >
-          <div
-            className="loading-inner"
-            style={{ top: 150 - status + "%" }}
-          ></div>
+          <div className="loading-inner" style={{ top }}></div>
+          <div className="loading-inner two" style={{ top }}></div>
+          <div className="loading-inner three" style={{ top }}></div>
         </div>
       </div>
     </div>

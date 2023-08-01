@@ -53,3 +53,11 @@ export const printNightCityInfo = (worldPath: string) => {
     console.log(NIGHT_CITY_FONT.replaceAll("{worldPath}", worldPath))
   );
 };
+
+export const openLinkedIn = () => {
+  window.open("https://www.linkedin.com/in/cyrusmobini", "_blank");
+}
+
+export const openGithub = () => {
+  window.open("https://www.github.com/cyrus2281", "_blank");
+}

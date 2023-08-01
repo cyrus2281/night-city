@@ -11,9 +11,9 @@ function Splash() {
   const setIsLoaded = useGlobal((state) => state.setIsLoaded);
   const setHasTouched = useGlobal((state) => state.setHasTouched);
 
+
   useEffect(() => {
     loadMap();
-
   }, []);
 
   useEffect(() => {
@@ -22,19 +22,23 @@ function Splash() {
     }
   }, [progress]);
 
+  const done = progress === 100;
   const goToNightCity = () => {
     setHasTouched(true);
   };
 
   return (
     <div className="splash">
-        <Loading status={progress} onClick={goToNightCity} />
+      <Loading status={progress} onClick={goToNightCity} />
       <div>
-        {progress === 100 && (
-          <Button neon onClick={goToNightCity}>
-            Go to Night City
-          </Button>
-        )}
+        <Button
+          neon
+          onClick={goToNightCity}
+          className={done ? "" : "invisible"}
+          disabled={!done}
+        >
+          Go to Night City
+        </Button>
       </div>
     </div>
   );
