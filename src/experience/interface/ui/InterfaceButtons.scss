@@ -13,7 +13,8 @@
   &-top {
     display: flex;
     justify-content: space-between;
-    padding: $space-l $space-xl;
+    align-items: flex-start;
+    padding: $space-xl;
 
     &-right {
       display: flex;

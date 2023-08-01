@@ -1,8 +1,28 @@
-function Resume({ worldPath }: { worldPath: string }) {
+import { useNavigate } from "react-router-dom";
+import Dialog from "../components/Dialog";
+import "./Page.scss";
+import ResumeMD from "./Resume.md?raw";
+import MarkdownRenderer from "../components/MarkdownRenderer";
+
+function ResumeHeader() {
   return (
-    <div>
-      <h1>Resume</h1>
-    </div>
+    <div className="page-header">Cyrus Mobini - Software Engineer</div>
+  );
+}
+
+function Resume({ worldPath }: { worldPath: string }) {
+  const navigate = useNavigate();
+
+  const closePage = () => {
+    navigate(worldPath, { replace: true });
+  };
+
+  return (
+    <>
+      <Dialog visibility header={<ResumeHeader />} onClose={closePage}>
+        <MarkdownRenderer markdown={ResumeMD} className="page-content" />
+      </Dialog>
+    </>
   );
 }
 
