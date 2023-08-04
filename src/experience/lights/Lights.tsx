@@ -19,6 +19,7 @@ function Lights() {
   return (
     <>
       <Environment map={window.map} background resolution={256} blur={0.05} />
+      <ambientLight intensity={0.06} />
     </>
   );
 }

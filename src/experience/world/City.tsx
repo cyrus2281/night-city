@@ -22,7 +22,7 @@ function City() {
     if (child.type === "Mesh") {
       child.castShadow = true;
       child.receiveShadow = true;
-      child.material.envMapIntensity = 5;
+      child.material.envMapIntensity = 3;
       if (onPointerHandlers[child.name]) {
         if (child.name.includes("floating")) {
           clickableBlocks.push(

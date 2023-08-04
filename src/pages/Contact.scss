@@ -1,0 +1,119 @@
+@import "../variables.scss";
+
+.mail {
+  &-top {
+    padding: $space-xxl;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: $space-xl;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+
+    &-from {
+      width: 100%;
+
+      grid-column: 2/4;
+      grid-row: 1;
+    }
+    &-to {
+      grid-column: 4/6;
+      grid-row: 2;
+    }
+    &-contents {
+      display: flex;
+      flex-direction: column;
+      gap: $space-m;
+    }
+
+    @media (max-width: 980px) {
+      &-from {
+        grid-column: 1/6;
+      }
+      &-to {
+        grid-column: 4/6;
+      }
+    }
+  }
+
+  &-middle {
+    width: max(50%, 200px);
+    margin: $space-m auto;
+  }
+
+  &-bottom {
+    width: 100%;
+    margin-top: $space-xxxl;
+    padding: $space-l;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-header {
+    font-size: $font-size-l;
+    font-weight: bold;
+  }
+
+  &-body {
+    font-size: $font-size-m;
+    font-family: $font-family-primary;
+    text-transform: capitalize;
+    color: $color-gray-900;
+  }
+
+  &-input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: $space-m;
+    font-size: $font-size-m;
+    font-family: $font-family-primary;
+    width: 100%;
+    transition: $transition-quick;
+    color: $color-gray-900;
+
+    &:focus {
+      outline: none;
+      border-color: $color-cyan-400;
+    }
+    &::placeholder {
+      text-transform: capitalize;
+    }
+    &[data-empty="true"] {
+      border-color: $color-navy-700;
+    }
+    &[data-error="true"] {
+      border-color: $color-red-900;
+    }
+  }
+
+  &-subject {
+    text-align: center;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
+  &-message {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid transparent;
+    resize: vertical;
+    width: 80%;
+    height: auto;
+
+    font-size: $font-size-m;
+    font-family: $font-family-primary;
+
+    &:focus {
+      outline: none;
+      border-color: $color-cyan-400;
+    }
+    &[data-empty="true"] {
+      border-color: $color-navy-700;
+    }
+    &[data-error="true"] {
+      border-color: $color-red-900;
+    }
+  }
+}
