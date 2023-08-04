@@ -9,7 +9,10 @@ import {
 } from "@react-three/rapier";
 import * as THREE from "three";
 import Model from "./Model";
-import { CHARACTER_INITIAL_POSITION } from "../utils/constants";
+import {
+  CHARACTER_INITIAL_POSITION,
+  WORLD_THRESHOLD,
+} from "../utils/constants";
 import useGlobal from "../stores/useGlobal";
 import useLocation from "../stores/useLocation";
 import { MODEL_ANIMATIONS } from "../utils/enums";
@@ -50,6 +53,20 @@ export function Character() {
     }
   };
   window.jump = jump; // for joystick control
+
+  const resetEdgeFall = () => {
+    if (!bodyRef.current) return;
+    // reset position
+    bodyRef.current.setTranslation(CHARACTER_INITIAL_POSITION, false);
+    // reset rotation
+    bodyRef.current.setRotation(new THREE.Quaternion(0, 0, 0, 1), false);
+  };
+
+  const resetFlipOver = () => {
+    if (!bodyRef.current) return;
+    // reset rotation
+    bodyRef.current.setRotation(new THREE.Quaternion(0, 0, 0, 1), false);
+  };
 
   function updateCameraTarget(
     camera: THREE.Camera,
@@ -177,6 +194,21 @@ export function Character() {
     modelState(camera, bodyRef.current, delta);
     const bodyPosition = bodyRef.current.translation() as THREE.Vector3;
     const bodyRotation = bodyRef.current.rotation() as THREE.Quaternion;
+
+    // Fix for falling off the edge
+    if (
+      bodyPosition.y < WORLD_THRESHOLD.LOW ||
+      bodyPosition.y > WORLD_THRESHOLD.HIGH
+    ) {
+      return resetEdgeFall();
+    }
+    // Fix if flipped to sides
+    if (
+      bodyRotation.x < WORLD_THRESHOLD.FLIP ||
+      bodyRotation.z < WORLD_THRESHOLD.FLIP
+    ) {
+      return resetFlipOver();
+    }
 
     const idealLookat = new THREE.Vector3(0, 1, 5);
     idealLookat.applyQuaternion(bodyRotation);

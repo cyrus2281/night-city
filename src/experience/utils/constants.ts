@@ -1,6 +1,7 @@
 import { Vector3 } from "three";
 
-export const CHARACTER_INITIAL_POSITION = new Vector3(-20, 0.01, 11);
+// export const CHARACTER_INITIAL_POSITION = new Vector3(-20, 0.01, 11);
+export const CHARACTER_INITIAL_POSITION = new Vector3(21, 0.01, 7);
 
 export const POSITION_DISPLACEMENT_THRESHOLD = {
   x: 0.5,
@@ -9,6 +10,12 @@ export const POSITION_DISPLACEMENT_THRESHOLD = {
 };
 
 export const ALTITUDE_DISPLACEMENT_THRESHOLD = 2;
+
+export const WORLD_THRESHOLD = {
+  LOW: -10,
+  HIGH: 30,
+  FLIP: -0.6
+}
 
 export const MODELS = {
   FOX: "/dev/Fox/Fox.gltf",
