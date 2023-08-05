@@ -1,6 +1,7 @@
 import { ALTITUDE_DISPLACEMENT_THRESHOLD } from "./constants";
 import { TERRITORIES_NAMES, TerritoryType } from "./enums";
 import { Point, Circle2D, Rectangle2D, Territory, Point3D } from "./interfaces";
+const FORMSPREE_URL = import.meta.env.VITE_FORMSPREE_URL
 
 export const getLocalTime = (): string => {
   const date = new Date();
@@ -100,3 +101,19 @@ export const checkTerritories = (
   }
   return [];
 };
+
+export const sendEmail = async (options: { [name: string]: string }): Promise<Response> => {
+  const formData = new FormData();
+  Object.keys(options).forEach(key => formData.append(key, options[key]));
+  const url: string = FORMSPREE_URL;
+  if (!url) {
+    throw new Error("No formspree url found");
+  }
+  return await fetch(url, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+}

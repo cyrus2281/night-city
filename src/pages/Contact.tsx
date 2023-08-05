@@ -4,6 +4,7 @@ import "./Page.scss";
 import "./Contact.scss";
 import { useState } from "react";
 import Button from "../components/Button";
+import { sendEmail } from "../experience/utils/utils";
 
 const emailRegex = new RegExp("^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$");
 
@@ -38,8 +39,24 @@ function Contact({ worldPath }: { worldPath: string }) {
     };
     setErrors(errors);
     if (errors.name || errors.email || errors.subject || errors.message) return;
-    // TODO: Send mail
-    closePage();
+
+    sendEmail({
+      name,
+      email,
+      userSubject: subject,
+      subject: `Night-City: Contact Form`,
+      message,
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Email failed:" + res.statusText);
+        }
+        console.log("Email Sent");
+      })
+      .catch((er) => {
+        console.log("Email failed:", er);
+      })
+      .finally(closePage);
   };
 
   return (
@@ -88,15 +105,17 @@ function Contact({ worldPath }: { worldPath: string }) {
             </div>
           </div>
           <div className="mail-middle">
-            <select 
-            name="subject" 
-            className="mail-input mail-subject"
-            onChange={(e) => setSubject(e.target.value)}
-            value={subject}
-            data-empty={subject === ""}
-            data-error={errors.subject}
+            <select
+              name="subject"
+              className="mail-input mail-subject"
+              onChange={(e) => setSubject(e.target.value)}
+              value={subject}
+              data-empty={subject === ""}
+              data-error={errors.subject}
             >
-              <option value="" disabled >Select a subject</option>
+              <option value="" disabled>
+                Select a subject
+              </option>
               <option value="question">Have a question</option>
               <option value="feedback">Have a feedback</option>
               <option value="bug">Reporting a bug</option>
