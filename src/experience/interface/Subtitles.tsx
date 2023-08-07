@@ -26,7 +26,7 @@ function Subtitle({ subtitle }: { subtitle: Subtitle }) {
       setTimeout(() => {
         subtitle.remove();
       }, CSS_ANIMATION_DURATION);
-    }, subtitle.duration);
+    }, subtitle.duration + 750);
   }, []);
 
   return (
