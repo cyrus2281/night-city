@@ -11,7 +11,6 @@ function Splash() {
   const setIsLoaded = useGlobal((state) => state.setIsLoaded);
   const setHasTouched = useGlobal((state) => state.setHasTouched);
 
-
   useEffect(() => {
     loadMap();
   }, []);

@@ -1,0 +1,58 @@
+@import "../../../variables.scss";
+
+.title {
+  &-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $space-xl;
+    background: radial-gradient(
+      ellipse at top,
+      rgba($color-gray-700, 0.3) 40%,
+      transparent 60%
+    );
+    color: $color-gray-100;
+    fill: $color-gray-100;
+    transition: $transition-slow;
+    user-select: none;
+    pointer-events: none;
+    padding-bottom: 50px;
+  }
+
+  &-bar {
+    margin-top: $space-m;
+    width: min(45%, 230px);
+  }
+
+  &-text {
+    font-size: $font-size-m;
+    font-family: $font-family-primary;
+    text-align: center;
+    text-shadow: 0 0 10px rgba($color-navy-800, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    &-wrapper {
+      top: 60px;
+      background: radial-gradient(
+        rgba($color-gray-700, 0.35) 40%,
+        transparent 60%
+      );
+      padding-top: 20px;
+      padding-bottom: 30px;
+    }
+    &-bar {
+      margin-top: $space-s;
+    }
+  }
+}
+
+.hide {
+  opacity: 0;
+}
