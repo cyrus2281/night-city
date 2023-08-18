@@ -1,0 +1,48 @@
+@import "../../../variables.scss";
+
+.stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $space-m;
+
+
+
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $space-m;
+    background-color: rgba($color-gray-100, 0.4);
+    padding: $space-m;
+    border-radius: $radius-x-round;
+    z-index: 100;
+  }
+
+  &-label {
+    font-family: $font-family-curly;
+  }
+}
+
+.wiggle {
+    animation: wiggle 0.5s ease-in-out;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
