@@ -12,11 +12,18 @@
 
   &-top {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
     padding: $space-xl;
+    gap: $space-l;
 
-    &-right {
+    &-row {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &-group {
       display: flex;
       align-items: center;
       justify-content: center;

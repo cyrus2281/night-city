@@ -7,6 +7,7 @@ import useGlobal from "../stores/useGlobal";
 import Subtitles from "./Subtitles";
 import { JoystickOutput } from "../utils/interfaces";
 import InterfaceButtons from "./ui/InterfaceButtons";
+import TitleBar from "./ui/TitleBar";
 
 function Interface({ children }: { children: React.ReactNode }) {
   useControls("Global Settings", {
@@ -76,6 +77,7 @@ function Interface({ children }: { children: React.ReactNode }) {
           },
         }}
       />
+      <TitleBar></TitleBar>
       <InterfaceButtons />
       <KeyboardControls
         map={[
