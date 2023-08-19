@@ -1,8 +1,25 @@
 {
   "name": "night-city",
+  "description": "A 3D city built with React Three Fiber and TypeScript",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "author": {
+    "name": "Cyrus Mobini",
+    "url": "https://github.com/cyrus2281"
+  },
+  "license": "BSD 3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyrus2281/night-city.git"
+  },
+  "homepage": "https://github.com/cyrus2281/night-city#readme",
+  "bugs": {
+    "url": "https://github.com/cyrus2281/night-city/issues"
+  },
+  "buyMeACoffee": {
+    "url": "https://www.buymeacoffee.com/cyrus2281"
+  },
   "scripts": {
     "start": "vite --host",
     "preview": "vite preview",

@@ -8,8 +8,6 @@ import StatsView from "./StatsView";
 
 function InterfaceButtons() {
   const navigate = useNavigate();
-  console.log("netlify deploy");
-  
 
   return (
     <div className="interface-buttons">
