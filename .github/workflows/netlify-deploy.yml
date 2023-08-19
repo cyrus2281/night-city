@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "prod" ]
   pull_request:
-    branches: [ "deploy"]
+    branches: [ "prod", "deploy"]
 
 jobs:
   build:
@@ -28,4 +28,4 @@ jobs:
     - run: npm ci
     - run: npm run build
     - run: npm run deploy
-    # if: github.event_name == 'push'
+
