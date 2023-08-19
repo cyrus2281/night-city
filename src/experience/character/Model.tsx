@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { MeshCollider } from "@react-three/rapier";
 import * as THREE from "three";
 
-import { MODELS } from "../utils/constants";
+import { ASSETS } from "../utils/constants";
 
 const length = 3;
 const width = 2;
@@ -27,7 +27,7 @@ const extrudeSettings = {
 };
 
 const Model = ({ animationName }: { animationName: { current: string } }) => {
-  const fox = useGLTF(MODELS.FOX);
+  const fox = useGLTF(ASSETS.MODELS.FOX);
   const [currentAnimation, setCurrentAnimation] = useState("Survey");
   const animations = useAnimations(fox.animations, fox.scene);
 
@@ -63,6 +63,6 @@ const Model = ({ animationName }: { animationName: { current: string } }) => {
   );
 };
 
-useGLTF.preload(MODELS.FOX);
+useGLTF.preload(ASSETS.MODELS.FOX);
 
 export default Model;

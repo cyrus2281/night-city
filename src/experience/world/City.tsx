@@ -1,7 +1,7 @@
 import { Float, useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import { ReactNode } from "react";
-import { MODELS } from "../utils/constants";
+import { ASSETS } from "../utils/constants";
 
 const onPointerHandlers: { [name: string]: (e: any) => void } = {
   Suzanne: (e: Event) => {
@@ -12,7 +12,7 @@ const onPointerHandlers: { [name: string]: (e: any) => void } = {
 };
 
 function City() {
-  const { scene } = useGLTF(MODELS.CITY);
+  const { scene } = useGLTF(ASSETS.MODELS.CITY);
   const cityScene = scene.clone();
   const children = cityScene.children;
   cityScene.children = [];
@@ -80,5 +80,5 @@ function City() {
   );
 }
 
-useGLTF.preload(MODELS.CITY);
+useGLTF.preload(ASSETS.MODELS.CITY);
 export default City;

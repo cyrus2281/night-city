@@ -6,8 +6,6 @@
   align-items: center;
   gap: $space-m;
 
-
-
   &-wrapper {
     display: flex;
     flex-direction: column;
@@ -18,6 +16,11 @@
     padding: $space-m;
     border-radius: $radius-x-round;
     z-index: 100;
+    transition: $transition-normal;
+
+    &.fan {
+      background-color: rgba($color-yellow-700, 0.4);
+    }
   }
 
   &-label {
@@ -26,7 +29,7 @@
 }
 
 .wiggle {
-    animation: wiggle 0.5s ease-in-out;
+  animation: wiggle 0.3s ease-in-out 2;
 }
 
 @keyframes wiggle {

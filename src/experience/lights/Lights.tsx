@@ -1,5 +1,5 @@
 import { Environment } from "@react-three/drei";
-import { MODELS } from "../utils/constants";
+import { ASSETS } from "../utils/constants";
 import {
   sRGBEncoding,
   TextureLoader,
@@ -8,7 +8,7 @@ import {
 
 export const loadMap = () => {
   const textureLoader = new TextureLoader();
-  const environmentMap = textureLoader.load(MODELS.ENV_MAP);
+  const environmentMap = textureLoader.load(ASSETS.ENV_MAP);
   environmentMap.mapping = EquirectangularReflectionMapping;
   environmentMap.encoding = sRGBEncoding;
   window.map = environmentMap;

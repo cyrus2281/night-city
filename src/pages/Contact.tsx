@@ -137,6 +137,7 @@ function Contact({ worldPath }: { worldPath: string }) {
               <option value="question">Have a question</option>
               <option value="feedback">Have a feedback</option>
               <option value="bug">Reporting a bug</option>
+              {/* TODO: Setup true fan */}
             </select>
           </div>
           <div className="mail-bottom">

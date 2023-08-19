@@ -17,6 +17,9 @@ interface GlobalState {
   viewLock: boolean;
   setViewLock: (viewLock: boolean) => void;
   toggleViewLock: () => void;
+
+  isTrueFan: boolean;
+  setIsTrueFan: (isTrueFan: boolean) => void;
 }
 
 export default create(
@@ -37,6 +40,9 @@ export default create(
       viewLock: true,
       setViewLock: (viewLock: boolean) => set({ viewLock }),
       toggleViewLock: () => set((state) => ({ viewLock: !state.viewLock })),
+
+      isTrueFan: false,
+      setIsTrueFan: (isTrueFan: boolean) => set({ isTrueFan }),
     };
   })
 );
