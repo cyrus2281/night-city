@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Dialog from "../components/Dialog";
 import "./Page.scss";
 import "./Contact.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import { sendEmail } from "../experience/utils/utils";
 
@@ -11,20 +11,34 @@ const emailRegex = new RegExp("^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$");
 function ContactHeader() {
   return <div className="page-header">Send a Letter</div>;
 }
+let failedMessage: { [name: string]: string } = {
+  name: "",
+  message: "",
+  subject: "",
+  email: "",
+};
 
 function Contact({ worldPath }: { worldPath: string }) {
   const navigate = useNavigate();
-
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [subject, setSubject] = useState("");
+  const [name, setName] = useState(failedMessage.name);
+  const [email, setEmail] = useState(failedMessage.email);
+  const [message, setMessage] = useState(failedMessage.message);
+  const [subject, setSubject] = useState(failedMessage.subject);
   const [errors, setErrors] = useState({
     name: false,
     email: false,
     subject: false,
     message: false,
   });
+
+  useEffect(() => {
+    failedMessage = {
+      name: "",
+      message: "",
+      subject: "",
+      email: "",
+    };
+  }, []);
 
   const closePage = () => {
     navigate(worldPath, { replace: true });
@@ -54,6 +68,10 @@ function Contact({ worldPath }: { worldPath: string }) {
         console.log("Email Sent");
       })
       .catch((er) => {
+        failedMessage.name = name;
+        failedMessage.email = email;
+        failedMessage.message = message;
+        failedMessage.subject = subject;
         console.log("Email failed:", er);
       })
       .finally(closePage);
