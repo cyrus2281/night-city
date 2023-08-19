@@ -18,17 +18,17 @@ export const WORLD_THRESHOLD = {
 }
 
 export const MODELS = {
-  FOX: "/dev/Fox/Fox.gltf",
-  CITY: "/dev/night-city.glb",
-  ENV_MAP: "/dev/envMap/night_city.jpg",
+  FOX: "/blob/Fox/Fox.gltf",
+  CITY: "/blob/night-city.glb",
+  ENV_MAP: "/blob/envMap/night_city.jpg",
 };
 
 export const BACKGROUND_MUSIC_PATH = {
-  RAIN: "/dev/audio/background/rolling-thunder.mp3",
+  RAIN: "/blob/audio/background/rolling-thunder.mp3",
   LOFI: [
-    "/dev/audio/background/lofi/the-last-train-122342.mp3",
-    "/dev/audio/background/lofi/wish-you-were-here-118975.mp3",
-    "/dev/audio/background/lofi/you-and-i-133401.mp3",
+    "/blob/audio/background/lofi/the-last-train-122342.mp3",
+    "/blob/audio/background/lofi/wish-you-were-here-118975.mp3",
+    "/blob/audio/background/lofi/you-and-i-133401.mp3",
   ],
 };
 
