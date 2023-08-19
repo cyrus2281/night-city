@@ -1,0 +1,29 @@
+name: Netlify Deploy CI
+
+on:
+  push:
+    branches: [ "prod" ]
+
+jobs:
+  build:
+    environment: production
+    env:
+      VITE_FORMSPREE_URL: ${{ secrets.VITE_FORMSPREE_URL }}
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        lfs: 'true'
+    - name: Use node 18.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: "18.x"
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build
+    - run: npm run deploy
+

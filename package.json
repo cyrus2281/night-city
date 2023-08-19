@@ -1,12 +1,32 @@
 {
   "name": "night-city",
+  "description": "A 3D city built with React Three Fiber and TypeScript",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "author": {
+    "name": "Cyrus Mobini",
+    "url": "https://github.com/cyrus2281"
+  },
+  "license": "BSD 3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyrus2281/night-city.git"
+  },
+  "homepage": "https://github.com/cyrus2281/night-city#readme",
+  "bugs": {
+    "url": "https://github.com/cyrus2281/night-city/issues"
+  },
+  "buyMeACoffee": {
+    "url": "https://www.buymeacoffee.com/cyrus2281"
+  },
   "scripts": {
     "start": "vite --host",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:tsc": "tsc && vite build",
+    "build:lfs": "git lfs pull",
+    "build": "npm run build:lfs && npm run build:tsc",
+    "deploy": "npm run build && netlify deploy --prod --dir=dist --message=\"Deployed via Netlify CLI\""
   },
   "dependencies": {
     "@react-three/drei": "^9.74.8",
@@ -31,6 +51,7 @@
     "@types/react-dom": "^18.0.10",
     "@types/three": "^0.149.0",
     "@vitejs/plugin-react-swc": "^3.0.0",
+    "netlify-cli": "^16.1.0",
     "sass": "^1.63.4",
     "sass-loader": "^13.3.2",
     "typescript": "^4.9.3",
