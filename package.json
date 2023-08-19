@@ -7,7 +7,7 @@
     "start": "vite --host",
     "preview": "vite preview",
     "build:tsc": "tsc && vite build",
-    "build:lfs": "git lfs fetch origin --all",
+    "build:lfs": "env; git lfs fetch origin --all",
     "build": "npm run build:lfs && npm run build:tsc",
     "deploy": "npm run build && netlify deploy --prod --dir=dist --message=\"Deployed via Netlify CLI\""
   },
