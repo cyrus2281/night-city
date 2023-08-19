@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    environment: production
     env:
       VITE_FORMSPREE_URL: ${{ secrets.VITE_FORMSPREE_URL }}
       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
