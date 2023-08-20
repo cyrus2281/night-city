@@ -4,6 +4,7 @@ import { TERRITORIES_NAMES, TerritoryType } from "./enums";
 declare global {
   interface Window {
     map: Texture;
+    worldPath: string;
     jump: () => void;
     joystick: any;
     joystickPositioning: {

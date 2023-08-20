@@ -7,7 +7,8 @@ import Resume from "../pages/Resume";
 import Contact from "../pages/Contact";
 import useGlobal from "./stores/useGlobal";
 import Splash from "../pages/Splash";
-import { PAGES, printNightCityInfo } from "./utils/constants";
+import { PAGES } from "./utils/constants";
+import { getCameraFOV, printNightCityInfo } from "./utils/utils";
 
 function World() {
   const hasTouched = useGlobal((state) => state.hasTouched);
@@ -22,7 +23,7 @@ function World() {
         <Canvas
           shadows
           camera={{
-            fov: 45,
+            fov: getCameraFOV(),
             near: 2,
             far: 200,
             position: [-4, 3, 6],
@@ -37,7 +38,8 @@ function World() {
 }
 
 function getWorldRouter({ worldPath = "/world" }: { worldPath?: string }) {
-  printNightCityInfo(worldPath);
+  window.worldPath = worldPath;
+  printNightCityInfo();
   return (
     <Route path={worldPath} Component={World}>
       <Route path={PAGES.CREDITS} element={<Credit worldPath={worldPath} />} />

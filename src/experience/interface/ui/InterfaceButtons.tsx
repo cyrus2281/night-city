@@ -8,6 +8,7 @@ import { openUrl } from "../../utils/utils";
 import {
   EXTERNAL_LINKS,
   PAGES,
+  isTouchDevice,
 } from "../../utils/constants";
 
 function InterfaceButtons() {
@@ -69,7 +70,7 @@ function InterfaceButtons() {
         </div>
       </div>
       <div className="interface-buttons-bottom">
-        <Button
+        {isTouchDevice && <Button
           circle
           uppercase
           theme="dark"
@@ -79,7 +80,7 @@ function InterfaceButtons() {
           onTouchStart={() => window.jump && window.jump()}
         >
           jump
-        </Button>
+        </Button>}
       </div>
     </div>
   );
