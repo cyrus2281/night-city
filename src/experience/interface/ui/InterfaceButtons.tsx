@@ -5,11 +5,7 @@ import MuteButton from "./MuteButton";
 import Button from "../../../components/Button";
 import Icon from "../../../components/Icon";
 import { openUrl } from "../../utils/utils";
-import {
-  EXTERNAL_LINKS,
-  PAGES,
-  isTouchDevice,
-} from "../../utils/constants";
+import { EXTERNAL_LINKS, PAGES, isTouchDevice } from "../../utils/constants";
 
 function InterfaceButtons() {
   const navigate = useNavigate();
@@ -70,17 +66,20 @@ function InterfaceButtons() {
         </div>
       </div>
       <div className="interface-buttons-bottom">
-        {isTouchDevice && <Button
-          circle
-          uppercase
-          theme="dark"
-          neon
-          resizable
-          onClick={() => window.jump && window.jump()}
-          onTouchStart={() => window.jump && window.jump()}
-        >
-          jump
-        </Button>}
+        {isTouchDevice && (
+          <Button
+            circle
+            uppercase
+            theme="dark"
+            neon
+            resizable
+            onClick={() => window.jump && window.jump()}
+            onTouchStart={() => window.jump && window.jump()}
+            className="jump-button"
+          >
+            <Icon size="large">keyboard_double_arrow_up</Icon>
+          </Button>
+        )}
       </div>
     </div>
   );

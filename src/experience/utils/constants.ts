@@ -3,6 +3,8 @@ import { Vector3 } from "three";
 // export const CHARACTER_INITIAL_POSITION = new Vector3(-20, 0.01, 11);
 export const CHARACTER_INITIAL_POSITION = new Vector3(21, 0.01, 7);
 
+export const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
 export const POSITION_DISPLACEMENT_THRESHOLD = {
   x: 0.5,
   y: 0.1,
@@ -70,5 +72,3 @@ export const NIGHT_CITY_FONT = `
 * Check ${EXTERNAL_LINKS.COFFEE} to support the developer
 * Check ${EXTERNAL_LINKS.SOURCE_CODE} for the source code
 `;
-
-export const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
