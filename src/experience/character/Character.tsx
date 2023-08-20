@@ -16,6 +16,8 @@ import {
 import useGlobal from "../stores/useGlobal";
 import useLocation from "../stores/useLocation";
 import { MODEL_ANIMATIONS } from "../utils/enums";
+import useSound from "../stores/useSound";
+import { GUY_AUDIOS } from "../utils/guyAudios";
 
 /* 
  Credits to 
@@ -24,6 +26,8 @@ import { MODEL_ANIMATIONS } from "../utils/enums";
 */
 
 export function Character() {
+  const playSound = useSound((state) => state.playSound);
+
   const [subscribeKeys, getKeys] = useKeyboardControls();
   const { rapier, world } = useRapier();
   const rapierWorld = world.raw();
@@ -54,12 +58,16 @@ export function Character() {
   };
   window.jump = jump; // for joystick control
 
-  const resetEdgeFall = () => {
+  const resetEdgeFall = (position: number) => {
     if (!bodyRef.current) return;
     // reset position
     bodyRef.current.setTranslation(CHARACTER_INITIAL_POSITION, false);
     // reset rotation
     bodyRef.current.setRotation(new THREE.Quaternion(0, 0, 0, 1), false);
+    // reset velocity
+    bodyRef.current.setLinvel({ x: 0, y: 0, z: 0 }, false);
+    // Play sound
+    playSound(position < WORLD_THRESHOLD.LOW ? GUY_AUDIOS.FALL : GUY_AUDIOS.BUG);
   };
 
   const resetFlipOver = () => {
@@ -200,7 +208,7 @@ export function Character() {
       bodyPosition.y < WORLD_THRESHOLD.LOW ||
       bodyPosition.y > WORLD_THRESHOLD.HIGH
     ) {
-      return resetEdgeFall();
+      return resetEdgeFall(bodyPosition.y);
     }
     // Fix if flipped to sides
     if (

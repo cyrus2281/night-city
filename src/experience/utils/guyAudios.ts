@@ -68,19 +68,29 @@ export const TERRITORY_AUDIOS: TerritoryAudio = {
 };
 
 export const GUY_AUDIOS: { [key: string]: AudioConfig } = {
-  TRUE_FAN: { // TODO: fill with real values
-    path: ASSETS.GUY_AUDIO + "true-fan.wav",
-    duration: 3000,
-    subtitle: "You finished the game! Congratulations!",
+  TRUE_FAN: {
+    path: ASSETS.GUY_AUDIO + "finished.wav",
+    duration: 7000,
+    subtitle: "Waw, you did it. Congratulations! you have unlocked all the audios and places, good job. You can now send us a mail as a true fan",
   },
   MAIL_SENT: {
     path: ASSETS.GUY_AUDIO + "mail-sent.wav",
     duration: 2000,
-    subtitle: "The mail was sent! Now we just need to wait for a reply.",
+    subtitle: "Your letter has been successfully mailed.",
   },
   MAIL_FAILED: {
     path: ASSETS.GUY_AUDIO + "mail-failed.wav",
     duration: 2000,
-    subtitle: "The mail failed to send. Maybe we should try again later.",
+    subtitle: "Failed to deliver the letter, please try again later.",
   },
+  FALL : {
+    path: ASSETS.GUY_AUDIO + "fall-from-map.wav",
+    duration: 1000,
+    subtitle: "Did you really fall off the map",
+  },
+  BUG: {
+    path: ASSETS.GUY_AUDIO + "bug.wav",
+    duration: 2000,
+    subtitle: " Was that a bug? Maybe report how it happened.",
+  }
 };
