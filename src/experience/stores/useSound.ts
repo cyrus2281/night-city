@@ -4,6 +4,9 @@ import { AudioConfig, Subtitle } from "../utils/interfaces";
 import { DEFAULT_MUSIC_VOLUME } from "../utils/constants";
 
 interface SoundState {
+  activeSounds: AudioElement[];
+  addSound: (audio: AudioElement) => void;
+  removeSound: (audio: AudioElement) => void;
   isMute: boolean;
   setMute: (isMute: boolean) => void;
   toggleMute: () => void;
@@ -15,15 +18,24 @@ interface SoundState {
 
 interface AudioElement extends HTMLAudioElement {
   defaultVolume: number;
+  name: string;
 }
-
-const activeSounds: AudioElement[] = [];
 
 export default create(
   subscribeWithSelector<SoundState>((set, get) => {
     return {
+      activeSounds: [],
+      addSound: (audio: AudioElement) => {
+        set((state) => ({ activeSounds: [...state.activeSounds, audio] }));
+      },
+      removeSound: (audio: AudioElement) => {
+        set((state) => ({
+          activeSounds: state.activeSounds.filter((a) => a !== audio),
+        }));
+      },
       isMute: false,
       setMute: (isMute: boolean) => {
+        const { activeSounds } = get();
         if (isMute) {
           activeSounds.forEach((sound) => (sound.volume = 0));
         } else {
@@ -36,15 +48,17 @@ export default create(
         setMute(!isMute);
       },
       playSound: (audioConfig: AudioConfig) => {
+        const { addSound, removeSound } = get();
         const isMute = get().isMute;
         const audio = new Audio(audioConfig.path) as AudioElement;
+        audio.name = audioConfig.path;
         audio.loop = audioConfig.duration === 0;
         audio.defaultVolume = audioConfig.volume || DEFAULT_MUSIC_VOLUME;
         audio.volume = isMute ? 0 : audio.defaultVolume;
         audio.play();
-        activeSounds.push(audio);
+        addSound(audio);
         audio.onended = () => {
-          activeSounds.splice(activeSounds.indexOf(audio), 1);
+          removeSound(audio);
           audioConfig.onEnded && audioConfig.onEnded();
         };
         if (audioConfig.subtitle) {

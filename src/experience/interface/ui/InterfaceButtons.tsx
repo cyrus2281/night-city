@@ -1,10 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import Button from "../../../components/Button";
 import "./InterfaceButtons.scss";
-import Icon from "../../../components/Icon";
-import MuteButton from "./MuteButton";
-import { PAGES, openGithub, openLinkedIn } from "../../utils/constants";
 import StatsView from "./StatsView";
+import MuteButton from "./MuteButton";
+import Button from "../../../components/Button";
+import Icon from "../../../components/Icon";
+import { openUrl } from "../../utils/utils";
+import {
+  EXTERNAL_LINKS,
+  PAGES,
+} from "../../utils/constants";
 
 function InterfaceButtons() {
   const navigate = useNavigate();
@@ -27,11 +31,16 @@ function InterfaceButtons() {
               neon
               circle
               className="small-padding"
-              onClick={openLinkedIn}
+              onClick={() => openUrl(EXTERNAL_LINKS.LINKEDIN)}
             >
               <Icon>linkedin</Icon>
             </Button>
-            <Button neon circle className="small-padding" onClick={openGithub}>
+            <Button
+              neon
+              circle
+              className="small-padding"
+              onClick={() => openUrl(EXTERNAL_LINKS.GITHUB)}
+            >
               <Icon>github</Icon>
             </Button>
             <Button

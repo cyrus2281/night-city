@@ -11,42 +11,37 @@ Content:
 
 ### Models
 
-- Kenney CC0
+- Models by [Kenney](https://poly.pizza/u/Kenney) from [Poly Pizza](https://poly.pizza/) under CC0
 
-  - Buildings
-  - stairs
+  - [City Kit](https://poly.pizza/bundle/City-Kit-0CkvGrBJ0u) \<Modified>
+  - [Stairs Open Single](https://poly.pizza/m/8NnxYiaDyJ) \<Modified>
 
-- Quaternius CC0
+- Models by [Quaternius](https://poly.pizza/u/Quaternius) from [Poly Pizza](https://poly.pizza/) under CC0
 
-  - Pipes
-  - Wire
-  - fence
-  - Wall
-  - Debris Papers
-  - Debris Pile
-  - box
-  - Barrier Single
-  - cyberpunk themed (3.67673)
+  - [Toon Shooter Game Kit](https://poly.pizza/bundle/Toon-Shooter-Game-Kit-qraiSXoAru)
+  - [Cyberpunk Game Kit](https://poly.pizza/bundle/Cyberpunk-Game-Kit-Hkfxa8K8zF)
+  - [Stone Wall](https://poly.pizza/m/tdeAOh3LQV) \<Modified>
 
-- Zsky Creative Commons Attribution
-  Mail Box by Zsky [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/VlxwPqpKSZ)
-  (Modified)
+- Models by [Zsky](https://poly.pizza/u/Zsky) from [Poly Pizza](https://poly.pizza/) under [CC-BY](https://creativecommons.org/licenses/by/3.0/)
 
-- Google Creative Commons Attribution
-  Dumpster by Poly by Google [CC-BY] via Poly Pizza
+  - [Mail Box](https://poly.pizza/m/VlxwPqpKSZ) \<Modified>
 
-- J-Toastie Creative Commons Attribution
+- Models by [Google](https://poly.pizza/u/Poly%20by%20Google) from [Poly Pizza](https://poly.pizza/) under [CC-BY](https://creativecommons.org/licenses/by/3.0/)
 
-  - Dust Pipes 1.3
-  - Air Duct Kit by J-Toastie [CC-BY] via Poly Pizza
-  - Pipe Kit by J-Toastie [CC-BY] via Poly Pizza
+  - [Coffee cup](https://poly.pizza/m/fIuM_PW5prV) \<Modified>
+  - [Dumpster](https://poly.pizza/m/3F0yCeWeTZP)
 
-- lakescorp CC0
+- Models by [J-Toastie](https://poly.pizza/u/J-Toastie) from [Poly Pizza](https://poly.pizza/) under [CC-BY](https://creativecommons.org/licenses/by/3.0/)
 
-  - Scaffolding (0.440899)
+  - [Air Duct Kit](https://poly.pizza/bundle/Air-Duct-Kit-HKcyEL7GVt)
+  - [Pipe Kit](https://poly.pizza/bundle/Pipe-Kit-wrJuELDvic)
 
-- Cordula Hansen Creative Commons Attribution
-  Space Bar by Cordula Hansen [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/4vlKrz5wDOF)
+- Models by [lakescorp](https://poly.pizza/u/lakescorp) from [Poly Pizza](https://poly.pizza/) under CC0
+
+  - [Scaffolding](https://poly.pizza/m/AYQd5RQ8w4)
+
+- Models by [Cordula Hansen](https://poly.pizza/u/Cordula%20Hansen) from [Poly Pizza](https://poly.pizza/) under [CC-BY](https://creativecommons.org/licenses/by/3.0/)
+  - [Space Bar](https://poly.pizza/m/4vlKrz5wDOF)
 
 ---
 
@@ -58,7 +53,9 @@ Content:
 
 ### Audio
 
-- Background guy audio's are AI generated using [Uberduck AI](https://uberduck.ai/)'s text to speech generator.
+- Background guy audio's are DeepFake of [Justin Roiland](https://twitter.com/JustinRoiland) using the following AI text to speech generators:
+  - [FakeYou](https://fakeyou.com/)
+  - [Uberduck AI](https://uberduck.ai/)
 
 - Background Lofi musics
 
@@ -74,10 +71,10 @@ Content:
 
 ### Code
 
-- SimonDev (https://www.youtube.com/@simondev758) for character and camera movement mathematics
-- Louis3797/r3f-world-with-character (Github) for R3F adoption of SimonDev's character and camera movement mathematics
+- [SimonDev (YouTube)](https://www.youtube.com/@simondev758) for character and camera movement mathematics
+- [Louis3797/r3f-world-with-character (Github)](https://github.com/Louis3797/r3f-world-with-character) for R3F adoption of SimonDev's character and camera movement mathematics (Modified)
 - [GitHub Markdown CSS file](https://github.com/sindresorhus/github-markdown-css/blob/main/github-markdown.css) (modified to work with the custom Dark/Light Mode Switch)
 
-
 #### Do you want to learn how to create something like this?
+
 > **Checkout the course [Three.js Journey](https://threejs-journey.com/) By [Bruno Simon](https://bruno-simon.com/)**

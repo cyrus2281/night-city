@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import useGlobal from "../stores/useGlobal";
 import { Vector3 } from "three";
 import { TERRITORIES_NAMES } from "../utils/enums";
-import territoryAudios from "../utils/territoryAudios";
+import { TERRITORY_AUDIOS } from "../utils/guyAudios";
 import useSound from "../stores/useSound";
 
 function TerritoryInterfaceDebug({
@@ -94,7 +94,7 @@ function TerritoryInterface() {
   useEffect(() => {
     for (const territoryName of territoriesName) {
       // Check for sound to play
-      const audio = territoryAudios[territoryName];
+      const audio = TERRITORY_AUDIOS[territoryName];
       if (audio) {
         const visitedTerritory = visitedTerritories[territoryName];
         if (

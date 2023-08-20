@@ -6,13 +6,13 @@ export enum TerritoryType {
 }
 
 export enum TERRITORIES_NAMES {
-  BAR = "Bar",
+  BAR = "Space Bar",
   PARK = "Park",
   PARK_FOUNTAIN = "Park Fountain",
   TV_BRIDGE = "TV Bridge",
   DEAD_END_ALLEY = "Dead End Alley",
   BLOCKED_ROAD = "Blocked Road",
-  STORE = "Store",
+  STORE = "Convenience Store",
   TECH_CENTER = "Tech Center",
   POST_OFFICE = "Post Office",
 }

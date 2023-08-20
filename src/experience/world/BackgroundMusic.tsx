@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import useSound from "../stores/useSound";
-import { BACKGROUND_MUSIC_PATH } from "../utils/constants";
+import { ASSETS } from "../utils/constants";
 import { AudioConfig } from "../utils/interfaces";
 
 let currentLofiIndex = 0;
@@ -9,18 +9,18 @@ function BackgroundMusic() {
 
   const backgroundMusicConfig: { [name: string]: AudioConfig } = {
     rain: {
-      path: BACKGROUND_MUSIC_PATH.RAIN,
+      path: ASSETS.BACKGROUND_MUSIC.RAIN,
       volume: 0.1,
       duration: 0,
     },
     lofi: {
-      path: BACKGROUND_MUSIC_PATH.LOFI[currentLofiIndex],
+      path: ASSETS.BACKGROUND_MUSIC.LOFI[currentLofiIndex],
       volume: 0.15,
       onEnded: () => {
         currentLofiIndex =
-          (currentLofiIndex + 1) % BACKGROUND_MUSIC_PATH.LOFI.length;
+          (currentLofiIndex + 1) % ASSETS.BACKGROUND_MUSIC.LOFI.length;
         backgroundMusicConfig.lofi.path =
-          BACKGROUND_MUSIC_PATH.LOFI[currentLofiIndex];
+          ASSETS.BACKGROUND_MUSIC.LOFI[currentLofiIndex];
         playSound(backgroundMusicConfig.lofi);
       },
     },

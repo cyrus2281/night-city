@@ -5,12 +5,23 @@ import "./Contact.scss";
 import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import { sendEmail } from "../experience/utils/utils";
+import useSound from "../experience/stores/useSound";
+import { GUY_AUDIOS } from "../experience/utils/guyAudios";
+import useGlobal from "../experience/stores/useGlobal";
 
 const emailRegex = new RegExp("^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$");
+
+enum ContactSubject {
+  QUESTION = "question",
+  FEEDBACK = "feedback",
+  BUG = "bug",
+  FAN = "fan",
+}
 
 function ContactHeader() {
   return <div className="page-header">Send a Letter</div>;
 }
+
 let failedMessage: { [name: string]: string } = {
   name: "",
   message: "",
@@ -19,6 +30,8 @@ let failedMessage: { [name: string]: string } = {
 };
 
 function Contact({ worldPath }: { worldPath: string }) {
+  const playSound = useSound((state) => state.playSound);
+  const isTrueFan = useGlobal((state) => state.isTrueFan);
   const navigate = useNavigate();
   const [name, setName] = useState(failedMessage.name);
   const [email, setEmail] = useState(failedMessage.email);
@@ -44,11 +57,14 @@ function Contact({ worldPath }: { worldPath: string }) {
     navigate(worldPath, { replace: true });
   };
 
-  const sendMail = () => {
+  const sendMail = () => {    
     const errors = {
       name: name === "",
       email: email === "" || !emailRegex.test(email),
-      subject: subject === "",
+      subject:
+        subject === "" ||
+        !Object.values(ContactSubject).includes(subject as ContactSubject) ||
+        (subject === ContactSubject.FAN && !isTrueFan),
       message: message === "",
     };
     setErrors(errors);
@@ -65,14 +81,15 @@ function Contact({ worldPath }: { worldPath: string }) {
         if (!res.ok) {
           throw new Error("Email failed:" + res.statusText);
         }
-        console.log("Email Sent");
+        playSound(GUY_AUDIOS.MAIL_SENT);
       })
       .catch((er) => {
         failedMessage.name = name;
         failedMessage.email = email;
         failedMessage.message = message;
         failedMessage.subject = subject;
-        console.log("Email failed:", er);
+        playSound(GUY_AUDIOS.MAIL_FAILED);
+        console.error("Email failed:", er);
       })
       .finally(closePage);
   };
@@ -134,9 +151,12 @@ function Contact({ worldPath }: { worldPath: string }) {
               <option value="" disabled>
                 Select a subject
               </option>
-              <option value="question">Have a question</option>
-              <option value="feedback">Have a feedback</option>
-              <option value="bug">Reporting a bug</option>
+              <option value={ContactSubject.QUESTION}>Have a question</option>
+              <option value={ContactSubject.FEEDBACK}>Have a feedback</option>
+              <option value={ContactSubject.BUG}>Reporting a bug</option>
+              {isTrueFan && (
+                <option value={ContactSubject.FAN}>I'm a fan</option>
+              )}
             </select>
           </div>
           <div className="mail-bottom">
