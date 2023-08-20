@@ -36,6 +36,8 @@ export const ASSETS = {
 
 export const DEFAULT_MUSIC_VOLUME = 0.5;
 
+export const MAX_CLICKABLE_DISTANCE = 8;
+
 export const PAGES = {
   RESUME: "resume",
   CONTACT: "contact",
@@ -47,6 +49,12 @@ export const LOCAL_STORAGE_KEYS = {
   DISCOVERED_AUDIOS: "discoveredAudios",
   FINISHED: "finished",
 };
+
+export const EXTERNAL_LINKS = {
+  LINKEDIN: "https://www.linkedin.com/in/cyrusmobini",
+  GITHUB: "https://www.github.com/cyrus2281",
+  COFFEE: "https://www.buymeacoffee.com/cyrus2281",
+}
 
 export const NIGHT_CITY_FONT = `
 ███╗   ██╗██╗ ██████╗ ██╗  ██╗████████╗     ██████╗██╗████████╗██╗   ██╗
@@ -67,12 +75,4 @@ export const printNightCityInfo = (worldPath: string) => {
   setTimeout(() =>
     console.log(NIGHT_CITY_FONT.replaceAll("{worldPath}", worldPath))
   );
-};
-
-export const openLinkedIn = () => {
-  window.open("https://www.linkedin.com/in/cyrusmobini", "_blank");
-};
-
-export const openGithub = () => {
-  window.open("https://www.github.com/cyrus2281", "_blank");
 };

@@ -1,23 +1,17 @@
 import { Float, useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import { ReactNode } from "react";
-import { ASSETS } from "../utils/constants";
+import { ASSETS, EXTERNAL_LINKS, MAX_CLICKABLE_DISTANCE, PAGES } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
+import { ThreeEvent } from "@react-three/fiber";
+import { openUrl } from "../utils/utils";
 
-const onPointerHandlers: { [name: string]: (e: any) => void } = {
-  Suzanne: (e: Event) => {
-    e.stopPropagation();
-    console.log("Suzanne clicked", e);
-  },
-  blockEvents: (e: Event) => e.stopPropagation(),
-};
-
-function City() {
-  const { scene } = useGLTF(ASSETS.MODELS.CITY);
-  const cityScene = scene.clone();
-  const children = cityScene.children;
-  cityScene.children = [];
-
-  const clickableBlocks: ReactNode[] = [];
+const traverseChildren = (
+  children: any[],
+  clickableBlocks: any[],
+  list: any[],
+  onPointerHandlers: { [name: string]: (e: any) => void }
+) => {
   children.forEach((child: any) => {
     if (child.type === "Mesh") {
       child.castShadow = true;
@@ -57,9 +51,56 @@ function City() {
         }
         return;
       }
+    } else {
+      if (child.type === "Group") {
+        const children = child.children;
+        child.children = [];
+        traverseChildren(
+          children,
+          clickableBlocks,
+          child.children,
+          onPointerHandlers
+        );
+      }
     }
-    cityScene.children.push(child);
+    list.push(child);
   });
+};
+
+const performAction = (
+  cb: () => void,
+  distance: number = MAX_CLICKABLE_DISTANCE
+) => {
+  return (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    if (e.distance < distance) {
+      cb();
+    }
+  };
+};
+
+function City() {
+  const navigate = useNavigate();
+  const { scene } = useGLTF(ASSETS.MODELS.CITY);
+  // on Pointer Handlers
+  const onPointerHandlers: { [name: string]: (e: any) => void } = {
+    Mailbox: performAction(() => navigate(PAGES.CONTACT)),
+    Mailbox_1: performAction(() => navigate(PAGES.CONTACT)),
+    Mailbox_2: performAction(() => navigate(PAGES.CONTACT)),
+    coffee: performAction(() => openUrl(EXTERNAL_LINKS.COFFEE)),
+    blockEvents: (e: Event) => e.stopPropagation(),
+  };
+  // Parsing City
+  const cityScene = scene.clone();
+  const clickableBlocks: ReactNode[] = [];
+  const children = cityScene.children;
+  cityScene.children = [];
+  traverseChildren(
+    children,
+    clickableBlocks,
+    cityScene.children,
+    onPointerHandlers
+  );
 
   return (
     <>

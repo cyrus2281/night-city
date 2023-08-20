@@ -1,7 +1,7 @@
 import { ALTITUDE_DISPLACEMENT_THRESHOLD } from "./constants";
 import { TERRITORIES_NAMES, TerritoryType } from "./enums";
 import { Point, Circle2D, Rectangle2D, Territory, Point3D } from "./interfaces";
-const FORMSPREE_URL = import.meta.env.VITE_FORMSPREE_URL
+const FORMSPREE_URL = import.meta.env.VITE_FORMSPREE_URL;
 
 export const getLocalTime = (): string => {
   const date = new Date();
@@ -88,10 +88,12 @@ export const checkTerritories = (
   territories: Territory[]
 ): TERRITORIES_NAMES[] => {
   for (const territory of territories) {
-    let insideTerritories: TERRITORIES_NAMES[] = []
+    let insideTerritories: TERRITORIES_NAMES[] = [];
     if (isInsideTerritory(position, territory)) {
       if (territory.children) {
-        insideTerritories.push(...checkTerritories(position, territory.children));
+        insideTerritories.push(
+          ...checkTerritories(position, territory.children)
+        );
       }
       if (!territory.children?.length || territory.mustInclude) {
         insideTerritories.push(territory.name);
@@ -102,18 +104,24 @@ export const checkTerritories = (
   return [];
 };
 
-export const sendEmail = async (options: { [name: string]: string }): Promise<Response> => {
+export const sendEmail = async (options: {
+  [name: string]: string;
+}): Promise<Response> => {
   const formData = new FormData();
-  Object.keys(options).forEach(key => formData.append(key, options[key]));
+  Object.keys(options).forEach((key) => formData.append(key, options[key]));
   const url: string = FORMSPREE_URL;
   if (!url) {
     throw new Error("No formspree url found");
   }
   return await fetch(url, {
-    method: 'POST',
+    method: "POST",
     body: formData,
     headers: {
-      'Accept': 'application/json'
-    }
-  })
-}
+      Accept: "application/json",
+    },
+  });
+};
+
+export const openUrl = (url: string, newTab = true): void => {
+  window.open(url, newTab ? "_blank" : "_self");
+};

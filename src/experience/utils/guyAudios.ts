@@ -16,10 +16,10 @@ const TEN_MIN_MS = 10 * 60 * 1000;
 
 export const TERRITORY_AUDIOS: TerritoryAudio = {
   [TERRITORIES_NAMES.BAR]: {
-    path: ASSETS.GUY_AUDIO + "floating-chair.wav",
+    path: ASSETS.GUY_AUDIO + "space-bar.wav",
     playInterval: FIVE_MIN_MS,
     duration: 4000,
-    subtitle: "OH! Look at that char, it's floating! It's like a sci-fi movie!",
+    subtitle: "Look! Space Bar! They have coffee too. Click on the coffee.",
   },
   [TERRITORIES_NAMES.TV_BRIDGE]: {
     path: ASSETS.GUY_AUDIO + "death-by-fall.wav",
@@ -72,5 +72,15 @@ export const GUY_AUDIOS: { [key: string]: AudioConfig } = {
     path: ASSETS.GUY_AUDIO + "true-fan.wav",
     duration: 3000,
     subtitle: "You finished the game! Congratulations!",
+  },
+  MAIL_SENT: {
+    path: ASSETS.GUY_AUDIO + "mail-sent.wav",
+    duration: 2000,
+    subtitle: "The mail was sent! Now we just need to wait for a reply.",
+  },
+  MAIL_FAILED: {
+    path: ASSETS.GUY_AUDIO + "mail-failed.wav",
+    duration: 2000,
+    subtitle: "The mail failed to send. Maybe we should try again later.",
   },
 };
