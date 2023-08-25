@@ -71,7 +71,7 @@ export const GUY_AUDIOS: { [key: string]: AudioConfig } = {
   TRUE_FAN: {
     path: ASSETS.GUY_AUDIO + "finished.wav",
     duration: 7000,
-    subtitle: "Waw, you did it. Congratulations! you have unlocked all the audios and places, good job. You can now send us a mail as a true fan",
+    subtitle: "Waw, you did it. Congratulations! you have unlocked all the audios and places, good job. You can now send us a mail as a true fan.",
   },
   MAIL_SENT: {
     path: ASSETS.GUY_AUDIO + "mail-sent.wav",
@@ -86,11 +86,16 @@ export const GUY_AUDIOS: { [key: string]: AudioConfig } = {
   FALL : {
     path: ASSETS.GUY_AUDIO + "fall-from-map.wav",
     duration: 1000,
-    subtitle: "Did you really fall off the map",
+    subtitle: "Did you really fall off the map?",
   },
   BUG: {
     path: ASSETS.GUY_AUDIO + "bug.wav",
     duration: 2000,
     subtitle: " Was that a bug? Maybe report how it happened.",
+  },
+  DEV_TOOLS: {
+    path: ASSETS.GUY_AUDIO + "dev-tools.wav",
+    duration: 2000,
+    subtitle: "What are you looking for in the developer tools?",
   }
 };

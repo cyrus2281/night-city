@@ -1,4 +1,4 @@
-import { ALTITUDE_DISPLACEMENT_THRESHOLD } from "./constants";
+import { ALTITUDE_DISPLACEMENT_THRESHOLD, NIGHT_CITY_FONT } from "./constants";
 import { TERRITORIES_NAMES, TerritoryType } from "./enums";
 import { Point, Circle2D, Rectangle2D, Territory, Point3D } from "./interfaces";
 const FORMSPREE_URL = import.meta.env.VITE_FORMSPREE_URL;
@@ -124,4 +124,23 @@ export const sendEmail = async (options: {
 
 export const openUrl = (url: string, newTab = true): void => {
   window.open(url, newTab ? "_blank" : "_self");
+};
+
+
+export const getCameraFOV = () => {
+  const windowWidth = window.innerWidth;
+  let fov = 45
+  if (windowWidth < 600) {
+    fov = 65
+  } else if (windowWidth < 800) {
+    fov = 55
+  }
+  return fov;
+}
+
+export const printNightCityInfo = () => {
+  console.clear();
+  setTimeout(() =>
+    console.log(NIGHT_CITY_FONT.replaceAll("{worldPath}", window.worldPath))
+  );  
 };

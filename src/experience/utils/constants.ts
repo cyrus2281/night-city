@@ -3,6 +3,8 @@ import { Vector3 } from "three";
 // export const CHARACTER_INITIAL_POSITION = new Vector3(-20, 0.01, 11);
 export const CHARACTER_INITIAL_POSITION = new Vector3(21, 0.01, 7);
 
+export const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
 export const POSITION_DISPLACEMENT_THRESHOLD = {
   x: 0.5,
   y: 0.1,
@@ -54,6 +56,7 @@ export const EXTERNAL_LINKS = {
   LINKEDIN: "https://www.linkedin.com/in/cyrusmobini",
   GITHUB: "https://www.github.com/cyrus2281",
   COFFEE: "https://www.buymeacoffee.com/cyrus2281",
+  SOURCE_CODE: "https://github.com/cyrus2281/night-city"
 }
 
 export const NIGHT_CITY_FONT = `
@@ -65,14 +68,7 @@ export const NIGHT_CITY_FONT = `
 ╚═╝  ╚═══╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝        ╚═════╝╚═╝   ╚═╝      ╚═╝  
 
 * Check ${window.location.origin}{worldPath}#dev for debug options
-* Check ${window.location.origin}{worldPath}/about to learn more about Night City
-* Check ${window.location.origin}{worldPath}/credits to learn more about the creators
-* Check https://github.com/cyrus2281/night-city for the source code
+* Check ${window.location.origin}{worldPath}/credits for the credits
+* Check ${EXTERNAL_LINKS.COFFEE} to support the developer
+* Check ${EXTERNAL_LINKS.SOURCE_CODE} for the source code
 `;
-
-export const printNightCityInfo = (worldPath: string) => {
-  // console.clear();
-  setTimeout(() =>
-    console.log(NIGHT_CITY_FONT.replaceAll("{worldPath}", worldPath))
-  );
-};

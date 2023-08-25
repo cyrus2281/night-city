@@ -33,7 +33,13 @@
   &-bottom {
     display: flex;
     justify-content: space-between;
-    padding: 15% 8%;
+    padding: 18% 10%;
+  }
+}
+
+.jump-button {
+  .icon {
+    font-size: $font-size-xxl;
   }
 }
 
