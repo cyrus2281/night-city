@@ -1,6 +1,7 @@
 import { Vector3 } from "three";
 
 // export const CHARACTER_INITIAL_POSITION = new Vector3(-20, 0.01, 11);
+// export const CHARACTER_INITIAL_POSITION = new Vector3(5.5, 9, 12);
 export const CHARACTER_INITIAL_POSITION = new Vector3(21, 0.01, 7);
 
 export const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
@@ -21,8 +22,9 @@ export const WORLD_THRESHOLD = {
 
 export const ASSETS = {
   MODELS: {
-    FOX: "/blob/Fox/Fox.gltf",
-    CITY: "/blob/night-city.glb",
+    FOX: "/blob/model/Fox/Fox.gltf",
+    CITY: "/blob/model/night-city.glb",
+    DRONE: "/blob/model/drone.glb",
   },
   ENV_MAP: "/blob/envMap/night_city.jpg",
   BACKGROUND_MUSIC: {

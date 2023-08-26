@@ -1,6 +1,8 @@
 import { useFrame } from "@react-three/fiber";
 import { RapierRigidBody, RigidBody } from "@react-three/rapier";
 import { useRef } from "react";
+import { ASSETS } from "../utils/constants";
+import { useGLTF } from "@react-three/drei";
 
 let xCoord = 13.3;
 let yCoord = 8;
@@ -45,8 +47,20 @@ const getCoordinates = () => {
   return prev;
 };
 
+const cabin = {
+  opacity: 1,
+  thickness: 0.2,
+  height: 0.7,
+  length: 2.5,
+  width: 1.5,
+  depth: 0.5,
+  mass: 20,
+  color: "white",
+};
+
 function Drone() {
   const bodyRef = useRef<RapierRigidBody>();
+  const drone = useGLTF(ASSETS.MODELS.DRONE);
 
   useFrame((state) => {
     if (!bodyRef.current) return;
@@ -62,33 +76,86 @@ function Drone() {
         position={[10, 100, 10]}
         linearDamping={0}
         angularDamping={0}
-        friction={1}
+        friction={0.5}
         restitution={0}
-        mass={10}
+        mass={cabin.mass}
       >
-        <mesh rotation={[0, 0, 0]} position={[-0.5, 0, 0]}>
-          <boxGeometry args={[3, 0.3, 2]} />
-          <meshStandardMaterial color="white" opacity={0.2} transparent />
-        </mesh>
-        <mesh rotation={[0, 0, -1.5]} position={[1.15, 0.4, 0]}>
-          <boxGeometry args={[0.8, 0.3, 2]} />
-          <meshStandardMaterial color="white" opacity={0.2} transparent />
-        </mesh>
-        <mesh rotation={[0, 0, 1.5]} position={[-2.15, 0.4, 0]}>
-          <boxGeometry args={[0.8, 0.3, 2]} />
-          <meshStandardMaterial color="white" opacity={0.2} transparent />
-        </mesh>
-        <mesh rotation={[1.5, 0, 0]} position={[-0.5, 0.4, 1.15]}>
-          <boxGeometry args={[3, 0.3, 0.8]} />
-          <meshStandardMaterial color="white" opacity={0.2} transparent />
-        </mesh>
-        <mesh rotation={[-1.5, 0, 0]} position={[-0.5, 0.4, -1.15]}>
-          <boxGeometry args={[3, 0.3, 0.8]} />
-          <meshStandardMaterial color="white" opacity={0.2} transparent />
-        </mesh>
+        <group position={[0, 0, 0.5]}>
+          <group name="cabin">
+            <mesh rotation={[0, 0, 0]} position={[-0.25, 0, 0]}>
+              <boxGeometry args={[cabin.length, 0.4, cabin.width]} />
+              <meshStandardMaterial
+                color={cabin.color}
+                opacity={cabin.opacity}
+                transparent
+              />
+            </mesh>
+            <mesh
+              rotation={[0, 0, -Math.PI / 2]}
+              position={[0.65, cabin.depth, 0]}
+            >
+              <boxGeometry
+                args={[cabin.height, cabin.thickness, cabin.width]}
+              />
+              <meshStandardMaterial
+                color={cabin.color}
+                opacity={cabin.opacity}
+                transparent
+              />
+            </mesh>
+            <mesh
+              rotation={[0, 0, Math.PI / 2]}
+              position={[-1.65, cabin.depth, 0]}
+            >
+              <boxGeometry
+                args={[cabin.height, cabin.thickness, cabin.width]}
+              />
+              <meshStandardMaterial
+                color={cabin.color}
+                opacity={cabin.opacity}
+                transparent
+              />
+            </mesh>
+            <mesh
+              rotation={[Math.PI / 2, 0, 0]}
+              position={[-0.5, cabin.depth, 0.85]}
+            >
+              <boxGeometry
+                args={[cabin.length, cabin.thickness, cabin.height]}
+              />
+              <meshStandardMaterial
+                color={cabin.color}
+                opacity={cabin.opacity}
+                transparent
+              />
+            </mesh>
+            <mesh
+              rotation={[-Math.PI / 2, 0, 0]}
+              position={[-0.5, cabin.depth, -0.85]}
+            >
+              <boxGeometry
+                args={[cabin.length, cabin.thickness, cabin.height]}
+              />
+              <meshStandardMaterial
+                color={cabin.color}
+                opacity={cabin.opacity}
+                transparent
+              />
+            </mesh>
+          </group>
+          <primitive
+            name="drone"
+            object={drone.scene}
+            scale={[9.5, 4, 9.5]}
+            rotation={[0, Math.PI / 2, 0]}
+            position={[-0.47, -0.05, 0]}
+          />
+        </group>
       </RigidBody>
     </>
   );
 }
+
+useGLTF.preload(ASSETS.MODELS.DRONE);
 
 export default Drone;
