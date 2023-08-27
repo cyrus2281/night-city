@@ -43,6 +43,9 @@ Content:
 - Models by [Cordula Hansen](https://poly.pizza/u/Cordula%20Hansen) from [Poly Pizza](https://poly.pizza/) under [CC-BY](https://creativecommons.org/licenses/by/3.0/)
   - [Space Bar](https://poly.pizza/m/4vlKrz5wDOF)
 
+- Models by [Nick Olson](https://poly.pizza/u/Nick%20Olson) from [Poly Pizza](https://poly.pizza/) under [CC-BY](https://creativecommons.org/licenses/by/3.0/)
+  - [Little Drone](https://poly.pizza/m/dJ9mjQQqDQJ)
+
 ---
 
 ### Textures

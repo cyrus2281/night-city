@@ -5,7 +5,7 @@ export enum TerritoryType {
   RECTANGULAR_ALTITUDE = "rectangular-altitude",
 }
 
-export enum TERRITORIES_NAMES {
+export enum MAIN_TERRITORIES_NAMES {
   BAR = "Space Bar",
   PARK = "Park",
   PARK_FOUNTAIN = "Park Fountain",
@@ -16,6 +16,12 @@ export enum TERRITORIES_NAMES {
   TECH_CENTER = "Tech Center",
   POST_OFFICE = "Post Office",
 }
+
+export enum OTHER_TERRITORIES_NAMES {
+  PIPES = "Duct Pipes",
+}
+
+export type TERRITORIES_NAMES = MAIN_TERRITORIES_NAMES | OTHER_TERRITORIES_NAMES;
 
 export enum MODEL_ANIMATIONS {
     IDLE = "Survey",

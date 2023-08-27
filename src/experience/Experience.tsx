@@ -4,6 +4,7 @@ import Effects from "./effects/Effects";
 import Character from "./character/Character";
 import World from "./world/World";
 import CanvasInterface from "./interface/CanvasInterface";
+import Drone from "./character/Drone";
 
 function Experience() {
   return (
@@ -15,6 +16,7 @@ function Experience() {
         <Lights />
 
         <Character />
+        <Drone />
         <World />
       </Physics>
     </>

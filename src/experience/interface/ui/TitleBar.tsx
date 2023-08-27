@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import "./TitleBar.scss";
 import useLocation from "../../stores/useLocation";
+import { MAIN_TERRITORIES_NAMES } from "../../utils/enums";
+
+const mainTerritories = Object.values(MAIN_TERRITORIES_NAMES);
 
 function TitleBar() {
   const territoriesName = useLocation((state) => state.territoriesName);
@@ -8,7 +11,10 @@ function TitleBar() {
   const [isHidden, setIsHidden] = useState(true);
 
   useEffect(() => {
-    if (territoriesName.length) {
+    if (
+      territoriesName.length &&
+      mainTerritories.includes(territoriesName.at(-1) as MAIN_TERRITORIES_NAMES)
+    ) {
       setText(territoriesName.at(-1) as string);
     }
   }, [territoriesName]);
