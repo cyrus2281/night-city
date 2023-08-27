@@ -7,14 +7,14 @@ import { subscribeWithSelector } from "zustand/middleware";
 import { Vector3 } from "three";
 import { checkTerritories } from "../utils/utils";
 import TERRITORIES from "../utils/territories";
-import { MAIN_TERRITORIES_NAMES } from "../utils/enums";
+import { TERRITORIES_NAMES } from "../utils/enums";
 
 interface LocationState {
   location: Vector3;
   setLocation: (location: Vector3) => void;
 
-  territoriesName: MAIN_TERRITORIES_NAMES[];
-  setTerritoriesName: (territoriesName: MAIN_TERRITORIES_NAMES[]) => void;
+  territoriesName: TERRITORIES_NAMES[];
+  setTerritoriesName: (territoriesName: TERRITORIES_NAMES[]) => void;
 }
 
 export default create(
@@ -51,7 +51,7 @@ export default create(
         }),
 
       territoriesName: [],
-      setTerritoriesName: (territoriesName: MAIN_TERRITORIES_NAMES[]) =>
+      setTerritoriesName: (territoriesName: TERRITORIES_NAMES[]) =>
         set({ territoriesName }),
     };
   })

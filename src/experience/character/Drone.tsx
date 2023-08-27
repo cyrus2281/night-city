@@ -4,12 +4,21 @@ import { useRef } from "react";
 import { ASSETS } from "../utils/constants";
 import { useGLTF } from "@react-three/drei";
 
-let xCoord = 13.3;
-let yCoord = 8;
-let zCoord = 10;
-let hDirection = true;
-let prev = { x: 0, y: 0, z: 0 };
+const minmax = {
+  x: { min: -22, max: 9, middle: -6 },
+  y: { min: 3, max: 10 },
+  z: { min: -12, max: 9, middle: -1 },
+};
 const step = 0.002;
+
+let prev = { x: minmax.x.min, y: minmax.y.max, z: minmax.z.min };
+
+let xCoord = 4.8;
+let yCoord = 2;
+let zCoord = 3;
+
+let hDirection = false;
+let passedMiddle = true;
 
 const getCoordinates = () => {
   const prevX = Math.floor(prev.x);
@@ -17,10 +26,10 @@ const getCoordinates = () => {
   const prevY = Math.floor(prev.y);
 
   if (hDirection) {
-    if (prevX === 3 && prevZ === 9 && prevY > 3) {
+    if (prevX === 3 && prevZ === minmax.z.max && prevY > minmax.y.min) {
       // Come down by bridge
       yCoord += step * 2;
-    } else if (prevX === 3 && prevZ === -12 && prevY < 10) {
+    } else if (prevX === 3 && prevZ === minmax.z.min && prevY < minmax.y.max) {
       // Go up by Tech Center roof
       yCoord += step * 2;
     } else if (prevZ > 7 && prevX > -17 && prevX < -13) {
@@ -29,14 +38,25 @@ const getCoordinates = () => {
     } else {
       xCoord += step;
     }
-    if (prevX === -22 || prevX === 9) {
-      hDirection = false;
+    // Passed the middle point (good to turn)
+    if (prevX === minmax.x.middle && !passedMiddle) {
+      passedMiddle = true;
     }
   } else {
     zCoord += step;
-    if (prevZ === -12 || prevZ === 9) {
-      hDirection = true;
+    // Passed the middle point (good to turn)
+    if (prevZ === minmax.z.middle && !passedMiddle) {
+      passedMiddle = true;
     }
+  }
+  // Change direction (turn)
+  if (
+    ((hDirection && (prevX === minmax.x.min || prevX === minmax.x.max)) ||
+      (!hDirection && (prevZ === minmax.z.max || prevZ === minmax.z.min))) &&
+    passedMiddle
+  ) {
+    hDirection = !hDirection;
+    passedMiddle = false;
   }
 
   prev = {
