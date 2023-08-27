@@ -5,6 +5,7 @@ import Character from "./character/Character";
 import World from "./world/World";
 import CanvasInterface from "./interface/CanvasInterface";
 import Drone from "./character/Drone";
+import WordBlocks from "./character/WordBlocks";
 
 function Experience() {
   return (
@@ -17,6 +18,7 @@ function Experience() {
 
         <Character />
         <Drone />
+        <WordBlocks />
         <World />
       </Physics>
     </>

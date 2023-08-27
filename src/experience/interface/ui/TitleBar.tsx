@@ -11,11 +11,12 @@ function TitleBar() {
   const [isHidden, setIsHidden] = useState(true);
 
   useEffect(() => {
-    if (
-      territoriesName.length &&
-      mainTerritories.includes(territoriesName.at(-1) as MAIN_TERRITORIES_NAMES)
-    ) {
-      setText(territoriesName.at(-1) as string);
+    
+    const mainTerritory = territoriesName.filter((name) =>
+    mainTerritories.includes(name as MAIN_TERRITORIES_NAMES)
+    );
+    if (mainTerritory.length) {
+      setText(mainTerritory.at(0) as string);
     }
   }, [territoriesName]);
 
