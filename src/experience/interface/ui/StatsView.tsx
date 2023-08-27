@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import useLocation from "../../stores/useLocation";
 import "./StatsView.scss";
-import { TERRITORIES_NAMES } from "../../utils/enums";
+import { MAIN_TERRITORIES_NAMES } from "../../utils/enums";
 import { ASSETS, LOCAL_STORAGE_KEYS } from "../../utils/constants";
 import useSound from "../../stores/useSound";
 import { GUY_AUDIOS, TERRITORY_AUDIOS } from "../../utils/guyAudios";
 import useGlobal from "../../stores/useGlobal";
 
-const totalTerritories = Object.values(TERRITORIES_NAMES);
+const totalTerritories = Object.values(MAIN_TERRITORIES_NAMES);
 const totalAudios = Object.values(TERRITORY_AUDIOS).map((audio) =>
   audio.path.replace(ASSETS.GUY_AUDIO, "")
 );
@@ -26,7 +26,7 @@ function StatsView() {
     // Update places count
     const visitedPlaces = JSON.parse(
       localStorage.getItem(LOCAL_STORAGE_KEYS.VISITED_PLACES) || "[]"
-    ).filter((place: TERRITORIES_NAMES) => totalTerritories.includes(place));
+    ).filter((place: MAIN_TERRITORIES_NAMES) => totalTerritories.includes(place));
     visitedPlaces.push(...territoriesName);
     const uniquePlaces = [...new Set(visitedPlaces)];
     setPlaces(uniquePlaces.length);
@@ -40,7 +40,7 @@ function StatsView() {
     // Update audios count
     const discoveredAudios = JSON.parse(
       localStorage.getItem(LOCAL_STORAGE_KEYS.DISCOVERED_AUDIOS) || "[]"
-    ).filter((audio: TERRITORIES_NAMES) => totalAudios.includes(audio));
+    ).filter((audio: MAIN_TERRITORIES_NAMES) => totalAudios.includes(audio));
     discoveredAudios.push(
       ...activeSounds
         .filter((audio) =>
