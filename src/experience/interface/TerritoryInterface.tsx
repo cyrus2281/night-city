@@ -3,7 +3,7 @@ import useLocation from "../stores/useLocation";
 import { useEffect, useState } from "react";
 import useGlobal from "../stores/useGlobal";
 import { Vector3 } from "three";
-import { MAIN_TERRITORIES_NAMES } from "../utils/enums";
+import { TERRITORIES_NAMES } from "../utils/enums";
 import { TERRITORY_AUDIOS } from "../utils/guyAudios";
 import useSound from "../stores/useSound";
 
@@ -80,7 +80,7 @@ function TerritoryInterfaceDebug({
 }
 
 type VisitedTerritoriesInterface = {
-  [key in MAIN_TERRITORIES_NAMES]?: {
+  [key in TERRITORIES_NAMES]?: {
     lastVisited: number;
   };
 };
