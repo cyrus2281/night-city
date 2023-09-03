@@ -20,6 +20,8 @@ Content:
 
   - [Toon Shooter Game Kit](https://poly.pizza/bundle/Toon-Shooter-Game-Kit-qraiSXoAru)
   - [Cyberpunk Game Kit](https://poly.pizza/bundle/Cyberpunk-Game-Kit-Hkfxa8K8zF)
+  - [Ultimate Space Kit](https://poly.pizza/bundle/Ultimate-Space-Kit-YWh743lqGX)
+  - [Scifi Kit](https://poly.pizza/m/b6otgtfVoe)
   - [Ultimate Stylized Nature Pack](https://poly.pizza/bundle/Ultimate-Stylized-Nature-Pack-zyIyYd9yGr)
   - [Bench](https://poly.pizza/m/jLxjFxFRpw)
   - [Stone Wall](https://poly.pizza/m/tdeAOh3LQV) \<Modified>
