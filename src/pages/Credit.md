@@ -20,6 +20,8 @@ Content:
 
   - [Toon Shooter Game Kit](https://poly.pizza/bundle/Toon-Shooter-Game-Kit-qraiSXoAru)
   - [Cyberpunk Game Kit](https://poly.pizza/bundle/Cyberpunk-Game-Kit-Hkfxa8K8zF)
+  - [Ultimate Stylized Nature Pack](https://poly.pizza/bundle/Ultimate-Stylized-Nature-Pack-zyIyYd9yGr)
+  - [Bench](https://poly.pizza/m/jLxjFxFRpw)
   - [Stone Wall](https://poly.pizza/m/tdeAOh3LQV) \<Modified>
 
 - Models by [Zsky](https://poly.pizza/u/Zsky) from [Poly Pizza](https://poly.pizza/) under [CC-BY](https://creativecommons.org/licenses/by/3.0/)
@@ -30,6 +32,7 @@ Content:
 
   - [Coffee cup](https://poly.pizza/m/fIuM_PW5prV) \<Modified>
   - [Dumpster](https://poly.pizza/m/3F0yCeWeTZP)
+  - [Fountain](https://poly.pizza/m/4KKY7CmNe_r)
 
 - Models by [J-Toastie](https://poly.pizza/u/J-Toastie) from [Poly Pizza](https://poly.pizza/) under [CC-BY](https://creativecommons.org/licenses/by/3.0/)
 

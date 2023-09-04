@@ -23,10 +23,17 @@ const TERRITORIES: Territory[] = [
     mustInclude: true,
     children: [
       {
-        name: MAIN_TERRITORIES_NAMES.PARK_FOUNTAIN,
-        center: { x: -8, y: 21 },
+        name: OTHER_TERRITORIES_NAMES.PARK_FOUNTAIN,
+        center: { x: -6, y: 19 },
         type: TerritoryType.CIRCULAR,
         radius: 3,
+      },
+      {
+        name: OTHER_TERRITORIES_NAMES.PARK_NAME,
+        center: { x: -16.4, y: 18 },
+        type: TerritoryType.RECTANGULAR,
+        width: 4.8,
+        height: 0.5,
       },
     ],
   },
@@ -42,7 +49,7 @@ const TERRITORIES: Territory[] = [
     name: MAIN_TERRITORIES_NAMES.TV_BRIDGE,
     center: { x: 5.5, y: 10.5 },
     type: TerritoryType.RECTANGULAR_ALTITUDE,
-    altitude: 8.5,
+    altitude: 7.5,
     width: 2,
     height: 6,
   },
@@ -74,6 +81,14 @@ const TERRITORIES: Territory[] = [
     altitude: 0,
     width: 6,
     height: 13,
+  },
+  {
+    name: MAIN_TERRITORIES_NAMES.POST_OFFICE_ROOF,
+    center: { x: -15.5, y: 2 },
+    type: TerritoryType.RECTANGULAR_ALTITUDE,
+    altitude: 4,
+    width: 5.5,
+    height: 9,
   },
   {
     name: MAIN_TERRITORIES_NAMES.TECH_CENTER,

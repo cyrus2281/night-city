@@ -252,8 +252,9 @@ export function Character() {
       >
         <CuboidCollider
           // Adding a flat box to prevent falling from sides
-          position={[0, 0.1, 0]}
-          args={[0.3, 0.1, 0.4]}
+          position={[0, 0.175, 0]}
+          args={[0.3, 0.2
+            , 0.4]}
           mass={2}
         />
         <Model animationName={animationRef} />

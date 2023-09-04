@@ -12,7 +12,7 @@ export const POSITION_DISPLACEMENT_THRESHOLD = {
   z: 0.5,
 };
 
-export const ALTITUDE_DISPLACEMENT_THRESHOLD = 2;
+export const ALTITUDE_DISPLACEMENT_THRESHOLD = 1.5;
 
 export const WORLD_THRESHOLD = {
   LOW: -10,
@@ -35,7 +35,8 @@ export const ASSETS = {
       "/blob/audio/background/lofi/you-and-i-133401.mp3",
     ],
   },
-  GUY_AUDIO: "/blob/audio/guy/"
+  GUY_AUDIO: "/blob/audio/guy/",
+  TEXT_FONT: "/blob/fonts/helvetiker_regular.typeface.json"
 };
 
 export const DEFAULT_MUSIC_VOLUME = 0.5;
