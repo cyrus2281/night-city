@@ -1,10 +1,16 @@
-import { Float, useGLTF } from "@react-three/drei";
+import { Float, useAnimations, useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
-import { ReactNode } from "react";
-import { ASSETS, EXTERNAL_LINKS, MAX_CLICKABLE_DISTANCE, PAGES } from "../utils/constants";
+import { ReactNode, useEffect } from "react";
+import {
+  ASSETS,
+  EXTERNAL_LINKS,
+  MAX_CLICKABLE_DISTANCE,
+  PAGES,
+} from "../utils/constants";
 import { useNavigate } from "react-router-dom";
 import { ThreeEvent } from "@react-three/fiber";
 import { openUrl } from "../utils/utils";
+import { AnimationBlendMode, NormalBlending } from "three";
 
 const traverseChildren = (
   children: any[],
@@ -81,7 +87,8 @@ const performAction = (
 
 function City() {
   const navigate = useNavigate();
-  const { scene } = useGLTF(ASSETS.MODELS.CITY);
+  const { scene, animations } = useGLTF(ASSETS.MODELS.CITY);
+
   // on Pointer Handlers
   const onPointerHandlers: { [name: string]: (e: any) => void } = {
     Mailbox: performAction(() => navigate(PAGES.CONTACT)),
@@ -101,6 +108,20 @@ function City() {
     cityScene.children,
     onPointerHandlers
   );
+
+  const cityAnimations = useAnimations(animations, cityScene);
+  useEffect(() => {
+    cityAnimations.clips.forEach((clip) => {
+      const action = cityAnimations.mixer.clipAction(clip);
+      action.reset().play();
+    });
+    return () => {
+      cityAnimations.clips.forEach((clip) => {
+        const action = cityAnimations.mixer.clipAction(clip);
+        action.reset().stop();
+      });
+    };
+  }, [animations]);
 
   return (
     <>
