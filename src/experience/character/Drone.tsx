@@ -70,7 +70,7 @@ const getCoordinates = () => {
 const cabin = {
   opacity: 1,
   thickness: 0.2,
-  height: 0.7,
+  height: 0.6,
   length: 2.5,
   width: 1.5,
   depth: 0.5,
@@ -102,7 +102,7 @@ function Drone() {
       >
         <group position={[0, 0, 0.5]}>
           <group name="cabin">
-            <mesh rotation={[0, 0, 0]} position={[-0.25, 0, 0]}>
+            <mesh rotation={[0, 0, 0]} position={[-0.5, 0, 0]}>
               <boxGeometry args={[cabin.length, 0.4, cabin.width]} />
               <meshStandardMaterial
                 color={cabin.color}

@@ -59,11 +59,17 @@ export const TERRITORY_AUDIOS: TerritoryAudio = {
     duration: 2000,
     subtitle: "We probably can't go this way. It's blocked!",
   },
-  [MAIN_TERRITORIES_NAMES.PARK_FOUNTAIN]: {
+  [OTHER_TERRITORIES_NAMES.PARK_FOUNTAIN]: {
     path: ASSETS.GUY_AUDIO + "empty-city.wav",
     playInterval: THREE_MIN_MS,
     duration: 1000,
     subtitle: "Why there's no one else in this city?",
+  },
+  [OTHER_TERRITORIES_NAMES.PARK_NAME]: {
+    path: ASSETS.GUY_AUDIO + "name.wav",
+    playInterval: PLAY_ONCE,
+    duration: 2000,
+    subtitle: "You just ran over the developer's name!",
   },
   [OTHER_TERRITORIES_NAMES.PIPES]: {
     path: ASSETS.GUY_AUDIO + "death-by-fall.wav",

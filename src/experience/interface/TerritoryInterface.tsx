@@ -91,7 +91,7 @@ function TerritoryInterface() {
   const territoriesName = useLocation((state) => state.territoriesName);
   const [visitedTerritories] = useState<VisitedTerritoriesInterface>({});
 
-  useEffect(() => {
+  useEffect(() => {    
     for (const territoryName of territoriesName) {
       // Check for sound to play
       const audio = TERRITORY_AUDIOS[territoryName];
