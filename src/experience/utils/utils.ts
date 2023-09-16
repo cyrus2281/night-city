@@ -144,3 +144,8 @@ export const printNightCityInfo = () => {
     console.log(NIGHT_CITY_FONT.replaceAll("{worldPath}", window.worldPath))
   );  
 };
+
+
+export const sleep = (ms: number) => {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}

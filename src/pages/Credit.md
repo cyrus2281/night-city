@@ -14,11 +14,11 @@ Content:
 - Models by [Kenney](https://poly.pizza/u/Kenney) from [Poly Pizza](https://poly.pizza/) under CC0
 
   - [City Kit](https://poly.pizza/bundle/City-Kit-0CkvGrBJ0u) \<Modified>
-  - [Stairs Open Single](https://poly.pizza/m/8NnxYiaDyJ) \<Modified>
+  - [Furniture Kit](https://poly.pizza/bundle/Furniture-Kit-NoG1sEUD1z) \<Modified>
 
 - Models by [Quaternius](https://poly.pizza/u/Quaternius) from [Poly Pizza](https://poly.pizza/) under CC0
 
-  - [Toon Shooter Game Kit](https://poly.pizza/bundle/Toon-Shooter-Game-Kit-qraiSXoAru)
+  - [Toon Shooter Game Kit](https://poly.pizza/bundle/Toon-Shooter-Game-Kit-qraiSXoAru) \<Modified>
   - [Cyberpunk Game Kit](https://poly.pizza/bundle/Cyberpunk-Game-Kit-Hkfxa8K8zF)
   - [Ultimate Space Kit](https://poly.pizza/bundle/Ultimate-Space-Kit-YWh743lqGX)
   - [Scifi Kit](https://poly.pizza/m/b6otgtfVoe)
@@ -35,6 +35,7 @@ Content:
   - [Coffee cup](https://poly.pizza/m/fIuM_PW5prV) \<Modified>
   - [Dumpster](https://poly.pizza/m/3F0yCeWeTZP)
   - [Fountain](https://poly.pizza/m/4KKY7CmNe_r)
+  - [Wall Painting](https://poly.pizza/m/3dycV-ViQH-)
 
 - Models by [J-Toastie](https://poly.pizza/u/J-Toastie) from [Poly Pizza](https://poly.pizza/) under [CC-BY](https://creativecommons.org/licenses/by/3.0/)
 

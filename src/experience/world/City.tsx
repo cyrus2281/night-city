@@ -95,6 +95,10 @@ function City() {
     Mailbox_1: performAction(() => navigate(PAGES.CONTACT)),
     Mailbox_2: performAction(() => navigate(PAGES.CONTACT)),
     coffee: performAction(() => openUrl(EXTERNAL_LINKS.COFFEE)),
+    githubFrame: performAction(() => openUrl(EXTERNAL_LINKS.GITHUB)),
+    githubFrame_1: performAction(() => openUrl(EXTERNAL_LINKS.GITHUB)),
+    linkedinFrame: performAction(() => openUrl(EXTERNAL_LINKS.LINKEDIN)),
+    linkedinFrame_1: performAction(() => openUrl(EXTERNAL_LINKS.LINKEDIN)),
     blockEvents: (e: Event) => e.stopPropagation(),
   };
   // Parsing City
