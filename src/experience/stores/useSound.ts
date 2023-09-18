@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 import { AudioConfig, Subtitle } from "../utils/interfaces";
 import { DEFAULT_MUSIC_VOLUME } from "../utils/constants";
+import { sleep } from "../utils/utils";
 
 interface SoundState {
   activeSounds: AudioElement[];
@@ -11,6 +12,8 @@ interface SoundState {
   setMute: (isMute: boolean) => void;
   toggleMute: () => void;
   playSound: (audioConfig: AudioConfig) => void;
+  fadeOutSounds: (callback?: () => void) => Promise<void>;
+  fadeInSounds: (callback?: () => void) => Promise<void>;
   subtitleQueue: Subtitle[];
   showSubtitle: (subtitle: string, duration: number) => void;
   removeSubtitle: (id: string) => void;
@@ -67,6 +70,36 @@ export default create(
             audioConfig.duration || 1000
           );
         }
+      },
+      fadeOutSounds: async (callback) => {
+        const { activeSounds } = get();
+        let interval = 0;
+        while (interval < 15) {
+          activeSounds.forEach((sound) => {
+            sound.volume = sound.volume * 0.75;
+          });
+          await sleep(100);
+          interval += 1;
+        }
+        activeSounds.forEach((sound) => {
+          sound.volume = 0;
+        });
+        callback && callback();
+      },
+      fadeInSounds: async (callback) => {
+        const { activeSounds } = get();
+        let interval = 0;
+        while (interval < 15) {
+          activeSounds.forEach((sound) => {
+            sound.volume = Math.min(sound.volume + 0.05 , sound.defaultVolume)
+          });
+          await sleep(100);
+          interval += 1;
+        }
+        activeSounds.forEach((sound) => {
+          sound.volume = sound.defaultVolume;
+        });
+        callback && callback();
       },
       subtitleQueue: [],
       showSubtitle: (message: string, duration: number) => {

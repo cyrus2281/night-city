@@ -109,5 +109,10 @@ export const GUY_AUDIOS: { [key: string]: AudioConfig } = {
     path: ASSETS.GUY_AUDIO + "dev-tools.wav",
     duration: 2000,
     subtitle: "What are you looking for in the developer tools?",
+  },
+  PAGE_RETURN: {
+    path: ASSETS.GUY_AUDIO + "came-back.wav",
+    duration: 2000,
+    subtitle: "Yay, You came back. I've missed you.",
   }
 };
