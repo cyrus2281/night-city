@@ -23,7 +23,7 @@ interface AudioElement extends HTMLAudioElement {
   defaultVolume: number;
   name: string;
 }
-
+let shouldUnmute = true;
 export default create(
   subscribeWithSelector<SoundState>((set, get) => {
     return {
@@ -72,7 +72,7 @@ export default create(
         }
       },
       fadeOutSounds: async (callback) => {
-        const { activeSounds } = get();
+        const { activeSounds, isMute, setMute } = get();
         let interval = 0;
         while (interval < 15) {
           activeSounds.forEach((sound) => {
@@ -81,24 +81,25 @@ export default create(
           await sleep(100);
           interval += 1;
         }
-        activeSounds.forEach((sound) => {
-          sound.volume = 0;
-        });
+        shouldUnmute = !isMute;
+        setMute(true);
         callback && callback();
       },
       fadeInSounds: async (callback) => {
-        const { activeSounds } = get();
+        const { activeSounds, setMute } = get();
+        if (!shouldUnmute) {
+          callback && callback();
+          return;
+        }
         let interval = 0;
-        while (interval < 15) {
+        while (interval < 10) {
           activeSounds.forEach((sound) => {
-            sound.volume = Math.min(sound.volume + 0.05 , sound.defaultVolume)
+            sound.volume = Math.min(sound.volume + 0.05, sound.defaultVolume);
           });
           await sleep(100);
           interval += 1;
         }
-        activeSounds.forEach((sound) => {
-          sound.volume = sound.defaultVolume;
-        });
+        setMute(false);
         callback && callback();
       },
       subtitleQueue: [],
