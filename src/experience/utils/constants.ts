@@ -1,8 +1,8 @@
 import { Vector3 } from "three";
 
-// export const CHARACTER_INITIAL_POSITION = new Vector3(-20, 0.01, 11);
+export const CHARACTER_INITIAL_POSITION = new Vector3(-11, 0.01, -23);
 // export const CHARACTER_INITIAL_POSITION = new Vector3(5.5, 9, 12);
-export const CHARACTER_INITIAL_POSITION = new Vector3(21, 0.01, 7);
+// export const CHARACTER_INITIAL_POSITION = new Vector3(21, 0.01, 7);
 
 export const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useLocation from "../../stores/useLocation";
 import "./StatsView.scss";
-import { MAIN_TERRITORIES_NAMES } from "../../utils/enums";
+import { MAIN_TERRITORIES_NAMES, TERRITORIES_NAMES } from "../../utils/enums";
 import { ASSETS, LOCAL_STORAGE_KEYS } from "../../utils/constants";
 import useSound from "../../stores/useSound";
 import { GUY_AUDIOS, TERRITORY_AUDIOS } from "../../utils/guyAudios";
@@ -26,8 +26,14 @@ function StatsView() {
     // Update places count
     const visitedPlaces = JSON.parse(
       localStorage.getItem(LOCAL_STORAGE_KEYS.VISITED_PLACES) || "[]"
-    ).filter((place: MAIN_TERRITORIES_NAMES) => totalTerritories.includes(place));
-    visitedPlaces.push(...territoriesName);
+    ).filter((place: MAIN_TERRITORIES_NAMES) =>
+      totalTerritories.includes(place)
+    );
+    visitedPlaces.push(
+      ...territoriesName.filter((place: TERRITORIES_NAMES) =>
+        totalTerritories.includes(place as MAIN_TERRITORIES_NAMES)
+      )
+    );
     const uniquePlaces = [...new Set(visitedPlaces)];
     setPlaces(uniquePlaces.length);
     localStorage.setItem(

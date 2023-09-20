@@ -53,11 +53,24 @@ export const TERRITORY_AUDIOS: TerritoryAudio = {
     subtitle:
       "Those seems like the developers contact information! Let's click them!",
   },
+  [MAIN_TERRITORIES_NAMES.POST_OFFICE_ROOF]: {
+    path: ASSETS.GUY_AUDIO + "dev-contact.wav",
+    playInterval: TEN_MIN_MS,
+    duration: 3000,
+    subtitle:
+      "Those seems like the developers contact information! Let's click them!",
+  },
   [MAIN_TERRITORIES_NAMES.BLOCKED_ROAD]: {
     path: ASSETS.GUY_AUDIO + "block-way.wav",
     playInterval: THREE_MIN_MS,
     duration: 2000,
     subtitle: "We probably can't go this way. It's blocked!",
+  },
+  [MAIN_TERRITORIES_NAMES.UNFINISHED_ROAD]: {
+    path: ASSETS.GUY_AUDIO + "unfinished-road.wav",
+    playInterval: THREE_MIN_MS,
+    duration: 2000,
+    subtitle: "The developer probably forgot to finish this area",
   },
   [OTHER_TERRITORIES_NAMES.PARK_FOUNTAIN]: {
     path: ASSETS.GUY_AUDIO + "empty-city.wav",
