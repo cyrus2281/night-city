@@ -53,13 +53,6 @@ export const TERRITORY_AUDIOS: TerritoryAudio = {
     subtitle:
       "Those seems like the developers contact information! Let's click them!",
   },
-  [MAIN_TERRITORIES_NAMES.POST_OFFICE_ROOF]: {
-    path: ASSETS.GUY_AUDIO + "dev-contact.wav",
-    playInterval: TEN_MIN_MS,
-    duration: 3000,
-    subtitle:
-      "Those seems like the developers contact information! Let's click them!",
-  },
   [MAIN_TERRITORIES_NAMES.BLOCKED_ROAD]: {
     path: ASSETS.GUY_AUDIO + "block-way.wav",
     playInterval: THREE_MIN_MS,
@@ -68,7 +61,7 @@ export const TERRITORY_AUDIOS: TerritoryAudio = {
   },
   [MAIN_TERRITORIES_NAMES.UNFINISHED_ROAD]: {
     path: ASSETS.GUY_AUDIO + "unfinished-road.wav",
-    playInterval: THREE_MIN_MS,
+    playInterval: FIVE_MIN_MS,
     duration: 2000,
     subtitle: "The developer probably forgot to finish this area",
   },
@@ -127,5 +120,11 @@ export const GUY_AUDIOS: { [key: string]: AudioConfig } = {
     path: ASSETS.GUY_AUDIO + "came-back.wav",
     duration: 2000,
     subtitle: "Yay, You came back. I've missed you.",
-  }
+  },
+  OBTAINED_UNOBTANIUM: {
+    path: ASSETS.GUY_AUDIO + "unobtanium.wav",
+    duration: 4000,
+    subtitle:
+      "Not Guy: Oh jeez! you got the unobtanium. \nGuy: Hey! I should be the only voice over!",
+  },
 };

@@ -25,6 +25,7 @@ export const ASSETS = {
     FOX: "/blob/model/Fox/Fox.gltf",
     CITY: "/blob/model/night-city.glb",
     DRONE: "/blob/model/drone.glb",
+    UNOBTANIUM : "/blob/model/unobtanium.glb",
   },
   ENV_MAP: "/blob/envMap/night_city.jpg",
   BACKGROUND_MUSIC: {
@@ -52,6 +53,7 @@ export const PAGES = {
 export const LOCAL_STORAGE_KEYS = {
   VISITED_PLACES: "visitedPlaces",
   DISCOVERED_AUDIOS: "discoveredAudios",
+  DISCOVERED_UNKNOWN: "discoveredUnknown",
   FINISHED: "finished",
 };
 

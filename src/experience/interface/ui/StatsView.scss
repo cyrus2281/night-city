@@ -2,9 +2,10 @@
 
 .stats {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: flex-start;
   gap: $space-m;
+  width: 100%;
 
   &-wrapper {
     display: flex;

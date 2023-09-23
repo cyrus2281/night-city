@@ -11,6 +11,9 @@ const totalTerritories = Object.values(MAIN_TERRITORIES_NAMES);
 const totalAudios = Object.values(TERRITORY_AUDIOS).map((audio) =>
   audio.path.replace(ASSETS.GUY_AUDIO, "")
 );
+const totalUnknown = [
+  GUY_AUDIOS.OBTAINED_UNOBTANIUM.path.replace(ASSETS.GUY_AUDIO, ""),
+];
 
 function StatsView() {
   const playSound = useSound((state) => state.playSound);
@@ -19,8 +22,10 @@ function StatsView() {
   const setIsTrueFan = useGlobal((state) => state.setIsTrueFan);
   const [audios, setAudios] = useState(0);
   const [places, setPlaces] = useState(0);
+  const [unknown, setUnknown] = useState(0);
   const [audioWiggle, setAudioWiggle] = useState(false);
   const [placesWiggle, setPlacesWiggle] = useState(false);
+  const [unknownWiggle, setUnknownWiggle] = useState(false);
 
   useEffect(() => {
     // Update places count
@@ -60,20 +65,43 @@ function StatsView() {
       LOCAL_STORAGE_KEYS.DISCOVERED_AUDIOS,
       JSON.stringify(uniqueAudios)
     );
+    // Update unknown count
+    const discoveredUnknown = JSON.parse(
+      localStorage.getItem(LOCAL_STORAGE_KEYS.DISCOVERED_UNKNOWN) || "[]"
+    ).filter((item: string) => totalUnknown.includes(item));
+    totalUnknown.forEach((item) => {
+      if (
+        activeSounds.find(
+          (audio) => audio.name.replace(ASSETS.GUY_AUDIO, "") === item
+        )
+      ) {
+        discoveredUnknown.push(item);
+      }
+    });
+    const uniqueUnknown = [...new Set(discoveredUnknown)];
+    setUnknown(uniqueUnknown.length);
+    localStorage.setItem(
+      LOCAL_STORAGE_KEYS.DISCOVERED_UNKNOWN,
+      JSON.stringify(uniqueUnknown)
+    );
   }, [activeSounds]);
 
   useEffect(() => {
     // Check if is true fan
-    if (audios === totalAudios.length && places === totalTerritories.length) {
+    if (
+      audios === totalAudios.length &&
+      places === totalTerritories.length &&
+      unknown === totalUnknown.length
+    ) {
       const hasAnnounced =
         localStorage.getItem(LOCAL_STORAGE_KEYS.FINISHED) ?? "0";
       if (!+hasAnnounced) {
         localStorage.setItem(LOCAL_STORAGE_KEYS.FINISHED, "1");
-        setTimeout(() => playSound(GUY_AUDIOS.TRUE_FAN), 4000);
+        setTimeout(() => playSound(GUY_AUDIOS.TRUE_FAN), 5000);
       }
       setIsTrueFan(true);
     }
-  }, [audios, places]);
+  }, [audios, places, unknown]);
 
   useEffect(() => {
     // Wiggle audio on change
@@ -91,8 +119,18 @@ function StatsView() {
     }, 700);
   }, [places]);
 
+  useEffect(() => {
+    // Wiggle unknown on change
+    setUnknownWiggle(true);
+    setTimeout(() => {
+      setUnknownWiggle(false);
+    }, 700);
+  }, [unknown]);
+
   const isFan =
-    audios === totalAudios.length && places === totalTerritories.length;
+    audios === totalAudios.length &&
+    places === totalTerritories.length &&
+    unknown === totalUnknown.length;
 
   return (
     <div className={"stats-wrapper " + (isFan ? "fan" : "")}>
@@ -106,6 +144,12 @@ function StatsView() {
         <span className="material-icons-outlined">map</span>
         <span className={"stats-label " + (placesWiggle ? "wiggle" : "")}>
           {places}/{totalTerritories.length}
+        </span>
+      </div>
+      <div className="stats" title="Unknown Objectives">
+        <span className="material-icons-outlined">question_mark</span>
+        <span className={"stats-label " + (unknownWiggle ? "wiggle" : "")}>
+          {unknown}/{totalUnknown.length}
         </span>
       </div>
     </div>
