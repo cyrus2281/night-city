@@ -15,6 +15,7 @@ export enum MAIN_TERRITORIES_NAMES {
   TECH_CENTER = "Tech Center",
   POST_OFFICE = "Post Office",
   POST_OFFICE_ROOF = "Post Office's Roof",
+  UNFINISHED_ROAD = "Unfinished Road",
 }
 
 export enum OTHER_TERRITORIES_NAMES {
