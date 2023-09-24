@@ -71,8 +71,8 @@ const cabin = {
   opacity: 1,
   thickness: 0.2,
   height: 0.6,
-  length: 2.5,
-  width: 1.5,
+  length: 3,
+  width: 2,
   depth: 0.5,
   mass: 20,
   color: "white",
@@ -112,7 +112,7 @@ function Drone() {
             </mesh>
             <mesh
               rotation={[0, 0, -Math.PI / 2]}
-              position={[0.65, cabin.depth, 0]}
+              position={[0.9, cabin.depth, 0]}
             >
               <boxGeometry
                 args={[cabin.height, cabin.thickness, cabin.width]}
@@ -125,7 +125,7 @@ function Drone() {
             </mesh>
             <mesh
               rotation={[0, 0, Math.PI / 2]}
-              position={[-1.65, cabin.depth, 0]}
+              position={[-1.9, cabin.depth, 0]}
             >
               <boxGeometry
                 args={[cabin.height, cabin.thickness, cabin.width]}
@@ -138,7 +138,7 @@ function Drone() {
             </mesh>
             <mesh
               rotation={[Math.PI / 2, 0, 0]}
-              position={[-0.5, cabin.depth, 0.85]}
+              position={[-0.5, cabin.depth, 1.1]}
             >
               <boxGeometry
                 args={[cabin.length, cabin.thickness, cabin.height]}
@@ -151,7 +151,7 @@ function Drone() {
             </mesh>
             <mesh
               rotation={[-Math.PI / 2, 0, 0]}
-              position={[-0.5, cabin.depth, -0.85]}
+              position={[-0.5, cabin.depth, -1.1]}
             >
               <boxGeometry
                 args={[cabin.length, cabin.thickness, cabin.height]}
@@ -166,7 +166,7 @@ function Drone() {
           <primitive
             name="drone"
             object={drone.scene}
-            scale={[9.5, 4, 9.5]}
+            scale={[11, 4, 11.5]}
             rotation={[0, Math.PI / 2, 0]}
             position={[-0.47, -0.05, 0]}
           />

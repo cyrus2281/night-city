@@ -59,6 +59,12 @@ export const TERRITORY_AUDIOS: TerritoryAudio = {
     duration: 2000,
     subtitle: "We probably can't go this way. It's blocked!",
   },
+  [MAIN_TERRITORIES_NAMES.UNFINISHED_ROAD]: {
+    path: ASSETS.GUY_AUDIO + "unfinished-road.wav",
+    playInterval: FIVE_MIN_MS,
+    duration: 2000,
+    subtitle: "The developer probably forgot to finish this area",
+  },
   [OTHER_TERRITORIES_NAMES.PARK_FOUNTAIN]: {
     path: ASSETS.GUY_AUDIO + "empty-city.wav",
     playInterval: THREE_MIN_MS,
@@ -114,5 +120,11 @@ export const GUY_AUDIOS: { [key: string]: AudioConfig } = {
     path: ASSETS.GUY_AUDIO + "came-back.wav",
     duration: 2000,
     subtitle: "Yay, You came back. I've missed you.",
-  }
+  },
+  OBTAINED_UNOBTANIUM: {
+    path: ASSETS.GUY_AUDIO + "unobtanium.wav",
+    duration: 4000,
+    subtitle:
+      "Not Guy: Oh jeez! you got the unobtanium. \nGuy: Hey! I should be the only voice over!",
+  },
 };

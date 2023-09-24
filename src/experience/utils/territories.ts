@@ -68,6 +68,13 @@ const TERRITORIES: Territory[] = [
     height: 3,
   },
   {
+    name: MAIN_TERRITORIES_NAMES.UNFINISHED_ROAD,
+    center: { x: 22, y: 5 },
+    type: TerritoryType.RECTANGULAR,
+    width: 5,
+    height: 12,
+  },
+  {
     name: MAIN_TERRITORIES_NAMES.STORE,
     center: { x: -1.5, y: -18.5 },
     type: TerritoryType.RECTANGULAR,

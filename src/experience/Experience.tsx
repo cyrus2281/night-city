@@ -6,6 +6,7 @@ import World from "./world/World";
 import CanvasInterface from "./interface/CanvasInterface";
 import Drone from "./character/Drone";
 import WordBlocks from "./character/WordBlocks";
+import Unobtanium from "./character/Unobtanium";
 
 function Experience() {
   return (
@@ -18,6 +19,7 @@ function Experience() {
 
         <Character />
         <Drone />
+        <Unobtanium />
         <WordBlocks />
         <World />
       </Physics>
