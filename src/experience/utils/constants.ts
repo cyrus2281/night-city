@@ -55,6 +55,7 @@ export const LOCAL_STORAGE_KEYS = {
   DISCOVERED_AUDIOS: "discoveredAudios",
   DISCOVERED_UNKNOWN: "discoveredUnknown",
   FINISHED: "finished",
+  SHOW_TUTORIAL: "showTutorial",
 };
 
 export const EXTERNAL_LINKS = {

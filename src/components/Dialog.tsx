@@ -5,7 +5,7 @@ import Button from "./Button";
 function Dialog({
   visibility = false,
   addDefaultButton = true,
-  closeOnDrop = true,
+  closeOnDrop = false,
   defaultButtonText = "close",
   defaultButtonLocation = "right",
   leftButtons,
@@ -25,11 +25,14 @@ function Dialog({
   children: ReactNode;
   onClose?: () => void;
 }) {
-  const dialogRef = useRef<HTMLDialogElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(visibility);
+  const [renderDialog, setRenderDialog] = useState(visibility);
+
   useEffect(() => {
     setShow(visibility);
   }, [visibility]);
+
   useEffect(() => {
     if (dialogRef.current && closeOnDrop) {
       dialogRef.current.addEventListener("click", (e) => {
@@ -39,20 +42,22 @@ function Dialog({
       });
     }
   }, [dialogRef, closeOnDrop]);
+
   useEffect(() => {
     if (dialogRef.current) {
       if (show) {
-        dialogRef.current.show();
+        setRenderDialog(true);
       } else {
         dialogRef.current.classList.add("closing");
         setTimeout(() => {
           dialogRef.current?.classList.remove("closing");
-          dialogRef.current?.close();
+          setRenderDialog(false);
           onClose && onClose();
         }, 600);
       }
     }
   }, [show]);
+
   if (addDefaultButton) {
     const defaultButton = (
       <Button onClick={() => setShow(false)} uppercase key="default-btn">
@@ -67,8 +72,9 @@ function Dialog({
       leftButtons.unshift(defaultButton);
     }
   }
-  return (
-    <dialog ref={dialogRef} className="dialog">
+
+  return !renderDialog ? null : (
+    <div ref={dialogRef} className="dialog">
       <div className="dialog-content">
         {header && <div className="dialog-content-header">{header}</div>}
         <div className="dialog-content-inner">{children}</div>
@@ -79,7 +85,7 @@ function Dialog({
           </div>
         )}
       </div>
-    </dialog>
+    </div>
   );
 }
 
