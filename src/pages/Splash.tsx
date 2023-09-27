@@ -44,8 +44,8 @@ function Splash() {
         </Button>
       </div>
       <p className="splash-mute-notice">
-        Night-City uses audio, to mute, use the button at the top-right of the
-        page.
+        Night-City uses audio, use the button at the top-right of the
+        page to mute.
       </p>
     </div>
   );

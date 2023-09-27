@@ -1,10 +1,12 @@
 import Dialog from "../components/Dialog";
 import "./Page.scss";
 import "./Tutorial.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import { LOCAL_STORAGE_KEYS } from "../experience/utils/constants";
 import MarkdownRenderer from "../components/MarkdownRenderer";
+import useSound from "../experience/stores/useSound";
+import { GUY_AUDIOS } from "../experience/utils/guyAudios";
 
 const TUTORIAL = [
   {
@@ -43,6 +45,7 @@ const SHOULD_SHOW_TUTORIAL =
   localStorage.getItem(LOCAL_STORAGE_KEYS.SHOW_TUTORIAL) !== "false";
 
 function Tutorial() {
+  const playSound = useSound((state) => state.playSound);
   const [showAgain, setShowAgain] = useState(true);
   const [pageNum, setPageNum] = useState(0);
   const [visibility, setVisibility] = useState(SHOULD_SHOW_TUTORIAL);
@@ -72,6 +75,14 @@ function Tutorial() {
       </Button>
     );
   }
+
+  useEffect(() => {
+    if (SHOULD_SHOW_TUTORIAL && !visibility) {
+      setTimeout(() => {
+        playSound(GUY_AUDIOS.WELCOME);
+      }, 1000);
+    }
+  }, [visibility]);
 
   return (
     <>

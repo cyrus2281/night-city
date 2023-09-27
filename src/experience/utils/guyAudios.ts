@@ -86,6 +86,11 @@ export const TERRITORY_AUDIOS: TerritoryAudio = {
 };
 
 export const GUY_AUDIOS: { [key: string]: AudioConfig } = {
+  WELCOME: {
+    path: ASSETS.GUY_AUDIO + "welcome.wav",
+    duration: 9000,
+    subtitle: "Welcome to Night City. I'm Guy, and I'll be accompanying you in your adventure, and making comments on random stuff. I hope you enjoy the game created by Cyrus Mobini, the developer of Night City."
+  },
   TRUE_FAN: {
     path: ASSETS.GUY_AUDIO + "finished.wav",
     duration: 7000,
