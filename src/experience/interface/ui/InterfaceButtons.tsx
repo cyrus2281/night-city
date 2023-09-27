@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./InterfaceButtons.scss";
 import StatsView from "./StatsView";
-import MuteButton from "./MuteButton";
+import MuteButton from "../../../components/MuteButton";
 import Button from "../../../components/Button";
 import Icon from "../../../components/Icon";
 import { openUrl } from "../../utils/utils";

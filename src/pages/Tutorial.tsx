@@ -3,11 +3,10 @@ import "./Page.scss";
 import "./Tutorial.scss";
 import { useState } from "react";
 import Button from "../components/Button";
-import useGlobal from "../experience/stores/useGlobal";
 import { LOCAL_STORAGE_KEYS } from "../experience/utils/constants";
 import MarkdownRenderer from "../components/MarkdownRenderer";
+import MuteButton from "../components/MuteButton";
 
-// Dummy git copilot stuff
 const TUTORIAL = [
   {
     title: "Welcome to Night-City",
@@ -34,7 +33,7 @@ const TUTORIAL = [
     content: [
       "Venture deep into the heart of the city,  where you'll encounter an interactive world filled with secrets and insights into the creator's life. \n",
       "Meet GUY, the annoying character who acts as your guide, telling you about locations and occasionally making funny comments.\n",
-      "You can simply sit back, enjoy, and explore the world, or you can attempt to complete the **secret mission** in the game by discovering all the locations and special audio cues. Once completed, you'll unlock a special features within the game."
+      "You can simply sit back, enjoy, and explore the world, or you can attempt to complete the **secret mission** in the game by discovering all the locations and special audio cues. Once completed, you'll unlock a special features within the game.",
     ],
   },
 ];
@@ -43,8 +42,8 @@ const NUM_PAGES = TUTORIAL.length;
 
 const SHOULD_SHOW_TUTORIAL =
   localStorage.getItem(LOCAL_STORAGE_KEYS.SHOW_TUTORIAL) !== "false";
+
 function Tutorial() {
-  const isTrueFan = useGlobal((state) => state.isTrueFan);
   const [showAgain, setShowAgain] = useState(true);
   const [pageNum, setPageNum] = useState(0);
   const [visibility, setVisibility] = useState(SHOULD_SHOW_TUTORIAL);
