@@ -3,6 +3,7 @@ import { subscribeWithSelector } from "zustand/middleware";
 import { AudioConfig, Subtitle } from "../utils/interfaces";
 import { DEFAULT_MUSIC_VOLUME } from "../utils/constants";
 import { sleep } from "../utils/utils";
+const IS_DEV = import.meta.env.DEV;
 
 interface SoundState {
   activeSounds: AudioElement[];
@@ -36,14 +37,12 @@ export default create(
           activeSounds: state.activeSounds.filter((a) => a !== audio),
         }));
       },
-      isMute: false,
+      isMute: IS_DEV,
       setMute: (isMute: boolean) => {
         const { activeSounds } = get();
-        if (isMute) {
-          activeSounds.forEach((sound) => (sound.volume = 0));
-        } else {
+        activeSounds.forEach((sound) => (sound.muted = isMute));
+        !isMute &&
           activeSounds.forEach((sound) => (sound.volume = sound.defaultVolume));
-        }
         set({ isMute: isMute });
       },
       toggleMute: () => {
@@ -57,19 +56,24 @@ export default create(
         audio.name = audioConfig.path;
         audio.loop = audioConfig.duration === 0;
         audio.defaultVolume = audioConfig.volume || DEFAULT_MUSIC_VOLUME;
-        audio.volume = isMute ? 0 : audio.defaultVolume;
-        audio.play();
-        addSound(audio);
+        audio.volume = audio.defaultVolume;
+        audio.autoplay = false;
+        audio.muted = isMute;
+        audio.oncanplay = () => {
+          audio.play()
+          if (audioConfig.subtitle) {
+            get().showSubtitle(
+              audioConfig.subtitle,
+              audioConfig.duration || 1000
+            );
+          }
+        };
         audio.onended = () => {
           removeSound(audio);
           audioConfig.onEnded && audioConfig.onEnded();
         };
-        if (audioConfig.subtitle) {
-          get().showSubtitle(
-            audioConfig.subtitle,
-            audioConfig.duration || 1000
-          );
-        }
+        audio.load();
+        addSound(audio);
       },
       fadeOutSounds: async (callback) => {
         const { activeSounds, isMute, setMute } = get();
@@ -91,6 +95,7 @@ export default create(
           callback && callback();
           return;
         }
+        setMute(false);
         let interval = 0;
         while (interval < 10) {
           activeSounds.forEach((sound) => {
@@ -99,7 +104,6 @@ export default create(
           await sleep(100);
           interval += 1;
         }
-        setMute(false);
         callback && callback();
       },
       subtitleQueue: [],

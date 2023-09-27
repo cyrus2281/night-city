@@ -63,7 +63,7 @@ export const TERRITORY_AUDIOS: TerritoryAudio = {
     path: ASSETS.GUY_AUDIO + "unfinished-road.wav",
     playInterval: FIVE_MIN_MS,
     duration: 2000,
-    subtitle: "The developer probably forgot to finish this area",
+    subtitle: "The developer probably forgot to make this area.",
   },
   [OTHER_TERRITORIES_NAMES.PARK_FOUNTAIN]: {
     path: ASSETS.GUY_AUDIO + "empty-city.wav",

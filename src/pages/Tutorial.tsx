@@ -5,7 +5,6 @@ import { useState } from "react";
 import Button from "../components/Button";
 import { LOCAL_STORAGE_KEYS } from "../experience/utils/constants";
 import MarkdownRenderer from "../components/MarkdownRenderer";
-import MuteButton from "../components/MuteButton";
 
 const TUTORIAL = [
   {
@@ -69,8 +68,7 @@ function Tutorial() {
   if (pageNum < NUM_PAGES - 1) {
     rightButtons.unshift(
       <Button key="skip-btn" uppercase onClick={onClose}>
-        {" "}
-        Skip{" "}
+        Skip
       </Button>
     );
   }
@@ -101,6 +99,7 @@ function Tutorial() {
               <div
                 className="tutorial-page"
                 style={{ left: 100 * (i - pageNum) + "%" }}
+                key={`tutorial-page-${i}`}
               >
                 <div className="tutorial-page-header">{page.title}</div>
                 <MarkdownRenderer

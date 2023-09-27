@@ -1,5 +1,7 @@
 ## Credits
 
+I incorporated numerous models, textures, audios, and code from public resources, the full details of which can be found in this page.
+
 Content:
 
 - Models
@@ -84,6 +86,15 @@ Content:
 - [Louis3797/r3f-world-with-character (Github)](https://github.com/Louis3797/r3f-world-with-character) for R3F adoption of SimonDev's character and camera movement mathematics (Modified)
 - [GitHub Markdown CSS file](https://github.com/sindresorhus/github-markdown-css/blob/main/github-markdown.css) (modified to work with the custom Dark/Light Mode Switch)
 
+---
+
+I had the idea for this project long before I started working on it, but the project [Summer Afternoon](https://summer-afternoon.vlucendo.com/) by [Vicente Lucendo](https://vlucendo.com/) was the one that inspired me to actually start working on it, and helped me refine my thoughts better.
+
 #### Do you want to learn how to create something like this?
 
 > **Checkout the course [Three.js Journey](https://threejs-journey.com/) By [Bruno Simon](https://bruno-simon.com/)**
+
+<br>
+
+Truly yours,<br>
+[**Cyrus Mobini**](https://github.com/cyrus2281)
