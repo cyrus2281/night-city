@@ -1,85 +1,83 @@
 @import "../variables.scss";
 
 .tutorial {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: $space-m $space-xxl;
+
+  &-content {
+    position: relative;
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: $space-m $space-xxl;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 
+  &-page {
+    position: absolute;
+    top: $space-m;
+    width: 100%;
+    transition: $transition-normal;
+
+    &-header {
+      font-size: $font-size-xxl;
+      font-family: $font-family-curly;
+      color: $color-cyan-900;
+      margin-bottom: $space-xxl;
+    }
 
     &-content {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
+      font-size: $font-size-l;
+      font-family: $font-family-primary;
+      background-color: transparent;
+      padding-bottom: $space-l;
     }
+  }
 
+  @media (max-width: 650px) {
     &-page {
-        position: absolute;
-        top: $space-m;
-        width: 100%;
-        height: 100%;
-        transition: $transition-normal;
-
-        &-header {
-            font-size: $font-size-xxl;
-            font-family: $font-family-curly;
-            color: $color-cyan-900;
-            margin-bottom: $space-l;
-        }
-
-        &-content {
-            font-size: $font-size-l;
-            font-family: $font-family-primary;
-            color: $color-black;
-            margin-bottom: $space-m;
-        }
-
+      &-header {
+        font-size: $font-size-xl;
+        margin-bottom: $space-l;
+      }
+      &-content {
+        font-size: $font-size-m;
+      }
     }
+  }
 
-    @media (max-width: 650px) {
-        &-page {
-            &-header {
-                font-size: $font-size-xl;
-            }
-            &-content {
-                font-size: $font-size-m;
-            }
-        }
+  @media (max-width: 550px) {
+    &-page {
+      &-header {
+        font-size: $font-size-l;
+      }
+      &-content {
+        font-size: $font-size-m;
+      }
     }
+  }
 
-    @media (max-width: 550px) {
-        &-page {
-            &-header {
-                font-size: $font-size-l;
-            }
-            &-content {
-                font-size: $font-size-m;
-            }
-        }
+  &-indicators {
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+  }
+  &-indicator {
+    display: inline-block;
+    width: $space-l;
+    height: $space-l;
+    border-radius: 50%;
+    background-color: $color-cyan-300;
+    margin: 0 $space-m;
+    cursor: pointer;
+    transition: $transition-normal;
+    &.active {
+      background-color: $color-cyan-900;
     }
-  
-
-    &-indicators {
-        text-align: center;
-        margin: 0 auto;
-        width: 100%;
+    &:hover {
+      background-color: $color-cyan-500;
     }
-    &-indicator {
-        display: inline-block;
-        width: $space-l;
-        height: $space-l;
-        border-radius: 50%;
-        background-color: $color-cyan-300;
-        margin: 0 $space-m;
-        cursor: pointer;
-        transition: $transition-normal;
-        &.active {
-            background-color: $color-cyan-900;
-        }
-        &:hover {
-            background-color: $color-cyan-500;
-        }
-    }
+  }
 }
