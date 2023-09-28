@@ -19,7 +19,7 @@ function Resume({ worldPath }: { worldPath: string }) {
 
   return (
     <>
-      <Dialog visibility header={<ResumeHeader />} onClose={closePage}>
+      <Dialog visibility header={<ResumeHeader />} onClose={closePage} closeOnDrop>
         <MarkdownRenderer markdown={ResumeMD} className="page-content" />
       </Dialog>
     </>

@@ -1,0 +1,55 @@
+@import "../variables.scss";
+
+.audio-btn {
+  &-wrapper {
+    position: relative;
+    z-index: 10;
+    opacity: 0.9;
+    margin: var(--audio-btn-margin);
+    margin-right: unset;
+    animation: fade var(--audio-btn-duration) linear forwards;
+    @keyframes fade {
+      0% {
+        opacity: 0.9;
+      }
+      100% {
+        opacity: 0.2;
+      }
+    }
+  }
+
+  &-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45%, -60%);
+    z-index: 15;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  &-ring {
+    stroke: $color-cyan-600;
+    fill: $color-cyan-700;
+    animation: fill var(--audio-btn-duration) linear forwards;
+    transition: $transition-quick;
+    stroke-dasharray: var(--audio-btn-circumference)
+      var(--audio-btn-circumference);
+
+    @keyframes fill {
+      0% {
+        stroke-dashoffset: 0;
+      }
+      100% {
+        stroke-dashoffset: 0;
+        stroke-dashoffset: var(--audio-btn-circumference);
+      }
+    }
+  }
+
+  &-wrapper:hover &-ring {
+    cursor: pointer;
+    stroke: $color-cyan-900;
+    fill: $color-cyan-800;
+  }
+}

@@ -60,6 +60,7 @@ export interface AudioConfig {
   subtitle?: string;
   duration?: number;
   onEnded?: () => void;
+  tryingAgain?: boolean;
 }
 
 export interface Subtitle {

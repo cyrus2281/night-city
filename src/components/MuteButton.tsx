@@ -1,6 +1,6 @@
-import Button from "../../../components/Button";
-import Icon from "../../../components/Icon";
-import useSound from "../../stores/useSound";
+import Button from "./Button";
+import Icon from "./Icon";
+import useSound from "../experience/stores/useSound";
 
 const MUTE_KEY = "volume_off";
 const UNMUTE_KEY = "volume_up";
@@ -10,7 +10,7 @@ function MuteButton() {
   const toggleMute = useSound((state) => state.toggleMute);
 
   return (
-    <Button neon circle onClick={toggleMute}>
+    <Button neon circle onClick={toggleMute} className="mute-button">
       <Icon>{isMute ? MUTE_KEY : UNMUTE_KEY}</Icon>
     </Button>
   );

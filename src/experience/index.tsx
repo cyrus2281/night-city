@@ -9,6 +9,7 @@ import useGlobal from "./stores/useGlobal";
 import Splash from "../pages/Splash";
 import { PAGES } from "./utils/constants";
 import { getCameraFOV, printNightCityInfo } from "./utils/utils";
+import Tutorial from "../pages/Tutorial";
 
 function World() {
   const hasTouched = useGlobal((state) => state.hasTouched);
@@ -32,6 +33,7 @@ function World() {
           <Experience />
         </Canvas>
       </Interface>
+      <Tutorial />
       <Outlet />
     </>
   );

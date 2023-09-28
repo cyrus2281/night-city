@@ -139,7 +139,7 @@ export const getCameraFOV = () => {
 }
 
 export const printNightCityInfo = () => {
-  console.clear();
+  // console.clear();
   setTimeout(() =>
     console.log(NIGHT_CITY_FONT.replaceAll("{worldPath}", window.worldPath))
   );  

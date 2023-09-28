@@ -6,15 +6,10 @@ import useSound from "../stores/useSound";
 import { GUY_AUDIOS } from "../utils/guyAudios";
 import { printNightCityInfo } from "../utils/utils";
 
-const PAGE_TIMEOUT = 1000 * 60 * 5; // 5 minutes
-
 let lastDevToolsWarning = 0;
-let leftPageDate = 0;
 
 function Effects() {
   const playSound = useSound((state) => state.playSound);
-  const fadeOutSounds = useSound((state) => state.fadeOutSounds);
-  const fadeInSounds = useSound((state) => state.fadeInSounds);
 
   const camera = useThree((state) => state.camera);
   // Pov Update and Dev Tools Warning on Resize
@@ -37,26 +32,6 @@ function Effects() {
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // User leave/return to page detection
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        leftPageDate = Date.now();
-        fadeOutSounds();
-      } else {
-        fadeInSounds(() => {
-          if (leftPageDate && Date.now() - leftPageDate > PAGE_TIMEOUT) {
-            playSound(GUY_AUDIOS.PAGE_RETURN);
-          }
-          leftPageDate = 0;
-        });
-      }
-    };
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () =>
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
   }, []);
 
   return <></>;

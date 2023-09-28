@@ -8,6 +8,22 @@
   align-items: center;
   flex-direction: column;
   background-color: $color-dark;
+  position: relative;
+
+  &-mute {
+    &-notice {
+      padding-top: $space-xxxl;
+      max-width: 350px;
+      text-align: center;
+      font-size: $font-size-m;
+      font-family: $font-family-primary;
+    }
+    &-btn {
+      position: absolute;
+      top: calc($space-xl + $space-xs);
+      right: $space-xl;
+    }
+  }
 }
 
 .invisible {

@@ -32,8 +32,9 @@
 
   &-bottom {
     display: flex;
-    justify-content: space-between;
     padding: 18% 10%;
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
