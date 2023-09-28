@@ -14,6 +14,12 @@ const TUTORIAL = [
     content: [
       "Welcome to the immersive world of **Night City**, where you step into the shoes of an inquisitive fox navigating a 3D futuristic cyberpunk-themed city.",
       "\nThe city is filled with hidden Easter eggs and personal references from the developer's life, **Cyrus Mobini**.",
+      navigator.userAgent + "\n\n",
+      navigator.platform + "\n\n",
+      navigator.vendor + "\n\n",
+      navigator.appCodeName + "\n\n",
+      navigator.appVersion + "\n\n",
+      
     ],
   },
   {
@@ -22,7 +28,7 @@ const TUTORIAL = [
       "#### Using Touch/Cursor \n",
       "You can move around by `click`/`touch` and hold. Once the joystick appears, drag it around to move.\n",
       "**To sprint,** drag the joystick beyond the edge.\n",
-      "**To jump,** use the mouse `right click` or the on-screen `jump button`.\n",
+      '**To jump,** use the mouse `right click` or the on-screen <span className="material-icons icon">keyboard_double_arrow_up</span> button.\n',
       "#### Using Keyboard \n",
       "You can move around using the `W` `A` `S` `D` or the `arrow` keys. \n",
       "**To sprint,** hold the `Shift` key.\n",
@@ -38,6 +44,21 @@ const TUTORIAL = [
     ],
   },
 ];
+
+const IOS_RESTRICTIONS = {
+  title: "iOS Restrictions",
+  content: [
+    'iOS 14+ devices require user interaction to allow the browser to play an audio. <a target="_blank" href="https://webkit.org/blog/13862/the-user-activation-api/">Article on this</a>.\n',
+    "This means that GUY's audio might not automatically play for you.\n",
+    `If this is the case, you'll see the icon <span className="material-icons icon">record_voice_over</span> on the screen. Simply release joystick (if holding) and press on the icon to play the audio. \n`,
+    "The icon would automatically disappear after a few seconds.",
+  ],
+};
+
+// Adding to Tutorial if browser is IOS
+if (navigator.userAgent.match(/iPhone|iPad|iPod|Macintosh/i)) {
+  TUTORIAL.push(IOS_RESTRICTIONS);
+}
 
 const NUM_PAGES = TUTORIAL.length;
 

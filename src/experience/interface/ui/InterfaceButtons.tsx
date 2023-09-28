@@ -6,6 +6,7 @@ import Button from "../../../components/Button";
 import Icon from "../../../components/Icon";
 import { openUrl } from "../../utils/utils";
 import { EXTERNAL_LINKS, PAGES, isTouchDevice } from "../../utils/constants";
+import AudioButtonManager from "./AudioButtonManager";
 
 function InterfaceButtons() {
   const navigate = useNavigate();
@@ -66,6 +67,7 @@ function InterfaceButtons() {
         </div>
       </div>
       <div className="interface-buttons-bottom">
+        <AudioButtonManager />
         {isTouchDevice && (
           <Button
             circle

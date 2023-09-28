@@ -1,5 +1,7 @@
 # Cyrus Mobini
-[LinkedIn](https://www.linkedin.com/in/cyrusmobini) | [GitHub](https://github.com/cyrus2281)
+
+<a target="_blank" href="https://www.linkedin.com/in/cyrusmobini">LinkedIn</a> |
+<a target="_blank" href="https://github.com/cyrus2281">GitHub</a>
 
 ## About Me
 I am a passionate programmer 👨‍💻 who spends most of his time behind a computer 💻.
@@ -59,11 +61,11 @@ I enjoy Machine Learning and AI 🤖, Software and Web development🕸️, and U
 
 ## Projects
 * **Echo-Search:** Echo Search is a feature-rich and powerful application that allows you to search for a specific text or regular expression query in the content of files or for the file names within a directory and its subdirectories. it also offers the ability to replace the found text with another string of your choice or even open the file in the built-in code editor, so you can perform quick tweaks and updates. With its wide range of options and capabilities, it is an ideal solution for software developers, data analysts, and anyone looking for an efficient way to search and replace text in files. It is also a great tool for searching for files with specific names within a directory and its subdirectories. 
-[Download Page](https://github.com/cyrus2281/Echo-Search/releases).
+<a target="_blank" href="https://github.com/cyrus2281/Echo-Search/releases">Download Page</a>.
 
 * **Real Typer:** A JavaScript that library gives the effect of typing. Real-Typer is a lightweight JavaScript library that allows you to simulate the effect of real-time typing for texts on a website. Real-Typer offers lots of options to fully customize the simulation to your need which also comes to Angular and React. You can simply add the real typer component to your Angular or React project and enjoy the effect of typing. A JavaScript that library gives the effect of typing. 
-[Demo](https://real-typer.netlify.app).
+<a target="_blank" href="https://real-typer.netlify.app">Demo</a>.
 
 * **Joystick Controller:** A fully customizable JavaScript virtual joystick controller for both desktop and mobile devices supporting multi-instances (and multi-touch). 
-[Demo](https://joystick-controller.netlify.app).
+<a target="_blank" href="https://joystick-controller.netlify.app">Demo</a>.
 

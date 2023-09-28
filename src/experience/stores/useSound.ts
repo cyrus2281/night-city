@@ -18,6 +18,9 @@ interface SoundState {
   subtitleQueue: Subtitle[];
   showSubtitle: (subtitle: string, duration: number) => void;
   removeSubtitle: (id: string) => void;
+  failedSounds: AudioConfig[];
+  addFailedSound: (audio: AudioConfig) => void;
+  removeFailedSound: (audio: AudioConfig) => void;
 }
 
 interface AudioElement extends HTMLAudioElement {
@@ -28,6 +31,7 @@ let shouldUnmute = true;
 export default create(
   subscribeWithSelector<SoundState>((set, get) => {
     return {
+      // Sounds
       activeSounds: [],
       addSound: (audio: AudioElement) => {
         set((state) => ({ activeSounds: [...state.activeSounds, audio] }));
@@ -50,8 +54,7 @@ export default create(
         setMute(!isMute);
       },
       playSound: (audioConfig: AudioConfig) => {
-        const { addSound, removeSound } = get();
-        const isMute = get().isMute;
+        const { addSound, removeSound, isMute } = get();
         const audio = new Audio(audioConfig.path) as AudioElement;
         audio.name = audioConfig.path;
         audio.loop = audioConfig.duration === 0;
@@ -60,13 +63,37 @@ export default create(
         audio.autoplay = false;
         audio.muted = isMute;
         audio.oncanplay = () => {
-          audio.play()
-          if (audioConfig.subtitle) {
-            get().showSubtitle(
-              audioConfig.subtitle,
-              audioConfig.duration || 1000
-            );
-          }
+          audio
+            .play()
+            .then(() => {
+              if (audioConfig.subtitle) {
+                get().showSubtitle(
+                  audioConfig.subtitle,
+                  audioConfig.duration || 1000
+                );
+              }
+            })
+            .catch((e) => {
+              if (audioConfig.tryingAgain || !audioConfig.subtitle) {
+                if (audioConfig.subtitle) {
+                  get().showSubtitle(
+                    audioConfig.subtitle,
+                    audioConfig.duration || 1000
+                  );
+                }
+                return;
+              }
+              const { addFailedSound, showSubtitle, isMute } = get();
+              if (isMute) {
+                showSubtitle(
+                  audioConfig.subtitle,
+                  audioConfig.duration || 1000
+                );
+              } else {
+                audioConfig.tryingAgain = true;
+                addFailedSound(audioConfig);
+              }
+            });
         };
         audio.onended = () => {
           removeSound(audio);
@@ -106,6 +133,17 @@ export default create(
         }
         callback && callback();
       },
+      // Failed sounds
+      failedSounds: [],
+      addFailedSound: (audio: AudioConfig) => {
+        set((state) => ({ failedSounds: [...state.failedSounds, audio] }));
+      },
+      removeFailedSound: (audio: AudioConfig) => {
+        set((state) => ({
+          failedSounds: state.failedSounds.filter((a) => a !== audio),
+        }));
+      },
+      // Subtitles
       subtitleQueue: [],
       showSubtitle: (message: string, duration: number) => {
         const id = Math.random().toString();
