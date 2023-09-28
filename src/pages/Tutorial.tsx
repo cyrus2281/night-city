@@ -13,13 +13,7 @@ const TUTORIAL = [
     title: "Welcome to Night-City",
     content: [
       "Welcome to the immersive world of **Night City**, where you step into the shoes of an inquisitive fox navigating a 3D futuristic cyberpunk-themed city.",
-      "\nThe city is filled with hidden Easter eggs and personal references from the developer's life, **Cyrus Mobini**.",
-      navigator.userAgent + "\n\n",
-      navigator.platform + "\n\n",
-      navigator.vendor + "\n\n",
-      navigator.appCodeName + "\n\n",
-      navigator.appVersion + "\n\n",
-      
+      "\nThe city is filled with hidden Easter eggs and personal references from the developer's life, **Cyrus Mobini**.",     
     ],
   },
   {
