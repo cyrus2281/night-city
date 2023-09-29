@@ -11,7 +11,7 @@ export enum MAIN_TERRITORIES_NAMES {
   TV_BRIDGE = "TV Bridge",
   DEAD_END_ALLEY = "Dead End Alley",
   BLOCKED_ROAD = "Blocked Road",
-  STORE = "Convenience Store",
+  LIBRARY = "Library",
   TECH_CENTER = "Tech Center",
   POST_OFFICE = "Post Office",
   POST_OFFICE_ROOF = "Post Office's Roof",

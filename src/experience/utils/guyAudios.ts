@@ -34,7 +34,7 @@ export const TERRITORY_AUDIOS: TerritoryAudio = {
     subtitle:
       "The duct pipes are suspiciously connected to those escape stairs, but it's probably just a coincidence.",
   },
-  [MAIN_TERRITORIES_NAMES.STORE]: {
+  [MAIN_TERRITORIES_NAMES.LIBRARY]: {
     path: ASSETS.GUY_AUDIO + "building-with-interior.wav",
     playInterval: TEN_MIN_MS,
     duration: 2000,
