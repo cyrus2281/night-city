@@ -75,7 +75,7 @@ const TERRITORIES: Territory[] = [
     height: 12,
   },
   {
-    name: MAIN_TERRITORIES_NAMES.STORE,
+    name: MAIN_TERRITORIES_NAMES.LIBRARY,
     center: { x: -1.5, y: -18.5 },
     type: TerritoryType.RECTANGULAR,
     width: 8,

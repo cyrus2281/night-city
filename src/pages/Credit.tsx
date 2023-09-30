@@ -19,7 +19,7 @@ function Credit({ worldPath }: { worldPath: string }) {
 
   return (
     <>
-      <Dialog visibility header={<CreditHeader />} onClose={closePage}>
+      <Dialog visibility header={<CreditHeader />} onClose={closePage} closeOnDrop>
         <MarkdownRenderer markdown={creditMD} className="page-content" />
       </Dialog>
     </>

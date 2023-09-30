@@ -7,6 +7,7 @@ import CanvasInterface from "./interface/CanvasInterface";
 import Drone from "./character/Drone";
 import WordBlocks from "./character/WordBlocks";
 import Unobtanium from "./character/Unobtanium";
+import BackgroundMusic from "./effects/BackgroundMusic";
 
 function Experience() {
   return (
@@ -15,6 +16,7 @@ function Experience() {
       <Physics>
         <CanvasInterface />
         <Effects />
+        <BackgroundMusic />
         <Lights />
 
         <Character />

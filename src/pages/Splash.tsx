@@ -5,6 +5,7 @@ import "./Splash.scss";
 import { useEffect } from "react";
 import { loadMap } from "../experience/lights/Lights";
 import Loading from "../components/Loading";
+import MuteButton from "../components/MuteButton";
 
 function Splash() {
   const progress = useProgress((state) => state.progress);
@@ -28,6 +29,9 @@ function Splash() {
 
   return (
     <div className="splash">
+      <div className="splash-mute-btn">
+        <MuteButton />
+      </div>
       <Loading status={progress} onClick={goToNightCity} />
       <div>
         <Button
@@ -39,6 +43,10 @@ function Splash() {
           Go to Night City
         </Button>
       </div>
+      <p className="splash-mute-notice">
+        Night-City uses audio, use the button at the top-right of the
+        page to mute.
+      </p>
     </div>
   );
 }

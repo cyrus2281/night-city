@@ -9,13 +9,8 @@ import { printNightCityInfo } from "../utils/utils";
 const PAGE_TIMEOUT = 1000 * 60 * 5; // 5 minutes
 
 let lastDevToolsWarning = 0;
-let leftPageDate = 0;
-
 function Effects() {
   const playSound = useSound((state) => state.playSound);
-  const fadeOutSounds = useSound((state) => state.fadeOutSounds);
-  const fadeInSounds = useSound((state) => state.fadeInSounds);
-
   const camera = useThree((state) => state.camera);
   // Pov Update and Dev Tools Warning on Resize
   useEffect(() => {

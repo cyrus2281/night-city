@@ -17,6 +17,10 @@ body,
   background: $color-dark;
 }
 
+.mute-button {
+  z-index: 2000;
+}
+
 .subtitle-container {
   @include flex-center(column-reverse);
   position: fixed;
