@@ -6,6 +6,7 @@ import { ASSETS, LOCAL_STORAGE_KEYS } from "../../utils/constants";
 import useSound from "../../stores/useSound";
 import { GUY_AUDIOS, TERRITORY_AUDIOS } from "../../utils/guyAudios";
 import useGlobal from "../../stores/useGlobal";
+import Icon from "../../../components/Icon";
 
 const totalTerritories = Object.values(MAIN_TERRITORIES_NAMES);
 const totalAudios = Object.values(TERRITORY_AUDIOS).map((audio) =>
@@ -135,20 +136,29 @@ function StatsView() {
   return (
     <div className={"stats-wrapper " + (isFan ? "fan" : "")}>
       <div className="stats" title="Discovered Audios">
-        <span className="material-icons-outlined">music_note</span>
-        <span className={"stats-label " + (audioWiggle ? "wiggle" : "")}>
+        <Icon outlined>music_note</Icon>
+        <span
+          className={"stats-label " + (audioWiggle ? "wiggle" : "")}
+          translate="no"
+        >
           {audios}/{totalAudios.length}
         </span>
       </div>
       <div className="stats" title="Discovered Places">
-        <span className="material-icons-outlined">map</span>
-        <span className={"stats-label " + (placesWiggle ? "wiggle" : "")}>
+        <Icon outlined>map</Icon>
+        <span
+          className={"stats-label " + (placesWiggle ? "wiggle" : "")}
+          translate="no"
+        >
           {places}/{totalTerritories.length}
         </span>
       </div>
       <div className="stats" title="Unknown Objectives">
-        <span className="material-icons-outlined">question_mark</span>
-        <span className={"stats-label " + (unknownWiggle ? "wiggle" : "")}>
+        <Icon outlined>question_mark</Icon>
+        <span
+          className={"stats-label " + (unknownWiggle ? "wiggle" : "")}
+          translate="no"
+        >
           {unknown}/{totalUnknown.length}
         </span>
       </div>
