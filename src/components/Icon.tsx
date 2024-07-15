@@ -55,7 +55,7 @@ function Icon({
   if (children in icons) return icons[children];
   let clsName = `material-icons icon icon-${size} ${className}`;
   if (outlined) clsName += " material-icons-outlined";
-  return <span className={clsName}>{children}</span>;
+  return <span translate="no" className={clsName}>{children}</span>;
 }
 
 export default Icon;
