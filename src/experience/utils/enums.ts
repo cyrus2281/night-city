@@ -32,3 +32,12 @@ export enum MODEL_ANIMATIONS {
     RUN = "Run",
     JUMP = "Jump",
 }
+
+export enum ROBOT_ANIMATIONS {
+    IDLE = "RobotArmature|Robot_Idle",
+    WALK = "RobotArmature|Robot_Walking",
+    NO = "RobotArmature|Robot_No",
+    YES = "RobotArmature|Robot_Yes",
+    THUMBS_UP = "RobotArmature|Robot_ThumbsUp",
+    WAVE = "RobotArmature|Robot_Waves",
+}

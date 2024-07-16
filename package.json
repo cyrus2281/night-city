@@ -36,6 +36,7 @@
     "@react-three/postprocessing": "^2.7.0",
     "@react-three/rapier": "^0.13.2",
     "@types/node": "^14.18.63",
+    "gsap": "^3.12.5",
     "joystick-controller": "^1.0.15",
     "leva": "^0.9.34",
     "postprocessing": "^6.29.3",

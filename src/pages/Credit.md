@@ -20,6 +20,7 @@ Content:
 
 - Models by <a target="_blank" href="https://poly.pizza/u/Quaternius">Quaternius</a> from <a target="_blank" href="https://poly.pizza/">Poly Pizza</a> under CC0
 
+  - <a target="_blank" href="https://poly.pizza/m/QCm7qe9uNJ">Animated Robot</a>
   - <a target="_blank" href="https://poly.pizza/bundle/Toon-Shooter-Game-Kit-qraiSXoAru">Toon Shooter Game Kit</a> \<Modified>
   - <a target="_blank" href="https://poly.pizza/bundle/Cyberpunk-Game-Kit-Hkfxa8K8zF">Cyberpunk Game Kit</a>
   - <a target="_blank" href="https://poly.pizza/bundle/Ultimate-Space-Kit-YWh743lqGX">Ultimate Space Kit</a>

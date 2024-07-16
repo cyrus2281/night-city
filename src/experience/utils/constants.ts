@@ -23,6 +23,7 @@ export const WORLD_THRESHOLD = {
 export const ASSETS = {
   MODELS: {
     FOX: "/blob/model/Fox/Fox.gltf",
+    ROBOT: "/blob/model/Robot.glb",
     CITY: "/blob/model/night-city.glb",
     DRONE: "/blob/model/drone.glb",
     UNOBTANIUM : "/blob/model/unobtanium.glb",

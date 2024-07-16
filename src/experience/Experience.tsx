@@ -8,6 +8,7 @@ import Drone from "./character/Drone";
 import WordBlocks from "./character/WordBlocks";
 import Unobtanium from "./character/Unobtanium";
 import BackgroundMusic from "./effects/BackgroundMusic";
+import Robot from "./character/Robot";
 
 function Experience() {
   return (
@@ -21,6 +22,7 @@ function Experience() {
 
         <Character />
         <Drone />
+        <Robot />
         <Unobtanium />
         <WordBlocks />
         <World />
