@@ -27,6 +27,7 @@ export const ASSETS = {
     CITY: "/blob/model/night-city.glb",
     DRONE: "/blob/model/drone.glb",
     UNOBTANIUM : "/blob/model/unobtanium.glb",
+    INFO : "/blob/model/InfoButton.glb",
   },
   ENV_MAP: "/blob/envMap/night_city.jpg",
   BACKGROUND_MUSIC: {

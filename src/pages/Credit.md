@@ -55,6 +55,9 @@ Content:
 - Models by <a target="_blank" href="https://poly.pizza/u/Nick%20Olson">Nick Olson</a> from <a target="_blank" href="https://poly.pizza/">Poly Pizza</a> under <a target="_blank" href="https://creativecommons.org/licenses/by/3.0/">CC-BY</a>
   - <a target="_blank" href="https://poly.pizza/m/dJ9mjQQqDQJ">Little Drone</a>
 
+- Models by <a target="_blank" href="https://poly.pizza/u/Paul%20Hoover">Paul Hoover</a> from <a target="_blank" href="https://poly.pizza/">Poly Pizza</a> under <a target="_blank" href="https://creativecommons.org/licenses/by/3.0/">CC-BY</a>
+  - <a target="_blank" href="https://poly.pizza/m/5-29GUpKKKq">Info Button</a>
+
 ---
 
 ### Textures

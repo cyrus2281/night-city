@@ -1,4 +1,3 @@
-import { act, useFrame } from "@react-three/fiber";
 import { RapierRigidBody, RigidBody } from "@react-three/rapier";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
@@ -6,7 +5,8 @@ import gsap from "gsap";
 import { ASSETS } from "../utils/constants";
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { ROBOT_ANIMATIONS } from "../utils/enums";
-import { AnimationActionLoopStyles, LoopOnce, Vector3 } from "three";
+import { Vector3 } from "three";
+import ChatBubble from "./ChatBubble";
 
 const positionsToRoom = [
   {
@@ -95,15 +95,29 @@ const moveRobotTo = (
 const walkToRoom = async (
   setAnimation: (name: ROBOT_ANIMATIONS) => void,
   position: { current: unknown },
-  bodyRef: { current: RapierRigidBody | undefined }
+  bodyRef: { current: RapierRigidBody | undefined },
+  setIsWalking: (show: boolean) => void
 ) => {
   setAnimation(ROBOT_ANIMATIONS.WALK);
+  setIsWalking(true);
   for (const nextPosition of positionsToRoom) {
     await moveRobotTo(position, bodyRef, nextPosition);
   }
+  const lastPosition = positionsToRoom[positionsToRoom.length - 1];
   setAnimation(ROBOT_ANIMATIONS.IDLE);
+  setIsWalking(false);
+  bodyRef.current?.setRotation(
+    {
+      x: 0,
+      y: lastPosition.ry,
+      z: 0,
+      w: lastPosition.rw,
+    },
+    false
+  );
   setTimeout(() => {
-    const lastPosition = positionsToRoom[positionsToRoom.length - 1];
+    // Sometimes the rotation is not set correctly
+    // Setting it again after a delay
     bodyRef.current?.setRotation(
       {
         x: 0,
@@ -113,7 +127,7 @@ const walkToRoom = async (
       },
       false
     );
-  }, 100);
+  }, 50);
 };
 
 const playAnimation = (
@@ -138,6 +152,7 @@ function Robot() {
   });
   const bodyRef = useRef<RapierRigidBody>();
   const robot = useGLTF(ASSETS.MODELS.ROBOT);
+  const [isWalking, setIsWalking] = useState(false);
   const [currentAnimation, setCurrentAnimation] = useState(
     ROBOT_ANIMATIONS.IDLE
   );
@@ -157,8 +172,12 @@ function Robot() {
     thumbs_up: () =>
       playAnimation(setCurrentAnimation, ROBOT_ANIMATIONS.THUMBS_UP),
     wave: () => playAnimation(setCurrentAnimation, ROBOT_ANIMATIONS.WAVE),
-    walkToRoom: () => walkToRoom(setCurrentAnimation, positionRef, bodyRef),
+    walkToRoom: () =>
+      walkToRoom(setCurrentAnimation, positionRef, bodyRef, setIsWalking),
   };
+
+  // TODO: remove this
+  window.robotActions = robotActions;
 
   return (
     <>
@@ -182,6 +201,7 @@ function Robot() {
         restitution={0}
         mass={1}
       >
+        <ChatBubble isWalking={isWalking} />
         <primitive
           name="robot"
           object={robot.scene}
