@@ -39,5 +39,5 @@ export enum ROBOT_ANIMATIONS {
     NO = "RobotArmature|Robot_No",
     YES = "RobotArmature|Robot_Yes",
     THUMBS_UP = "RobotArmature|Robot_ThumbsUp",
-    WAVE = "RobotArmature|Robot_Waves",
+    WAVE = "RobotArmature|Robot_Wave",
 }
