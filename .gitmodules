@@ -1,0 +1,3 @@
+[submodule "src/resume"]
+	path = src/resume
+	url = https://github.com/cyrus2281/resume.git

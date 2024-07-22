@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Dialog from "../components/Dialog";
 import "./Page.scss";
-import ResumeMD from "./Resume.md?raw";
+import ResumeMD from "../resume/README.md?raw";
 import MarkdownRenderer from "../components/MarkdownRenderer";
 
 function ResumeHeader() {

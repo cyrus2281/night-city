@@ -27,7 +27,9 @@
     "build:tsc": "tsc && vite build",
     "build:lfs": "git lfs pull",
     "build": "npm run build:lfs && npm run build:tsc",
-    "deploy": "netlify deploy --prod --dir=dist --message=\"Deployed via Netlify CLI\""
+    "deploy": "netlify deploy --prod --dir=dist --message=\"Deployed via Netlify CLI\"",
+    "submodule:install": "git submodule update --init --recursive",
+    "submodule:update": "git submodule update --recursive --remote"
   },
   "dependencies": {
     "@netlify/functions": "^1.6.0",
