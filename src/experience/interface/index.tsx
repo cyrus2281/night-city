@@ -2,10 +2,9 @@ import React, { useEffect, useRef } from "react";
 import { Leva } from "leva";
 import { useControls } from "leva";
 import { KeyboardControls } from "@react-three/drei";
-import JoystickController, { MOUSE_CLICK_BUTTONS } from "joystick-controller";
+import JoystickController, { MOUSE_CLICK_BUTTONS, JoystickOnMove } from "joystick-controller";
 import useGlobal from "../stores/useGlobal";
 import Subtitles from "./Subtitles";
-import { JoystickOutput } from "../utils/interfaces";
 import InterfaceButtons from "./ui/InterfaceButtons";
 import TitleBar from "./ui/TitleBar";
 
@@ -37,11 +36,11 @@ function Interface({ children }: { children: React.ReactNode }) {
         joystickRadius: 40,
         opacity: 0.5,
         dynamicPosition: true,
-        dynamicPositionTarget: wrapperRef.current,
+        dynamicPositionTarget: (wrapperRef.current as unknown) as HTMLElement,
         hideContextMenu: true,
         mouseClickButton: MOUSE_CLICK_BUTTONS.LEFT,
       },
-      (output: JoystickOutput) => {
+      (output: JoystickOnMove) => {
         const { leveledX, leveledY } = output;
         if (leveledX === 0 && leveledY === 0) {
           window.joystickPositioning = null;

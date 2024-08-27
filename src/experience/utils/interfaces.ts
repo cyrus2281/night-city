@@ -69,12 +69,3 @@ export interface Subtitle {
   id: string;
   remove: () => void;
 }
-
-export interface JoystickOutput {
-  angle: string;
-  distance: string;
-  leveledX: number;
-  leveledY: number;
-  x: number;
-  y: number;
-}
