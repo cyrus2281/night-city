@@ -4,6 +4,7 @@ import { Float, useGLTF } from "@react-three/drei";
 import {
   ASSETS,
   CHAT_HISTORY_MAX_LENGTH,
+  DEFAULT_CHAT_ERROR_MESSAGE,
   LOCAL_STORAGE_KEYS,
   MAX_CLICKABLE_DISTANCE,
 } from "../utils/constants";
@@ -51,15 +52,20 @@ function ChatBubble({ setAction }: { setAction: (action: string) => void }) {
         LOCAL_STORAGE_KEYS.CHAT_HISTORY,
         JSON.stringify(history)
       );
-      setAction(response.action);
       if (response.action !== "WALK_AWAY") {
         setShowChat(true);
+        setAction(response.action);
+      } else {
+        // Walk away after 2 seconds
+        // Can't continue conversation after walking away
+        setTimeout(() => setAction(response.action), 2000);
       }
       const duration = (2 + response.response.split(" ").length * 0.5) * 1000;
       showSubtitle(response.response, duration, "bright");
     } catch (error) {
       console.error("Failed to send message", error);
       setAction("WALK_AWAY");
+      showSubtitle(DEFAULT_CHAT_ERROR_MESSAGE, 3000, "bright");
       setShowChat(false);
     }
   };

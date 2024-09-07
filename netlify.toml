@@ -1,0 +1,10 @@
+[[redirects]]
+from = "/api/*"
+to = "/api/:splat"
+status = 200
+
+[[redirects]]
+from = "/world*"
+to = "/index.html"
+status = 200
+force = true

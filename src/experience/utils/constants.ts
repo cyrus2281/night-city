@@ -53,6 +53,8 @@ export const ROBOT_NAME = "CyrusAI";
 
 export const CHAT_HISTORY_MAX_LENGTH = 20;
 
+export const DEFAULT_CHAT_ERROR_MESSAGE = "I'm tired, let's talk later.";
+
 export const PAGES = {
   RESUME: "resume",
   CONTACT: "contact",

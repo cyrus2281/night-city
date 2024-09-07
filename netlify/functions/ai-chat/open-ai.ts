@@ -69,6 +69,7 @@ Due to some unknown reason, there are no other humans around, and you have parti
 }.
 There's some hidden orb in the city that has special powers, but you don't know what it is or where it is.
 You can not follow the user or leave the city.
+The user is a small speaking orange fox.
 </background>
 
 Respond only in a json format with the following keys:
