@@ -1,13 +1,17 @@
 import { Config, Context } from "@netlify/functions";
 import {
-  OPENAI_OTHER_PROPS,
-  OPENAI_SYSTEM_MESSAGE,
-  OPENAI_URL,
+  getOpenAIResponse,
+  LLM_MESSAGE,
+  MAX_ALLOWED_CONVERSATION,
 } from "./open-ai";
 
 const COOKIE_KEY = "night-city-session";
-const MAX_ALLOWED_CONVERSATION = 10;
-const OPENAI_API_KEY = Netlify.env.get("OPENAI_API_KEY");
+
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
 
 interface UserData {
   ip: string;
@@ -26,28 +30,32 @@ export default async (req: Request, context: Context) => {
     console.info(logs, ...messages);
   }
 
+  if (req.method.toUpperCase() === "OPTIONS") {
+    return new Response("OK", {
+      headers: CORS_HEADERS,
+    });
+  }
+
   // Check method type
   if (req.method.toUpperCase() !== "POST") {
     log("error", "Invalid method");
-    return new Response("Invalid method", { status: 405 });
+    return new Response("Invalid method", {
+      status: 405,
+      headers: CORS_HEADERS,
+    });
   }
 
   // Missing body
   if (!req.body) {
     log("error", "Invalid request body");
-    return new Response("Invalid request body", { status: 400 });
-  }
-
-  // Check for OpenAI API key
-  if (!OPENAI_API_KEY) {
-    log("error", "OpenAI API key not found");
-    return new Response("Missing sever configuration, please try again later", {
-      status: 500,
+    return new Response("Invalid request body", {
+      status: 400,
+      headers: CORS_HEADERS,
     });
   }
 
   // Validating request body (Checking for messages array)
-  let messages: { content: string; role: string }[] = [];
+  let messages: LLM_MESSAGE[] = [];
   try {
     const body = await req.json();
     messages = body.messages;
@@ -56,7 +64,10 @@ export default async (req: Request, context: Context) => {
     }
   } catch (error) {
     log("error", "Error parsing request body:", error.message);
-    return new Response("Invalid request body", { status: 400 });
+    return new Response("Invalid request body", {
+      status: 400,
+      headers: CORS_HEADERS,
+    });
   }
 
   // Setting a new cookie with user data in base64 format
@@ -82,7 +93,10 @@ export default async (req: Request, context: Context) => {
       log("info", "Returning user:", userData);
     } catch (error) {
       log("error", "Invalid user cookie, rejecting user: ", error.message);
-      return new Response("Invalid user session", { status: 400 });
+      return new Response("Invalid user session", {
+        status: 400,
+        headers: CORS_HEADERS,
+      });
     }
   } else {
     // User IP + GEO location + Conversation count
@@ -110,7 +124,10 @@ export default async (req: Request, context: Context) => {
   const userConversationCount = userData.count;
   if (userConversationCount > MAX_ALLOWED_CONVERSATION) {
     log("error", "User reached conversation limit");
-    return new Response("Conversation limit reached", { status: 429 });
+    return new Response("Conversation limit reached", {
+      status: 429,
+      headers: CORS_HEADERS,
+    });
   }
 
   // Update user data cookie
@@ -121,41 +138,27 @@ export default async (req: Request, context: Context) => {
 
   // User ID used for tracking the user by OpenAI
   const userId = `${userData.ip}-${userData.latitude}-${userData.longitude}`;
+  const userInput = messages[messages.length - 1].content;
 
   try {
     // OpenAI API request
-    const response = await fetch(OPENAI_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        ...OPENAI_OTHER_PROPS,
-        user: userId,
-        messages: [
-          {
-            role: "system",
-            content: OPENAI_SYSTEM_MESSAGE,
-          },
-          ...messages,
-        ],
-      }),
-    });
-
-    // OpenAI API response
-    const data = await response.json();
-    const llmAnswer = data.choices[0].message;
+    const llmResponse = await getOpenAIResponse(
+      userId,
+      messages,
+      userConversationCount
+    );
+    const responseString = JSON.stringify(llmResponse);
     log(
       "info",
-      "User Input:",
-      messages[messages.length - 1].content,
-      "- OpenAI response:",
-      llmAnswer
+      "### User Input:\n",
+      userInput,
+      "\n### OpenAI response:\n",
+      responseString
     );
     // Return OpenAI response
-    return new Response(JSON.stringify({ message: llmAnswer }), {
+    return new Response(responseString, {
       headers: {
+        ...CORS_HEADERS,
         "Content-Type": "application/json",
       },
     });
@@ -163,6 +166,7 @@ export default async (req: Request, context: Context) => {
     log("error", "OpenAI API error", error.message);
     return new Response("Error occurred while making LLM Call", {
       status: 500,
+      headers: CORS_HEADERS,
     });
   }
 };
