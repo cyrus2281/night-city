@@ -1,3 +1,6 @@
 [submodule "src/resume"]
 	path = src/resume
 	url = https://github.com/cyrus2281/resume.git
+[submodule "netlify/functions/ai-chat/resume"]
+	path = netlify/functions/ai-chat/resume
+	url = https://github.com/cyrus2281/resume.git

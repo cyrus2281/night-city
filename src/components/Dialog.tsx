@@ -8,6 +8,7 @@ function Dialog({
   closeOnDrop = false,
   defaultButtonText = "close",
   defaultButtonLocation = "right",
+  contentClass = "",
   leftButtons,
   rightButtons,
   header,
@@ -22,6 +23,7 @@ function Dialog({
   closeOnDrop?: boolean;
   defaultButtonText?: string;
   defaultButtonLocation?: "left" | "right";
+  contentClass?: string;
   children: ReactNode;
   onClose?: () => void;
 }) {
@@ -75,7 +77,7 @@ function Dialog({
 
   return !renderDialog ? null : (
     <div ref={dialogRef} className="dialog">
-      <div className="dialog-content">
+      <div className={"dialog-content " + contentClass}>
         {header && <div className="dialog-content-header">{header}</div>}
         <div className="dialog-content-inner">{children}</div>
         {(leftButtons || rightButtons) && (

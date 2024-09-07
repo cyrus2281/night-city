@@ -11,6 +11,7 @@ const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "POST",
   "Access-Control-Allow-Headers": "Content-Type",
+  "Access-Control-Allow-Credentials": "true",
 };
 
 interface UserData {

@@ -1,0 +1,23 @@
+@import "../../../variables.scss";
+
+.chat-input-interface {
+  width: min(max(300px, 50vw), 80vw);
+  display: flex; 
+  flex-direction: column;
+  gap: $space-m;
+
+  &-dialog {
+    background-color: transparent!important;
+    height: min-content!important;
+    width: fit-content!important;
+    display: flex;
+    justify-content: center;
+  }
+
+  &-title {
+    font-size: $font-size-m;
+    font-family: $font-family-primary;
+    color: $color-red-800;
+    padding: $space-s;
+  }
+}

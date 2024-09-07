@@ -15,7 +15,7 @@ interface SoundState {
   fadeOutSounds: (callback?: () => void) => Promise<void>;
   fadeInSounds: (callback?: () => void) => Promise<void>;
   subtitleQueue: Subtitle[];
-  showSubtitle: (subtitle: string, duration: number) => void;
+  showSubtitle: (subtitle: string, duration: number, theme?: string) => void;
   removeSubtitle: (id: string) => void;
   failedSounds: AudioConfig[];
   addFailedSound: (audio: AudioConfig) => void;
@@ -144,12 +144,22 @@ export default create(
       },
       // Subtitles
       subtitleQueue: [],
-      showSubtitle: (message: string, duration: number) => {
+      showSubtitle: (
+        message: string,
+        duration: number,
+        theme: string = "default"
+      ) => {
         const id = Math.random().toString();
         set((state) => ({
           subtitleQueue: [
             ...state.subtitleQueue,
-            { message, duration, id, remove: () => state.removeSubtitle(id) },
+            {
+              message,
+              duration,
+              id,
+              theme,
+              remove: () => state.removeSubtitle(id),
+            },
           ],
         }));
       },

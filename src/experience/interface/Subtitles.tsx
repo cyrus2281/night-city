@@ -31,7 +31,9 @@ function Subtitle({ subtitle }: { subtitle: Subtitle }) {
 
   return (
     <div
-      className={`subtitle ${showSubtitle ? "show-subtitle" : "hide-subtitle"}`}
+      className={`subtitle ${
+        showSubtitle ? "show-subtitle" : "hide-subtitle"
+      } subtitle-theme-${subtitle.theme}`}
     >
       {subtitle.message}
     </div>

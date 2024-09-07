@@ -67,6 +67,7 @@ export interface Subtitle {
   message: string;
   duration: number;
   id: string;
+  theme: string;
   remove: () => void;
 }
 

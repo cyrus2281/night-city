@@ -10,7 +10,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { ThreeEvent } from "@react-three/fiber";
 import { openUrl } from "../utils/utils";
-import { AnimationBlendMode, NormalBlending } from "three";
 
 const traverseChildren = (
   children: any[],

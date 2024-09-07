@@ -2,13 +2,17 @@ import React, { useEffect, useRef } from "react";
 import { Leva } from "leva";
 import { useControls } from "leva";
 import { KeyboardControls } from "@react-three/drei";
-import JoystickController, { MOUSE_CLICK_BUTTONS, JoystickOnMove } from "joystick-controller";
+import JoystickController, {
+  MOUSE_CLICK_BUTTONS,
+  JoystickOnMove,
+} from "joystick-controller";
 import useGlobal from "../stores/useGlobal";
 import Subtitles from "./Subtitles";
 import InterfaceButtons from "./ui/InterfaceButtons";
 import TitleBar from "./ui/TitleBar";
+import ChatInputInterface from "./ui/ChatInputInterface";
 
-function Interface({ children }: { children: React.ReactNode }) {
+function HtmlInterface({ children }: { children: React.ReactNode }) {
   useControls("Global Settings", {
     "Dev Mode": {
       value: useGlobal.getState().isDev,
@@ -36,7 +40,7 @@ function Interface({ children }: { children: React.ReactNode }) {
         joystickRadius: 40,
         opacity: 0.5,
         dynamicPosition: true,
-        dynamicPositionTarget: (wrapperRef.current as unknown) as HTMLElement,
+        dynamicPositionTarget: wrapperRef.current as unknown as HTMLElement,
         hideContextMenu: true,
         mouseClickButton: MOUSE_CLICK_BUTTONS.LEFT,
       },
@@ -78,6 +82,7 @@ function Interface({ children }: { children: React.ReactNode }) {
       />
       <TitleBar></TitleBar>
       <InterfaceButtons />
+      <ChatInputInterface />
       <KeyboardControls
         map={[
           { name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -97,4 +102,4 @@ function Interface({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default Interface;
+export default HtmlInterface;

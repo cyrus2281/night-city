@@ -23,6 +23,7 @@ body,
 
 .subtitle-container {
   @include flex-center(column-reverse);
+  user-select: none;
   position: fixed;
   bottom: min(2rem, 10%);
   left: 50%;
@@ -39,6 +40,17 @@ body,
   border-radius: 0.5rem;
   transition: all 0.5s ease-in-out;
   white-space: pre-wrap;
+
+  &-theme {
+    &-default {
+      color: $color-white;
+      background-color: $color-black;
+    }
+    &-bright {
+      color: $color-navy-900;
+      background-color:$color-orange-900;
+    }
+  }
 }
 
 .show-subtitle {

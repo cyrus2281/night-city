@@ -20,6 +20,9 @@ interface GlobalState {
 
   isTrueFan: boolean;
   setIsTrueFan: (isTrueFan: boolean) => void;
+
+  chatInputCallback: null | ((message: string | null) => void);
+  activateChatInput: (callback: (message: string | null) => void) => void;
 }
 
 export default create(
@@ -43,6 +46,15 @@ export default create(
 
       isTrueFan: false,
       setIsTrueFan: (isTrueFan: boolean) => set({ isTrueFan }),
+
+      chatInputCallback: null,
+      activateChatInput: (callback: (message: string | null) => void) => {
+        const callbackWrapper = (message: string | null) => {
+          set({ chatInputCallback: null });
+          callback(message);
+        };
+        set({ chatInputCallback: callbackWrapper });
+      },
     };
   })
 );

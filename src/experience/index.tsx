@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience";
-import Interface from "./interface";
+import HtmlInterface from "./interface/HtmInterface";
 import { Navigate, Outlet, Route } from "react-router-dom";
 import Credit from "../pages/Credit";
 import Resume from "../pages/Resume";
@@ -20,7 +20,7 @@ function World() {
 
   return (
     <>
-      <Interface>
+      <HtmlInterface>
         <Canvas
           shadows
           camera={{
@@ -32,7 +32,7 @@ function World() {
         >
           <Experience />
         </Canvas>
-      </Interface>
+      </HtmlInterface>
       <Tutorial />
       <Outlet />
     </>

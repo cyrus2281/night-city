@@ -6,7 +6,8 @@ export const CHARACTER_INITIAL_POSITION = new Vector3(-11, 0.01, -23);
 // export const CHARACTER_INITIAL_POSITION = new Vector3(5.5, 9, 12);
 // export const CHARACTER_INITIAL_POSITION = new Vector3(21, 0.01, 7);
 
-export const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+export const isTouchDevice =
+  "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
 export const POSITION_DISPLACEMENT_THRESHOLD = {
   x: 0.5,
@@ -28,8 +29,8 @@ export const ASSETS = {
     ROBOT: "/blob/model/Robot.glb",
     CITY: "/blob/model/night-city.glb",
     DRONE: "/blob/model/drone.glb",
-    UNOBTANIUM : "/blob/model/unobtanium.glb",
-    INFO : "/blob/model/InfoButton.glb",
+    UNOBTANIUM: "/blob/model/unobtanium.glb",
+    INFO: "/blob/model/InfoButton.glb",
   },
   ENV_MAP: "/blob/envMap/night_city.jpg",
   BACKGROUND_MUSIC: {
@@ -41,12 +42,16 @@ export const ASSETS = {
     ],
   },
   GUY_AUDIO: "/blob/audio/guy/",
-  TEXT_FONT: "/blob/fonts/helvetiker_regular.typeface.json"
+  TEXT_FONT: "/blob/fonts/helvetiker_regular.typeface.json",
 };
 
 export const DEFAULT_MUSIC_VOLUME = 0.5;
 
-export const MAX_CLICKABLE_DISTANCE = 8;
+export const MAX_CLICKABLE_DISTANCE = 9;
+
+export const ROBOT_NAME = "CyrusAI";
+
+export const CHAT_HISTORY_MAX_LENGTH = 20;
 
 export const PAGES = {
   RESUME: "resume",
@@ -63,16 +68,16 @@ export const LOCAL_STORAGE_KEYS = {
   CHAT_HISTORY: "chatHistory",
 };
 
-export const AI_CHAT_ENDPOINT = IS_DEV ?
-  `${window.location.protocol}//${window.location.hostname}:8000/api/v1/ai-chat` :
-  `${window.location.origin}/api/v1/ai-chat`;
+export const AI_CHAT_ENDPOINT = IS_DEV
+  ? `${window.location.protocol}//${window.location.hostname}:8000/api/v1/ai-chat`
+  : `${window.location.origin}/api/v1/ai-chat`;
 
 export const EXTERNAL_LINKS = {
   LINKEDIN: "https://www.linkedin.com/in/cyrusmobini",
   GITHUB: "https://www.github.com/cyrus2281",
   COFFEE: "https://www.buymeacoffee.com/cyrus2281",
-  SOURCE_CODE: "https://github.com/cyrus2281/night-city"
-}
+  SOURCE_CODE: "https://github.com/cyrus2281/night-city",
+};
 
 export const NIGHT_CITY_FONT = `
 ███╗   ██╗██╗ ██████╗ ██╗  ██╗████████╗     ██████╗██╗████████╗██╗   ██╗
