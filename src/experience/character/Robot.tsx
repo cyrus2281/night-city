@@ -1,10 +1,11 @@
 import { RapierRigidBody, RigidBody } from "@react-three/rapier";
+import { useAnimations, useGLTF } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 import { ASSETS } from "../utils/constants";
-import { useAnimations, useGLTF } from "@react-three/drei";
-import { ROBOT_ANIMATIONS } from "../utils/enums";
+import useLocation from "../stores/useLocation";
+import { OTHER_TERRITORIES_NAMES, ROBOT_ANIMATIONS } from "../utils/enums";
 import { Vector3 } from "three";
 import ChatBubble from "./ChatBubble";
 
@@ -24,32 +25,39 @@ const positionsToRoom = [
     d: 0.5,
   },
   {
-    x: 15,
+    x: 15.5,
     z: 12,
     ry: 1,
     rw: 1,
     d: 8,
   },
   {
-    x: 15,
+    x: 15.5,
     z: 12,
     ry: 0,
     rw: 1,
     d: 0.5,
   },
   {
-    x: 17,
-    z: 17,
+    x: 15.5,
+    z: 15.5,
     ry: 0,
     rw: 1,
     d: 2,
   },
   {
-    x: 17,
-    z: 17,
-    ry: 2,
-    rw: -1,
+    x: 15.5,
+    z: 15.5,
+    ry: 1,
+    rw: 1,
     d: 0.5,
+  },
+  {
+    x: 23,
+    z: 15.5,
+    ry: 1,
+    rw: 1,
+    d: 3,
   },
 ];
 
@@ -95,17 +103,14 @@ const moveRobotTo = (
 const walkToRoom = async (
   setAnimation: (name: ROBOT_ANIMATIONS) => void,
   position: { current: unknown },
-  bodyRef: { current: RapierRigidBody | undefined },
-  setIsWalking: (show: boolean) => void
+  bodyRef: { current: RapierRigidBody | undefined }
 ) => {
   setAnimation(ROBOT_ANIMATIONS.WALK);
-  setIsWalking(true);
   for (const nextPosition of positionsToRoom) {
     await moveRobotTo(position, bodyRef, nextPosition);
   }
   const lastPosition = positionsToRoom[positionsToRoom.length - 1];
   setAnimation(ROBOT_ANIMATIONS.IDLE);
-  setIsWalking(false);
   bodyRef.current?.setRotation(
     {
       x: 0,
@@ -152,11 +157,26 @@ function Robot() {
   });
   const bodyRef = useRef<RapierRigidBody>();
   const robot = useGLTF(ASSETS.MODELS.ROBOT);
-  const [isWalking, setIsWalking] = useState(false);
   const [currentAnimation, setCurrentAnimation] = useState(
     ROBOT_ANIMATIONS.IDLE
   );
   const animations = useAnimations(robot.animations, robot.scene);
+  const territoriesName = useLocation((state) => state.territoriesName);
+
+  const robotActions: { [key: string]: () => void | Promise<void> } = {
+    SAY_NO: () => playAnimation(setCurrentAnimation, ROBOT_ANIMATIONS.NO),
+    SAY_YES: () => playAnimation(setCurrentAnimation, ROBOT_ANIMATIONS.YES),
+    THUMBS_UP: () =>
+      playAnimation(setCurrentAnimation, ROBOT_ANIMATIONS.THUMBS_UP),
+    WAVE: () => playAnimation(setCurrentAnimation, ROBOT_ANIMATIONS.WAVE),
+    WALK_AWAY: () => walkToRoom(setCurrentAnimation, positionRef, bodyRef),
+  };
+
+  useEffect(() => {
+    if (territoriesName.includes(OTHER_TERRITORIES_NAMES.ROBOT_SPOT)) {
+      robotActions.WAVE();
+    }
+  }, [territoriesName]);
 
   useEffect(() => {
     const action = animations.actions[currentAnimation];
@@ -166,18 +186,11 @@ function Robot() {
     };
   }, [currentAnimation]);
 
-  const robotActions = {
-    say_no: () => playAnimation(setCurrentAnimation, ROBOT_ANIMATIONS.NO),
-    say_yes: () => playAnimation(setCurrentAnimation, ROBOT_ANIMATIONS.YES),
-    thumbs_up: () =>
-      playAnimation(setCurrentAnimation, ROBOT_ANIMATIONS.THUMBS_UP),
-    wave: () => playAnimation(setCurrentAnimation, ROBOT_ANIMATIONS.WAVE),
-    walkToRoom: () =>
-      walkToRoom(setCurrentAnimation, positionRef, bodyRef, setIsWalking),
+  const setRobotAction = (action: string) => {
+    if (action in robotActions) {
+      robotActions[action]();
+    }
   };
-
-  // TODO: remove this
-  window.robotActions = robotActions;
 
   return (
     <>
@@ -201,7 +214,7 @@ function Robot() {
         restitution={0}
         mass={1}
       >
-        <ChatBubble isWalking={isWalking} />
+        <ChatBubble setAction={setRobotAction} />
         <primitive
           name="robot"
           object={robot.scene}

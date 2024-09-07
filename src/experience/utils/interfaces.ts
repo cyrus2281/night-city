@@ -69,3 +69,8 @@ export interface Subtitle {
   id: string;
   remove: () => void;
 }
+
+export interface LLM_MESSAGE {
+  role: "user"|"assistant"
+  content: string
+}

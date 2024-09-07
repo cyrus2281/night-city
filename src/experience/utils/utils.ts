@@ -1,6 +1,17 @@
-import { ALTITUDE_DISPLACEMENT_THRESHOLD, NIGHT_CITY_FONT } from "./constants";
+import {
+  AI_CHAT_ENDPOINT,
+  ALTITUDE_DISPLACEMENT_THRESHOLD,
+  NIGHT_CITY_FONT,
+} from "./constants";
 import { TERRITORIES_NAMES, TerritoryType } from "./enums";
-import { Point, Circle2D, Rectangle2D, Territory, Point3D } from "./interfaces";
+import {
+  Point,
+  Circle2D,
+  Rectangle2D,
+  Territory,
+  Point3D,
+  LLM_MESSAGE,
+} from "./interfaces";
 const FORMSPREE_URL = import.meta.env.VITE_FORMSPREE_URL;
 
 export const getLocalTime = (): string => {
@@ -126,26 +137,39 @@ export const openUrl = (url: string, newTab = true): void => {
   window.open(url, newTab ? "_blank" : "_self");
 };
 
-
 export const getCameraFOV = () => {
   const windowWidth = window.innerWidth;
-  let fov = 45
+  let fov = 45;
   if (windowWidth < 600) {
-    fov = 65
+    fov = 65;
   } else if (windowWidth < 800) {
-    fov = 55
+    fov = 55;
   }
   return fov;
-}
+};
 
 export const printNightCityInfo = () => {
   // console.clear();
   setTimeout(() =>
     console.log(NIGHT_CITY_FONT.replaceAll("{worldPath}", window.worldPath))
-  );  
+  );
 };
 
-
 export const sleep = (ms: number) => {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+export const askAiChat = async (messages: LLM_MESSAGE[]) => {
+  const response = await fetch(AI_CHAT_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ messages }),
+  });
+  if (!response.ok || response.status !== 200) {
+    throw new Error("Failed to contact LLM");
+  }
+  const data = await response.json();
+  return data;
+};

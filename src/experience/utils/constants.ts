@@ -1,5 +1,7 @@
 import { Vector3 } from "three";
 
+export const IS_DEV = import.meta.env.DEV;
+
 export const CHARACTER_INITIAL_POSITION = new Vector3(-11, 0.01, -23);
 // export const CHARACTER_INITIAL_POSITION = new Vector3(5.5, 9, 12);
 // export const CHARACTER_INITIAL_POSITION = new Vector3(21, 0.01, 7);
@@ -58,7 +60,12 @@ export const LOCAL_STORAGE_KEYS = {
   DISCOVERED_UNKNOWN: "discoveredUnknown",
   FINISHED: "finished",
   SHOW_TUTORIAL: "showTutorial",
+  CHAT_HISTORY: "chatHistory",
 };
+
+export const AI_CHAT_ENDPOINT = IS_DEV ?
+  `${window.location.protocol}//${window.location.hostname}:8000/api/v1/ai-chat` :
+  `${window.location.origin}/api/v1/ai-chat`;
 
 export const EXTERNAL_LINKS = {
   LINKEDIN: "https://www.linkedin.com/in/cyrusmobini",

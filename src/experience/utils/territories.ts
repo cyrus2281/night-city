@@ -14,14 +14,22 @@ const TERRITORIES: Territory[] = [
     width: 7.5,
     height: 11,
   },
+
   {
     name: MAIN_TERRITORIES_NAMES.PARK,
-    center: { x: -12.5, y: 19.5 },
+    center: { x: -12.5, y: 19 },
     type: TerritoryType.RECTANGULAR,
     width: 19,
-    height: 10.5,
+    // height: 10.5,
+    height: 12,
     mustInclude: true,
     children: [
+      {
+        name: OTHER_TERRITORIES_NAMES.ROBOT_SPOT,
+        center: { x: -7.5, y: 16.5 },
+        type: TerritoryType.CIRCULAR,
+        radius: 3,
+      },
       {
         name: OTHER_TERRITORIES_NAMES.PARK_FOUNTAIN,
         center: { x: -6, y: 19 },

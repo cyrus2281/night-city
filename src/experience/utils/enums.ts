@@ -22,6 +22,7 @@ export enum OTHER_TERRITORIES_NAMES {
   PARK_FOUNTAIN = "Park Fountain",
   PARK_NAME = "Developer Name",
   PIPES = "Duct Pipes",
+  ROBOT_SPOT = "Robot Spot",
 }
 
 export type TERRITORIES_NAMES = MAIN_TERRITORIES_NAMES | OTHER_TERRITORIES_NAMES;

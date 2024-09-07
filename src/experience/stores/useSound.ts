@@ -1,9 +1,8 @@
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 import { AudioConfig, Subtitle } from "../utils/interfaces";
-import { DEFAULT_MUSIC_VOLUME } from "../utils/constants";
+import { DEFAULT_MUSIC_VOLUME, IS_DEV } from "../utils/constants";
 import { sleep } from "../utils/utils";
-const IS_DEV = import.meta.env.DEV;
 
 interface SoundState {
   activeSounds: AudioElement[];

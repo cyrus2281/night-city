@@ -1,17 +1,47 @@
 import { useEffect, useRef, useState } from "react";
-import { ASSETS } from "../utils/constants";
+import { ASSETS, LOCAL_STORAGE_KEYS } from "../utils/constants";
 import { Float, useGLTF } from "@react-three/drei";
+import { LLM_MESSAGE } from "../utils/interfaces";
+import { askAiChat } from "../utils/utils";
 
-function ChatBubble({ isWalking = false }: { isWalking: boolean }) {
+function ChatBubble({ setAction }: { setAction: (action: string) => void }) {
   const chatBounceRef = useRef<NodeJS.Timeout>();
   const chatButton = useGLTF(ASSETS.MODELS.INFO);
-  const [showChat, setShowChat] = useState(!isWalking);
+  const [showChat, setShowChat] = useState(true);
 
-  // TODO: Show chat on close proximity and wave
+  const onMessageSent = async (newMessage: string) => {
+    let history: LLM_MESSAGE[] = [];
+    try {
+      // Load Message history from local storage
+      history = JSON.parse(
+        localStorage.getItem(LOCAL_STORAGE_KEYS.CHAT_HISTORY) || "[]"
+      );
+    } catch {
+      // No valid history
+      history = [];
+    }
 
-  useEffect(() => {
-    setShowChat(!isWalking);
-  }, [isWalking]);
+    // Add new message to history
+    history.push({ role: "user", content: newMessage });
+
+    try {
+      const response = await askAiChat(history);
+      // Update history
+      history.push({ role: "assistant", content: response.response });
+      localStorage.setItem(LOCAL_STORAGE_KEYS.CHAT_HISTORY, JSON.stringify(history));
+      setAction(response.action)
+
+      // TODO: Add message to GUI
+      console.log("Message sent", response);
+      
+    } catch (error) {
+      console.error("Failed to send message", error);
+      setAction("WALK_AWAY");
+      setShowChat(false);
+    }
+  };
+
+  window.msg = onMessageSent
 
   if (showChat)
     return (
